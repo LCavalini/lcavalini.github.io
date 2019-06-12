@@ -206,9 +206,10 @@
 			}
 			
 			var remuneracaoBruta = baseCalculoDeducoes + totalAuxilioAlimentacao + totalAuxilioTransporte 
-			+ totalAuxilioCreche + auxilioSaude - totalDescontoIamspe;
+			+ totalAuxilioCreche + auxilioSaude;
 			
-			var remuneracaoLiquida = remuneracaoBruta - totalContribuicaoPrevidenciaria - totalIRPF;
+			var remuneracaoLiquida = remuneracaoBruta - totalDescontoIamspe - 
+			totalContribuicaoPrevidenciaria - totalIRPF;
 			
 			document.getElementById("totalAuxilioAlimentacao").innerHTML = numberToReal(totalAuxilioAlimentacao);
 			document.getElementById("totalAuxilioTransporte").innerHTML = numberToReal(totalAuxilioTransporte);
