@@ -1,0 +1,60 @@
+body {
+		
+    background-color: #F7F7F7;
+    
+}
+
+input[type=number] {
+
+    width: 40px;
+}
+
+p {
+
+    font-size: 14px;
+
+}
+
+label {
+
+    font-size: 14px;
+}
+
+h1 {
+
+    font-size: 20px;
+}
+
+h2 {
+
+    font-size: 16px;
+}
+
+#formulario {
+
+    width: 100%
+
+}
+
+#resultado {
+
+    width: 100%
+
+}
+
+.conteudo {
+    
+    background-color: white;
+}
+
+.titulo {
+    
+    background-color: #4E4E4E;
+    color: white;
+}
+
+.avisoRemuneracao {
+    background-color: yellow;
+    color: black;
+}
+

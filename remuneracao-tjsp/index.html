@@ -3,96 +3,29 @@
 <head>
 	<meta charset = "utf-8"/>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-
 	<title>Calculadora de Remunerações :: Escrevente Técnico Judiciário - TJ-SP</title>
-	
-	<style>
-		
-		body {
-		
-			background-color: #F7F7F7;
-			
-		}
-		
-		input[type=number] {
-		
-			width: 40px;
-		}
-		
-		p {
-		
-			font-size: 14px;
-		
-		}
-		
-		label {
-		
-			font-size: 14px;
-		}
-		
-		h1 {
-		
-			font-size: 20px;
-		}
-		
-		h2 {
-		
-			font-size: 16px;
-		}
-		
-		#formulario {
-		
-			width: 100%
-		
-		}
-		
-		#resultado {
-		
-			width: 100%
-		
-		}
-		
-		.conteudo {
-			
-			background-color: white;
-		}
-		
-		.titulo {
-			
-			background-color: #4E4E4E;
-			color: white;
-		}
-		
-	</style>
-	
+	<link rel="stylesheet" href="estilos/principal.css">
 </head>
 <body>
-	
-	<div id = "titulo" class = "titulo">
-		
+	<div id="titulo" class = "titulo">
 		<h1>Calculadora de Remuneração<br>Escrevente Técnico Judiciário - TJ/SP</h1>
 	</div>
-
-	<div id = "formulario" class = "conteudo">
-	
+	<div id="formulario" class = "conteudo">
 		<form>
-		
 			<h1>Dados</h1>
 			<p>
 			<label>Dias trabalhados</label>: 
-			<input type = "number" id = "diasTrabalhados" min = "0" max = "31"
+			<input type = "number" id="diasTrabalhados" min = "0" max = "31"
 			value = "20">
 			</p>
-			
 			<p>
 			<label>Auxílio-creche (nº de crianças)</label>: 
-			<input type = "number" id = "auxilioCreche" min = "0" max = "20"
+			<input type = "number" id="auxilioCreche" min = "0" max = "20"
 			value = "0">
 			</p>
-			
 			<p>
 			<label>Formação acadêmica</label>: 
-			<select id = "formacaoAcademica">
+			<select id="formacaoAcademica">
 				<option value = "0">Ensino Médio
 				<option value = "0.05">Ensino Superior
 				<option value = "0.075">Pós-graduação (lato sensu)
@@ -100,69 +33,55 @@
 				<option value = "0.125">Doutorado
 			</select>
 			</p>
-			
 			<p>
 			<label>IAMSPE</label>: 
-			<select id = "iamspe">
+			<select id="iamspe">
 				<option value = "1">Sim
 				<option value = "0">Não
 			</select>
 			</p>
-			
 			<p>
 			<label>Agregados do IAMSPE</label>: 
-			<input type = "number" id = "agregadosIamspe" min = "0" max = "20"
+			<input type = "number" id="agregadosIamspe" min = "0" max = "20"
 			value = "0">
 			</p>
-			
 			<p>
 			<label>Dependentes</label>: 
-			<input type = "number" id = "dependentes" min = "0" max = "20"
+			<input type = "number" id="dependentes" min = "0" max = "20"
 			value = "0">
 			</p>
-			
 			<p>
 			<label>Quinquênios</label>:
-			<input type = "number" id = "quinquenios" min = "0" max = "20"
+			<input type = "number" id="quinquenios" min = "0" max = "20"
 			value = "0">
 			</p>
-			
 			<p>
 			<input type = "button" value = "Calcular" onclick = "calcSallary()">
-			</p>
-			
+			</p>	
 		</form>
-	
 	</div>
-	
-	<div id = "resultado" class = "conteudo">
-	
+	<div id="resultado" class = "conteudo">
 		<h1>Resultado</h3>
 		<p>Última atualização: 03/2022</p>
-		
 		<h2>Remuneração</h2>
-		<p>Valor bruto: <span id = "remuneracaoBruta"></span></p>
-		<p>Valor líquido: <span id = "remuneracaoLiquida"></span></p>
-	
+		<p>Valor bruto: <span id="remuneracaoBruta"></span></p>
+		<p>Valor líquido: <span id="remuneracaoLiquida"></span></p>
+		<p><span class="avisoRemuneracao"><strong>Atenção!</strong> A remuneração líquida <strong>inclui os valores de todos os auxílios</strong>, que são depositados em dinheiro junto com os demais componentes da remuneração.</span></p>
+		<p><span class="avisoRemuneracao"><strong>Atenção!</strong> Este cálculo é válido apenas para um mês completo de trabalho (não retorna resultados corretos para a primeira remuneração).</span></p>
 		<h2>Auxílios</h2>
-		<p>Auxílio-alimentação: <span id = "totalAuxilioAlimentacao"></span></p>
-		<p>Auxílio-transporte: <span id = "totalAuxilioTransporte"></span></p>
-		<p>Auxílio-saúde: <span id = "totalAuxilioSaude"></span></p>
-		<p>Auxílio-creche: <span id = "totalAuxilioCreche"></span></p>
-		
+		<p>Auxílio-alimentação: <span id="totalAuxilioAlimentacao"></span></p>
+		<p>Auxílio-transporte: <span id="totalAuxilioTransporte"></span></p>
+		<p>Auxílio-saúde: <span id="totalAuxilioSaude"></span></p>
+		<p>Auxílio-creche: <span id="totalAuxilioCreche"></span></p>
 		<h2>Adicionais</h2>
-		<p>Adicional de qualificação: <span id = "totalAdicionalQualificacao"></span></p>
-		<p>Adicional de tempo de serviço: <span id = "totalAdicionalTempoServico"></span></p>
-		
+		<p>Adicional de qualificação: <span id="totalAdicionalQualificacao"></span></p>
+		<p>Adicional de tempo de serviço: <span id="totalAdicionalTempoServico"></span></p>
 		<h2>Descontos</h2>
-		<p>IAMSPE: <span id = "totalDescontoIamspe"></span></p>
-		<p>Contribuição Previdenciária: <span id = "totalContribuicaoPrevidenciaria"></span></p>
-		<p>Imposto de Renda: <span id = "totalIRPF"></span></p>
-		
-		
+		<p>IAMSPE: <span id="totalDescontoIamspe"></span></p>
+		<p>Contribuição Previdenciária: <span id="totalContribuicaoPrevidenciaria"></span></p>
+		<p>Imposto de Renda: <span id="totalIRPF"></span></p>
 	</div>
-	
-	<div id = "contato" class = "titulo">
+	<div id="contato" class = "titulo">
 		<p>
 			Caso tenha algum problema, <a style = "color:white" href = 
 			"mailto:lucas.cavalini.barboza@gmail.com?subject=Calculadora de Remuneração - TJ-SP">
@@ -171,165 +90,6 @@
 			Autor: Lucas Cavalini Barboza
 		</p>
 	</div>
-	
-	<script>
-	
-		function numberToReal(numero) {
-		
-			var numero = numero.toFixed(2).split('.');
-			numero[0] = "R$ " + numero[0].split(/(?=(?:...)*$)/).join('.');
-			return numero.join(',');
-		}
-	
-		function calcSallary() {
-			
-			// valores atualizados até 03/2020
-			const base =  1968.34;
-			const gaj =  3.612 * 972.37;
-			const auxilioCreche = 423;
-			const auxilioAlimentacao = 48;
-			const auxilioTransporte = 8.8;
-			const auxilioSaude = 370;
-			const descontoIamspe = 0.02;
-			
-			// valores atualizados até 06/2019
-			const faixasIRPF = [{limite:1903.98, aliquota: 0.075, deducao: 142.8},
-			{limite: 2826.65, aliquota: 0.15, deducao: 354.8},
-			{limite: 3751.05, aliquota: 0.225, deducao: 636.13},
-			{limite: 4664.68, aliquota: 0.275, deducao: 869.36}];
-			const deducaoDependenteIRPF = 189.59;
-			
-			// valor atualizado até 01/2022
-			const faixasContribuicaoPrevidenciaria = [{limite: 1212, aliquota: 0.11, deducao: 0},
-			{limite: 3473.74, aliquota: 0.12, deducao: 12.12},
-			{limite: 7087.22, aliquota: 0.14, deducao: 81.60},
-			{limite: Infinity, aliquota: 0.16, deducao: 223.34}];
-
-			// obtém os parâmetros fornecidos pelo usuário
-			var diasTrabalhados = Number(document.getElementById("diasTrabalhados").value);
-			var numAuxilioCreche = Number(document.getElementById("auxilioCreche").value);
-			var formacaoAcademica = Number(document.getElementById("formacaoAcademica").value);
-			var iamspe = Number(document.getElementById("iamspe").value);
-			var agregadosIamspe = Number(document.getElementById("agregadosIamspe").value);
-			var dependentes = Number(document.getElementById("dependentes").value);
-			var quinquenios = Number(document.getElementById("quinquenios").value);
-			
-			var adicionalQualificacao = formacaoAcademica * (base + gaj);
-			
-			// com sexta parte (20 anos = 4 quinquenios)
-			if(quinquenios >= 4) {
-			
-				var adicionalTempoServico = (0.05 * quinquenios + 0.2) * (base + gaj);
-		
-			}
-			
-			// sem sexta parte
-			else {
-			
-				var adicionalTempoServico = 0.05 * quinquenios * (base + gaj);
-			
-			}
-						
-			// cálculo dos auxílios
-			var totalAuxilioAlimentacao = diasTrabalhados * auxilioAlimentacao;
-			var totalAuxilioTransporte = diasTrabalhados * auxilioTransporte;
-			var totalAuxilioCreche = numAuxilioCreche * auxilioCreche;
-			
-			var baseCalculoDeducoes = base + gaj + adicionalQualificacao + adicionalTempoServico;
-			
-			// cálculo das deduções
-			var totalDescontoIamspe = (iamspe + agregadosIamspe) * descontoIamspe * baseCalculoDeducoes;			
-			var totalDeducaoDependenteIRPF = dependentes * deducaoDependenteIRPF;
-
-			if(baseCalculoDeducoes <= faixasContribuicaoPrevidenciaria[0].limite) {
-
-				totalContribuicaoPrevidenciaria = baseCalculoDeducoes * faixasContribuicaoPrevidenciaria[0].aliquota - faixasContribuicaoPrevidenciaria[0].deducao;
-
-			}
-
-			else if(baseCalculoDeducoes <= faixasContribuicaoPrevidenciaria[1].limite) {
-
-				totalContribuicaoPrevidenciaria = baseCalculoDeducoes * faixasContribuicaoPrevidenciaria[1].aliquota - faixasContribuicaoPrevidenciaria[1].deducao;
-
-			}
-
-
-			else if(baseCalculoDeducoes <= faixasContribuicaoPrevidenciaria[2].limite) {
-
-				totalContribuicaoPrevidenciaria = baseCalculoDeducoes * faixasContribuicaoPrevidenciaria[2].aliquota - faixasContribuicaoPrevidenciaria[2].deducao;
-
-			}
-
-			else {
-
-
-				totalContribuicaoPrevidenciaria = baseCalculoDeducoes * faixasContribuicaoPrevidenciaria[3].aliquota - faixasContribuicaoPrevidenciaria[3].deducao;
-
-			}
-				
-			
-			var baseCalculoIRPF = baseCalculoDeducoes - totalDeducaoDependenteIRPF - totalContribuicaoPrevidenciaria;
-			
-			// cálculo do IRPF de acordo com as faixas
-			if(baseCalculoIRPF > faixasIRPF[0].limite && baseCalculoIRPF <= faixasIRPF[1].limite) {
-			
-				totalIRPF = baseCalculoIRPF * faixasIRPF[0].aliquota - faixasIRPF[0].deducao;
-			
-			}
-			
-			else if(baseCalculoIRPF > faixasIRPF[1].limite && baseCalculoIRPF <= faixasIRPF[2].limite) {
-			
-				totalIRPF = baseCalculoIRPF * faixasIRPF[1].aliquota - faixasIRPF[1].deducao;
-				
-			}
-			
-			else if(baseCalculoIRPF > faixasIRPF[2].limite && baseCalculoIRPF <= faixasIRPF[3].limite) {
-			
-				totalIRPF = baseCalculoIRPF * faixasIRPF[2].aliquota - faixasIRPF[2].deducao;
-				
-			}
-			
-			else if(baseCalculoIRPF > faixasIRPF[3].limite) {
-			
-				totalIRPF = baseCalculoIRPF * faixasIRPF[3].aliquota - faixasIRPF[3].deducao;
-			
-			}
-			
-			else {
-			
-				totalIRPF = 0;
-			
-			}
-			
-			var remuneracaoBruta = baseCalculoDeducoes + totalAuxilioAlimentacao + totalAuxilioTransporte 
-			+ totalAuxilioCreche + auxilioSaude;
-			
-			var remuneracaoLiquida = remuneracaoBruta - totalDescontoIamspe - 
-			totalContribuicaoPrevidenciaria - totalIRPF;
-			
-			document.getElementById("totalAuxilioAlimentacao").innerHTML = numberToReal(totalAuxilioAlimentacao);
-			document.getElementById("totalAuxilioTransporte").innerHTML = numberToReal(totalAuxilioTransporte);
-			document.getElementById("totalAuxilioSaude").innerHTML = numberToReal(auxilioSaude);
-			document.getElementById("totalAuxilioCreche").innerHTML = numberToReal(totalAuxilioCreche);
-			
-			document.getElementById("totalDescontoIamspe").innerHTML = numberToReal(totalDescontoIamspe);
-			document.getElementById("totalContribuicaoPrevidenciaria").innerHTML = 
-			numberToReal(totalContribuicaoPrevidenciaria);
-			document.getElementById("totalIRPF").innerHTML = 
-			numberToReal(totalIRPF);
-			
-			document.getElementById("totalAdicionalQualificacao").innerHTML = 
-			numberToReal(adicionalQualificacao);
-			
-			document.getElementById("totalAdicionalTempoServico").innerHTML = 
-			numberToReal(adicionalTempoServico);
-			
-			document.getElementById("remuneracaoBruta").innerHTML = numberToReal(remuneracaoBruta);
-			document.getElementById("remuneracaoLiquida").innerHTML = numberToReal(remuneracaoLiquida);
-		
-		}
-	
-	</script>
-
+	<script src="scripts/calculos.js"></script>
 </body>
 </html>
