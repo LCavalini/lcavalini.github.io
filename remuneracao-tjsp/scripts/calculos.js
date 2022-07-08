@@ -11,7 +11,7 @@ function calcSallary() {
 	const base =  1968.34;
 	const gaj =  3.612 * 972.37;
 	const auxilioCreche = 423;
-	const auxilioAlimentacao = 48;
+	const auxilioAlimentacao = 55;
 	const auxilioTransporte = 8.8;
 	const auxilioSaude = 370;
 	const descontoIamspe = 0.02;
