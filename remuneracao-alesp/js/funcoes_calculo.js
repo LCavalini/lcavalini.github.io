@@ -1,5 +1,6 @@
 // Funções de cálculo de remuneração
 
+// fonte dos vencimentos: 
 const vencimentoTecnico = [
     3206.00, 3326.22, 3450.95, 3580.37, 3714.64, 3853.93, 3998.47, 4148.41, 4303.99, 4465.37, 4632.84, 4806.54,
     4986.81, 5173.82, 5367.85, 5569.15, 5777.99, 5994.65, 6219.44, 6452.68
@@ -44,9 +45,9 @@ const tetoInss = 7087.22;
 // fonte: http://www.recursoshumanos.sp.gov.br/teto_salarial.html
 const tetoEstadoSp = 23048.59
 
-function vencimentoBasico(cargo, nivel) {
+function vencimentoBasico(cargo, nivel, tempo) {
     // a progressão de nível só ocorre após o probatório
-    if (nivel <= 3) nivel = 1;
+    if (tempo <= 3) nivel = 1;
     if (cargo == 'tecnico') {
         return vencimentoTecnico[nivel-1]
     } else if (cargo == 'analista') {
@@ -95,7 +96,7 @@ function ats(baseCalculo, tempo) {
 }
 
 function remuneracaoBruta(cargo, nivel, tempo, percentualGed) {
-    baseCalculoAts = vencimentoBasico(cargo, nivel) + gratificacaoLeg(cargo) + gratificacaoRepr(cargo)
+    baseCalculoAts = vencimentoBasico(cargo, nivel, tempo) + gratificacaoLeg(cargo) + gratificacaoRepr(cargo)
     return baseCalculoAts + ats(baseCalculoAts, tempo) + ged(percentualGed);
 }
 

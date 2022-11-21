@@ -20,14 +20,47 @@
                 <option value="auditor">Auditor Interno</option>
             </select>
             <p></p>
-            <label for="nivel">Nível (de 1 a 20):</label>
-            <input id="nivel" type="number" min="1" max="20" value="1">
+            <label for="nivel">Nível (Padrão de Vencimento):</label>
+            <select id="nivel">
+				<option value = "1">1
+				<option value = "2">2
+                <option value = "3">3
+                <option value = "4">4
+                <option value = "5">5
+                <option value = "6">6
+                <option value = "7">7
+                <option value = "8">8
+                <option value = "9">9
+                <option value = "10">10
+                <option value = "11">11
+                <option value = "12">12
+                <option value = "13">13
+                <option value = "14">14
+                <option value = "15">15
+                <option value = "16">16
+                <option value = "17">17
+                <option value = "18">18
+                <option value = "19">19
+                <option value = "20">20
+            </select>
             <p></p>
-            <label for="tempo">Tempo de exercício:</label>
+            <label for="tempo">Tempo de exercício (em anos):</label>
             <input id="tempo" type="number" min="1" max="100" value="0">
             <p></p>
             <label for="percentualGed">GED - Gratificação Especial de Desempenho (%):</label>
-            <input id="percentualGed" type="number" min="0" max="100" value="0">
+            <select id="percentualGed">
+				<option value = "0">0%
+				<option value = "10">10%
+                <option value = "20">20%
+                <option value = "30">30%
+                <option value = "40">40%
+                <option value = "50">50%
+                <option value = "60">60%
+                <option value = "70">70%
+                <option value = "80">80%
+                <option value = "90">90%
+                <option value = "100">100%
+            </select>
             <p></p>
             <label for="faltas">Número de faltas (desconto do Aux. Refeição)</label>
             <input id="faltas" type="number" min="0" max="22" value="0">
@@ -38,17 +71,17 @@
 				<option value = "0">Não
 			</select>
             <p></p>
-            <label for="idade">Idade (IAMSPE):</label>
+            <label for="idade">Idade (para o IAMSPE):</label>
             <input id="idade" type="number" min="18" max="200" value="30">
             <p></p>
-            <label for="auxilioPreEscolar">Auxílio Pré-Escolar:</label> 
+            <label for="auxilioPreEscolar">Auxílio Pré-Escolar (crianças até 4 anos):</label> 
 			<select id="auxilioPreEscolar">
                 <option value = "0">Não
 				<option value = "1">Sim
 			</select>
             <p></p>
             <label for="despesasMedicas">Despesas médicas (em R$)</label>
-            <input id="despesasMedicas" type="number" min="0" value="500">
+            <input id="despesasMedicas" type="number" min="0" value="500" maxlength="10">
             <p></p>
             <input type="button" value="Calcular" onclick = "calcular()">
         </form>
@@ -64,7 +97,8 @@
         <p>Adicional por tempo de serviço (quinquênios + sexta-parte): <span id="ats"></span></p>
         <p>Remuneração bruta sem auxílios: <span id="remuneracaoBruta"></span></p>
         <h4>Deduções</h4>
-        <p>Contribuição previdenciária: <span id="previdencia"></span></p>
+        <p>Dedução do teto do Estado de São Paulo: <span id="extraTeto"></span></p>
+        <p>Contribuição previdenciária: </a><span id="previdencia"></span></p>
         <p>Imposto de Renda da Pessoa Física: <span id="irpf"></span></p>
         <p>IAMSPE: <span id="deducaoIamspe"></span></p>
         <h4>Indenizações</h4>
@@ -76,7 +110,41 @@
         <p>Créditos do Auxílio Refeição: <span id="refeicao"></span></p>
         <p>Remuneração líquida total: <span id="total"></span></p>
     </div>
-	<div id="contato" class = "titulo">
+    <div id="Fonte" class="conteudo">
+        <h1>Fonte de informações</h1>
+        <p>Vencimentos e gratificações: 
+            <a href="https://www.al.sp.gov.br/arquivos/administracao/gestao-de-pessoal/vencimentos/Tabelas_Vencimentos_2022_03_01.pdf">
+                https://www.al.sp.gov.br/arquivos/administracao/gestao-de-pessoal/vencimentos/Tabelas_Vencimentos_2022_03_01.pdf
+            </a>
+        </p>
+        <p>
+            Teto do Estado de São Paulo: 
+            <a href="http://www.recursoshumanos.sp.gov.br/teto_salarial.html">
+                http://www.recursoshumanos.sp.gov.br/teto_salarial.html
+            </a>
+        </p>
+        <p>Contribuição Previdenciária: 
+            <a href="https://portal.fazenda.sp.gov.br/servicos/folha/Paginas/Contribuicao_Previdenciaria_Servidores_Ativos.aspx">
+                https://portal.fazenda.sp.gov.br/servicos/folha/Paginas/Contribuicao_Previdenciaria_Servidores_Ativos.aspx
+            </a>
+        </p>
+        <p>Imposto de Renda da Pessoa Física: 
+            <a href="https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/irpf-imposto-de-renda-pessoa-fisica#tabelas-de-incid-ncia-mensal">
+                https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/irpf-imposto-de-renda-pessoa-fisica#tabelas-de-incid-ncia-mensal
+            </a>
+        </p>
+        <p>IAMSPE: 
+            <a href="http://www.iamspe.sp.gov.br/wp-content/uploads/2021/02/Nova_lei_contribui%C3%A7%C3%A3o-25-02-21.pdf">
+                http://www.iamspe.sp.gov.br/wp-content/uploads/2021/02/Nova_lei_contribui%C3%A7%C3%A3o-25-02-21.pdf
+            </a>
+        </p>
+        <p>Auxílios e Benefícios: 
+            <a href="https://www3.al.sp.gov.br/DrhOnline/pages/servidor/auxilios-beneficios">
+                https://www3.al.sp.gov.br/DrhOnline/pages/servidor/auxilios-beneficios
+            </a>
+        </p>
+    </div>
+	<div id="contato" class="titulo">
 		<p>
 			Caso tenha algum problema, <a style = "color:white" href = 
 			"mailto:lucas.cavalini.barboza@gmail.com?subject=Calculadora de Remuneração - AL-SP">

@@ -11,7 +11,7 @@ function calcular() {
     ];
     camposResultadoId = [
         "vencimento", "gratificacaoLeg", "gratificacaoRepr", "ged", "ats", "remuneracaoBruta", "previdencia", "irpf",
-        "deducaoIamspe", "alimentacao", "saude", "preEscolar", "liquido", "refeicao", "total"
+        "deducaoIamspe", "alimentacao", "saude", "preEscolar", "liquido", "refeicao", "total", "extraTeto"
     ];
     camposCalculo = {};
     camposResultado = {};
@@ -21,7 +21,9 @@ function calcular() {
     for (campoResultadoId of camposResultadoId) {
         camposResultado[campoResultadoId] = document.getElementById(campoResultadoId);
     }
-    camposResultado["vencimento"].innerHTML = numeroParaMoeda(vencimentoBasico(camposCalculo["cargo"], camposCalculo["nivel"]));
+    camposResultado["vencimento"].innerHTML = numeroParaMoeda(vencimentoBasico(camposCalculo["cargo"],
+                                                                               camposCalculo["nivel"],
+                                                                               camposCalculo["tempo"]));
     camposResultado["gratificacaoLeg"].innerHTML = numeroParaMoeda(gratificacaoLeg(camposCalculo["cargo"]));
     camposResultado["gratificacaoRepr"].innerHTML = numeroParaMoeda(gratificacaoRepr(camposCalculo["cargo"]));
     camposResultado["ged"].innerHTML = numeroParaMoeda(ged(camposCalculo["percentualGed"]));
@@ -29,6 +31,9 @@ function calcular() {
                              camposCalculo["percentualGed"]);
     camposResultado["ats"].innerHTML = numeroParaMoeda(ats(bruto, camposCalculo["tempo"]));
     camposResultado["remuneracaoBruta"].innerHTML = numeroParaMoeda(bruto);
+    extra = extraTeto(bruto);
+    if (extra > 0) bruto = tetoEstadoSp;
+    camposResultado["extraTeto"].innerHTML = numeroParaMoeda(extra);
     previdencia = contribuicaoPrevidenciaria(bruto);
     camposResultado["previdencia"].innerHTML = numeroParaMoeda(previdencia);
     irpf = impostoRenda(bruto - previdencia)
