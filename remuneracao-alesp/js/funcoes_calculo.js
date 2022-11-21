@@ -22,8 +22,10 @@ const gratificacaoReprAuditor = 2377.18
 const maximoGed = 6482.93
 // fonte dos auxílios: https://www3.al.sp.gov.br/DrhOnline/pages/servidor/auxilios-beneficios
 const auxilioAlimentacao = 757.37  // creditado em espécie
-const cotaAuxilioRefeicao = 57.18  // a base é 22 dias, havendo desconto somente em caso de falta
-const auxilioSaude = 500.00 // reembolso máximo
+// alterado pelo Ato da Mesa nº 20/2022
+const cotaAuxilioRefeicao = 62.90  // a base é 22 dias, havendo desconto somente em caso de falta
+// alterado pelo Ato da Mesa nº 21/2022
+const auxilioSaude = 550.00 // reembolso máximo
 const auxilioPreEscolar = 680.96 // indenização máxima
 // valores atualizados até 11/2022
 // fonte: https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/irpf-imposto-de-renda-pessoa-fisica#tabelas-de-incid-ncia-mensal
