@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang = "pt-br">
+<head>
+	<meta charset = "utf-8"/>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+	<title>Calculadora de Remunerações :: AL-SP</title>
+	<link rel="stylesheet" href="css/principal.css">
+</head>
+<body>
+	<div id="titulo" class = "titulo">
+		<h1>Calculadora de Remuneração<br>Assembleia Legislativa do Estado de São Paulo</h1>
+	</div>
+	<div id="formulario" class = "conteudo">
+		<form>
+			<h1>Dados</h1>
+            <label for="cargo">Cargo:</label>
+            <select id="cargo">
+                <option value="tecnico">Técnico Legislativo</option>
+                <option value="analista">Analista Legislativo</option>
+                <option value="auditor">Auditor Interno</option>
+            </select>
+            <p></p>
+            <label for="nivel">Nível (de 1 a 20):</label>
+            <input id="nivel" type="number" min="1" max="20" value="1">
+            <p></p>
+            <label for="tempo">Tempo de exercício:</label>
+            <input id="tempo" type="number" min="1" max="100" value="0">
+            <p></p>
+            <label for="percentualGed">GED - Gratificação Especial de Desempenho (%):</label>
+            <input id="percentualGed" type="number" min="0" max="100" value="0">
+            <p></p>
+            <label for="faltas">Número de faltas (desconto do Aux. Refeição)</label>
+            <input id="faltas" type="number" min="0" max="22" value="0">
+            <p></p>
+			<label for="iamspe">IAMSPE:</label> 
+			<select id="iamspe">
+				<option value = "1">Sim
+				<option value = "0">Não
+			</select>
+            <p></p>
+            <label for="idade">Idade (IAMSPE):</label>
+            <input id="idade" type="number" min="18" max="200" value="30">
+            <p></p>
+            <label for="auxilioPreEscolar">Auxílio Pré-Escolar:</label> 
+			<select id="auxilioPreEscolar">
+                <option value = "0">Não
+				<option value = "1">Sim
+			</select>
+            <p></p>
+            <label for="despesasMedicas">Despesas médicas (em R$)</label>
+            <input id="despesasMedicas" type="number" min="0" value="500">
+            <p></p>
+            <input type="button" value="Calcular" onclick = "calcular()">
+        </form>
+    </div>
+    <div id="resultado" class="conteudo">
+        <h3>Resultado</h3>
+        <p>Última atualização: 20/11/2022</p>
+        <h4>Remuneração</h4>
+        <p>Vencimento Básico: <span id="vencimento"></span></p>
+        <p>Gratificação Legislativa: <span id="gratificacaoLeg"></span></p>
+        <p>Gratificação de Representação: <span id="gratificacaoRepr"></span></p>
+        <p>Gratificação Especial de Desempenho: <span id="ged"></span></p>
+        <p>Adicional por tempo de serviço (quinquênios + sexta-parte): <span id="ats"></span></p>
+        <p>Remuneração bruta sem auxílios: <span id="remuneracaoBruta"></span></p>
+        <h4>Deduções</h4>
+        <p>Contribuição previdenciária: <span id="previdencia"></span></p>
+        <p>Imposto de Renda da Pessoa Física: <span id="irpf"></span></p>
+        <p>IAMSPE: <span id="deducaoIamspe"></span></p>
+        <h4>Indenizações</h4>
+        <p>Auxílio Alimentação: <span id="alimentacao"></span></p>
+        <p>Reembolso de Auxílio Saúde: <span id="saude"></span></p>
+        <p>Reembolso de Auxílio Pré-Escolar: <span id="preEscolar"></span></p>
+        <h4>Valores líquidos</h4>
+        <p>Remuneração líquida em dinheiro: <span id="liquido"></span></p>
+        <p>Créditos do Auxílio Refeição: <span id="refeicao"></span></p>
+        <p>Remuneração líquida total: <span id="total"></span></p>
+    </div>
+	<div id="contato" class = "titulo">
+		<p>
+			Caso tenha algum problema, <a style = "color:white" href = 
+			"mailto:lucas.cavalini.barboza@gmail.com?subject=Calculadora de Remuneração - AL-SP">
+			entre em contato</a>.
+		<p>
+			Autor: Lucas Cavalini Barboza
+		</p>
+	</div>
+    <script src="js/funcoes_calculo.js"></script>
+    <script src="js/funcoes_formulario.js"></script>
+</body>
+</html>
