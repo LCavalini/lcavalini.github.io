@@ -44,8 +44,8 @@ const faixasContribuicaoPrevidenciaria = [
     {limite: Infinity, aliquota: 0.16, deducao: 223.34}
 ];
 const tetoInss = 7087.22;
-// fonte: http://www.recursoshumanos.sp.gov.br/teto_salarial.html
-const tetoEstadoSp = 23048.59
+// fonte: https://www.al.sp.gov.br/repositorio/folha-de-pagamento/folha-2022-09.html
+const tetoEstadoSp = 25322.25
 
 function vencimentoBasico(cargo, nivel, tempo) {
     // a progressão de nível só ocorre após o probatório
