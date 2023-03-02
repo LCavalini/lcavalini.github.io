@@ -35,15 +35,15 @@ const faixasIRPF = [
     {limite: 3751.05, aliquota: 0.225, deducao: 636.13},
     {limite: 4664.68, aliquota: 0.275, deducao: 869.36}
 ];
-// valor atualizado até 01/2022
-// fonte: https://portal.fazenda.sp.gov.br/servicos/folha/Paginas/Contribuicao_Previdenciaria_Servidores_Ativos.aspx
+// valor atualizado até 03/2023
+// fonte: http://www.spprev.sp.gov.br/loadArquivoNoticia.ashx?ArqCod=831
 const faixasContribuicaoPrevidenciaria = [
-    {limite: 1212, aliquota: 0.11, deducao: 0},
-    {limite: 3473.74, aliquota: 0.12, deducao: 12.12},
-    {limite: 7087.22, aliquota: 0.14, deducao: 81.60},
-    {limite: Infinity, aliquota: 0.16, deducao: 223.34}
+    {limite: 1302.01, aliquota: 0.11, deducao: 0},
+    {limite: 3722.57, aliquota: 0.12, deducao: 13.02},
+    {limite: 7507.49, aliquota: 0.14, deducao: 87.47},
+    {limite: Infinity, aliquota: 0.16, deducao: 237.62}
 ];
-const tetoInss = 7087.22;
+const tetoInss = 7507.49;
 // fonte: https://www.al.sp.gov.br/repositorio/folha-de-pagamento/folha-2022-09.html
 const tetoEstadoSp = 25322.25
 

@@ -25,11 +25,13 @@ function calcSallary() {
 	];
 	const deducaoDependenteIRPF = 189.59;
 	
-	// valor atualizado até 01/2022
-	const faixasContribuicaoPrevidenciaria = [{limite: 1212, aliquota: 0.11, deducao: 0},
-	{limite: 3473.74, aliquota: 0.12, deducao: 12.12},
-	{limite: 7087.22, aliquota: 0.14, deducao: 81.60},
-	{limite: Infinity, aliquota: 0.16, deducao: 223.34}];
+	// valor atualizado até 03/2023
+	const faixasContribuicaoPrevidenciaria = [
+		{limite: 1302.01, aliquota: 0.11, deducao: 0},
+		{limite: 3722.57, aliquota: 0.12, deducao: 13.02},
+		{limite: 7507.49, aliquota: 0.14, deducao: 87.47},
+		{limite: Infinity, aliquota: 0.16, deducao: 237.62}
+	];
 
 	// obtém os parâmetros fornecidos pelo usuário
 	var diasTrabalhados = Number(document.getElementById("diasTrabalhados").value);
