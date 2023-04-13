@@ -7,13 +7,13 @@ function numberToReal(numero) {
 
 function calcSallary() {
 	
-	// valores atualizados até 03/2020
+	// valores atualizados até 04/2023
 	const base =  1968.34;
-	const gaj =  3.612 * 972.37;
+	const gaj =  3.950176209 * 972.37; // RESOLUÇÃO Nº 891/2023
 	const auxilioCreche = 423;
-	const auxilioAlimentacao = 55;
+	const auxilioAlimentacao = 60; // PORTARIA Nº 10.227/2023
 	const auxilioTransporte = 8.8;
-	const auxilioSaude = 370;
+	const auxilioSaude = 500; // PORTARIA Nº 10.228/2023
 	const descontoIamspe = 0.02;
 	
 	// valores atualizados até 06/2019
@@ -62,7 +62,8 @@ function calcSallary() {
 	var totalAuxilioAlimentacao = diasTrabalhados * auxilioAlimentacao;
 	var totalAuxilioTransporte = diasTrabalhados * auxilioTransporte;
 	var totalAuxilioCreche = numAuxilioCreche * auxilioCreche;
-	
+	var totalAdicionais = adicionalQualificacao + adicionalTempoServico;
+	var vencimentos = base + gaj;
 	var baseCalculoDeducoes = base + gaj + adicionalQualificacao + adicionalTempoServico;
 	
 	// cálculo das deduções
@@ -129,11 +130,10 @@ function calcSallary() {
 	
 	}
 	
-	var remuneracaoBruta = baseCalculoDeducoes + totalAuxilioAlimentacao + totalAuxilioTransporte 
-	+ totalAuxilioCreche + auxilioSaude;
-	
-	var remuneracaoLiquida = remuneracaoBruta - totalDescontoIamspe - 
-	totalContribuicaoPrevidenciaria - totalIRPF;
+	var totalAuxilios =  totalAuxilioAlimentacao + totalAuxilioTransporte + totalAuxilioCreche + auxilioSaude;
+	var remuneracaoBruta = baseCalculoDeducoes + totalAuxilios;
+	var totalDescontos = totalDescontoIamspe + totalContribuicaoPrevidenciaria + totalIRPF
+	var remuneracaoLiquida = remuneracaoBruta - totalDescontos;
 	
 	document.getElementById("totalAuxilioAlimentacao").innerHTML = numberToReal(totalAuxilioAlimentacao);
 	document.getElementById("totalAuxilioTransporte").innerHTML = numberToReal(totalAuxilioTransporte);
@@ -152,6 +152,18 @@ function calcSallary() {
 	document.getElementById("totalAdicionalTempoServico").innerHTML = 
 	numberToReal(adicionalTempoServico);
 	
+	document.getElementById("base").innerHTML = numberToReal(base);
+	document.getElementById("gaj").innerHTML = numberToReal(gaj);
+	document.getElementById("vencimentos").innerHTML = numberToReal(vencimentos);
+	for (elementoTotalAdicionais of document.getElementsByClassName("totalAdicionais")) {
+		elementoTotalAdicionais.innerHTML = numberToReal(totalAdicionais);
+	}
+	for (elementoTotalAuxilios of document.getElementsByClassName("totalAuxilios")) {
+		elementoTotalAuxilios.innerHTML = numberToReal(totalAuxilios);
+	}
+	for (elementoTotalDescontos of document.getElementsByClassName("totalDescontos")) {
+		elementoTotalDescontos.innerHTML = numberToReal(totalDescontos);
+	}
 	document.getElementById("remuneracaoBruta").innerHTML = numberToReal(remuneracaoBruta);
 	document.getElementById("remuneracaoLiquida").innerHTML = numberToReal(remuneracaoLiquida);
 
