@@ -9,7 +9,7 @@ function calcSallary() {
 	
 	// valores atualizados até 04/2023
 	const base =  1968.34;
-	const gaj =  3.950176209 * 972.37; // RESOLUÇÃO Nº 891/2023
+	const gaj =  3.951 * 972.37; // PORTARIA Nº 10.231/2023
 	const auxilioCreche = 423;
 	const auxilioAlimentacao = 60; // PORTARIA Nº 10.227/2023
 	const auxilioTransporte = 8.8;
