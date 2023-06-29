@@ -43,8 +43,8 @@ function calcular() {
     else deducaoIamspe = 0.00;
     camposResultado["deducaoIamspe"].innerHTML = numeroParaMoeda(deducaoIamspe);
     camposResultado["alimentacao"].innerHTML = numeroParaMoeda(auxilioAlimentacao);
-    if (camposCalculo["despesasMedicas"] < auxilioSaude) saude = parseFloat(camposCalculo["despesasMedicas"]);
-    else saude = auxilioSaude;
+    if (camposCalculo["despesasMedicas"] < auxilioSaude(camposCalculo["idade"])) saude = parseFloat(camposCalculo["despesasMedicas"]);
+    else saude = auxilioSaude(camposCalculo["idade"]);
     console.log(numeroParaMoeda(saude))
     camposResultado["saude"].innerHTML = numeroParaMoeda(saude)
     if (camposCalculo["auxilioPreEscolar"] == 1) preEscolar = auxilioPreEscolar;

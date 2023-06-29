@@ -13,20 +13,31 @@ const vencimentoAuditor = [
     6482.93, 6726.03, 6978.25, 7239.94, 7511.46, 7793.12, 8085.38, 8388.57, 8703.14, 9029.52, 9368.13, 9719.45,
     10083.92, 10462.07, 10854.40, 11261.44, 11683.77, 12121.89, 12576.48, 13048.07
 ];
-const gratificacaoLegTecnico = 2701.00
-const gratificacaoReprTecnico = 1760.17
-const gratificacaoLegAnalista = 3703.98
-const gratificacaoReprAnalista = 2377.18
-const gratificacaoLegAuditor = 3703.98
-const gratificacaoReprAuditor = 2377.18
-const maximoGed = 6482.93
-// fonte dos auxílios: https://www3.al.sp.gov.br/DrhOnline/pages/servidor/auxilios-beneficios
-const auxilioAlimentacao = 757.37  // creditado em espécie
-// alterado pelo Ato da Mesa nº 20/2022
-const cotaAuxilioRefeicao = 62.90  // a base é 22 dias, havendo desconto somente em caso de falta
-// alterado pelo Ato da Mesa nº 21/2022
-const auxilioSaude = 550.00 // reembolso máximo
-const auxilioPreEscolar = 680.96 // indenização máxima
+const gratificacaoLegTecnico = 2701.00;
+const gratificacaoReprTecnico = 1760.17;
+const gratificacaoLegAnalista = 3703.98;
+const gratificacaoReprAnalista = 2377.18;
+const gratificacaoLegAuditor = 3703.98;
+const gratificacaoReprAuditor = 2377.18;
+const maximoGed = 6482.93;
+// alterado pelo Ato da Mesa nº 28/2023
+const auxilioAlimentacao = 799.78;  // creditado em espécie
+// alterado pelo Ato da Mesa nº 30/2023
+const cotaAuxilioRefeicao = 66.42;  // a base é 22 dias, havendo desconto somente em caso de falta
+// alterado pelo Ato da Mesa nº 32/2023
+const tabelaAuxilioSaude = [
+    {idadeLimite: 23, valor: 580.8},
+    {idadeLimite: 28, valor: 580.8},
+    {idadeLimite: 33, valor: 596.93},
+    {idadeLimite: 38, valor: 596.93},
+    {idadeLimite: 43, valor: 669.94},
+    {idadeLimite: 48, valor: 669.94},
+    {idadeLimite: 53, valor: 794.15},
+    {idadeLimite: 58, valor: 794.15},
+    {idadeLimite: Infinity, valor: 1082.78}
+];
+// alterado pelo Ato da Mesa nº 29/2023
+const auxilioPreEscolar = 719.09 // indenização máxima
 // valores atualizados até 11/2022
 // fonte: https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/irpf-imposto-de-renda-pessoa-fisica#tabelas-de-incid-ncia-mensal
 const faixasIRPF = [
@@ -98,7 +109,7 @@ function ats(baseCalculo, tempo) {
 }
 
 function remuneracaoBruta(cargo, nivel, tempo, percentualGed) {
-    baseCalculoAts = vencimentoBasico(cargo, nivel, tempo) + gratificacaoLeg(cargo) + gratificacaoRepr(cargo)
+    let baseCalculoAts = vencimentoBasico(cargo, nivel, tempo) + gratificacaoLeg(cargo) + gratificacaoRepr(cargo)
     return baseCalculoAts + ats(baseCalculoAts, tempo) + ged(percentualGed);
 }
 
@@ -139,15 +150,24 @@ function auxilioRefeicao(faltas) {
 
 function iampse(baseCalculo, idadeContribuinte, beneficiarios, agregados) {
     // fonte: http://www.iamspe.sp.gov.br/wp-content/uploads/2021/02/Nova_lei_contribui%C3%A7%C3%A3o-25-02-21.pdf
-    aliquota = 0.02
+    let aliquota = 0.02
     if (idadeContribuinte >= 59) aliquota = 0.03
-    for (beneficiario of beneficiarios) {
+    for (let beneficiario of beneficiarios) {
         if (beneficiario < 59) aliquota += 0.005;
         else aliquota += 0.01; 
     }
-    for (agregado of agregados) {
+    for (let agregado of agregados) {
         if (agregado < 59) aliquota += 0.02;
         else aliquota += 0.03
     }
     return aliquota * baseCalculo;
+}
+
+function auxilioSaude(idade) {
+    for (let i = 0; i < 8; i++) {
+        if (idade <= tabelaAuxilioSaude[i].idadeLimite) {
+            return tabelaAuxilioSaude[i].valor;
+        }
+    }
+    return tabelaAuxilioSaude[8].valor;
 }
