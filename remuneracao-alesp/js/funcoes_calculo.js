@@ -1,25 +1,26 @@
 // Funções de cálculo de remuneração
 
-// fonte dos vencimentos: 
+// reajuste: LC 1.386/2023 (03/07/2023) 
 const vencimentoTecnico = [
-    3206.00, 3326.22, 3450.95, 3580.37, 3714.64, 3853.93, 3998.47, 4148.41, 4303.99, 4465.37, 4632.84, 4806.54,
-    4986.81, 5173.82, 5367.85, 5569.15, 5777.99, 5994.65, 6219.44, 6452.68
+    3449.66, 3579.01, 3713.22, 3852.48, 3996.95, 4146.83, 4302.35, 4463.69, 4631.09, 4804.74, 4984.94, 5171.84,
+    5365.81, 5567.03, 5775.81, 5992.41, 6217.12, 6450.24, 6692.12, 6943.08
 ];
 const vencimentoAnalista = [
-    6482.93, 6726.03, 6978.25, 7239.94, 7511.46, 7793.12, 8085.38, 8388.57, 8703.14, 9029.52, 9368.13, 9719.45,
-    10083.92, 10462.07, 10854.40, 11261.44, 11683.77, 12121.89, 12576.48, 13048.07
+    6975.63, 7237.21, 7508.6, 7790.18, 8082.33, 8385.4, 8699.87, 9026.1, 9364.58, 9715.76, 10080.11, 10458.13,
+    10850.3, 11257.19, 11679.33, 12117.31, 12571.74, 13043.15, 13532.29, 14039.72
 ];
 const vencimentoAuditor = [
-    6482.93, 6726.03, 6978.25, 7239.94, 7511.46, 7793.12, 8085.38, 8388.57, 8703.14, 9029.52, 9368.13, 9719.45,
-    10083.92, 10462.07, 10854.40, 11261.44, 11683.77, 12121.89, 12576.48, 13048.07
+    6975.63, 7237.21, 7508.6, 7790.18, 8082.33, 8385.4, 8699.87, 9026.1, 9364.58, 9715.76, 10080.11, 10458.13,
+    10850.3, 11257.19, 11679.33, 12117.31, 12571.74, 13043.15, 13532.29, 14039.72
 ];
-const gratificacaoLegTecnico = 2701.00;
-const gratificacaoReprTecnico = 1760.17;
-const gratificacaoLegAnalista = 3703.98;
-const gratificacaoReprAnalista = 2377.18;
-const gratificacaoLegAuditor = 3703.98;
-const gratificacaoReprAuditor = 2377.18;
-const maximoGed = 6482.93;
+// reajuste: LC 1.386/2023 (03/07/2023) 
+const gratificacaoLegTecnico = 2906.28;
+const gratificacaoReprTecnico = 1893.94;
+const gratificacaoLegAnalista = 3985.48;
+const gratificacaoReprAnalista = 2557.85;
+const gratificacaoLegAuditor = 3985.48;
+const gratificacaoReprAuditor = 2557.85
+const maximoGed = 6975.63;
 // alterado pelo Ato da Mesa nº 28/2023
 const auxilioAlimentacao = 799.78;  // creditado em espécie
 // alterado pelo Ato da Mesa nº 30/2023
