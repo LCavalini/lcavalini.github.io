@@ -10,10 +10,11 @@ function calcSallary() {
 	// valores atualizados até 04/2023
 	const base =  1968.34;
 	const gaj =  3.951 * 972.37; // PORTARIA Nº 10.231/2023
-	const auxilioCreche = 423;
+	const auxilioCreche = 522; // PORTARIA Nº 10.282/2023
 	const auxilioAlimentacao = 60; // PORTARIA Nº 10.227/2023
 	const auxilioTransporte = 8.8;
 	const auxilioSaude = 500; // PORTARIA Nº 10.228/2023
+	const percentualAcrescimoAuxilioSaude = 0.5; // PORTARIA Nº 10.258/2023
 	const descontoIamspe = 0.02;
 	
 	// valores atualizados até 06/2019
@@ -41,6 +42,7 @@ function calcSallary() {
 	var agregadosIamspe = Number(document.getElementById("agregadosIamspe").value);
 	var dependentes = Number(document.getElementById("dependentes").value);
 	var quinquenios = Number(document.getElementById("quinquenios").value);
+	var acrescimoAuxilioSaude = Number(document.getElementById("acrescimoAuxilioSaude").value);
 	
 	var adicionalQualificacao = formacaoAcademica * (base + gaj);
 	
@@ -63,6 +65,7 @@ function calcSallary() {
 	var totalAuxilioTransporte = diasTrabalhados * auxilioTransporte;
 	var totalAuxilioCreche = numAuxilioCreche * auxilioCreche;
 	var totalAdicionais = adicionalQualificacao + adicionalTempoServico;
+	var totalAuxilioSaude = auxilioSaude * (1 + acrescimoAuxilioSaude * percentualAcrescimoAuxilioSaude);
 	var vencimentos = base + gaj;
 	var baseCalculoDeducoes = base + gaj + adicionalQualificacao + adicionalTempoServico;
 	
@@ -130,14 +133,14 @@ function calcSallary() {
 	
 	}
 	
-	var totalAuxilios =  totalAuxilioAlimentacao + totalAuxilioTransporte + totalAuxilioCreche + auxilioSaude;
+	var totalAuxilios =  totalAuxilioAlimentacao + totalAuxilioTransporte + totalAuxilioCreche + totalAuxilioSaude;
 	var remuneracaoBruta = baseCalculoDeducoes + totalAuxilios;
 	var totalDescontos = totalDescontoIamspe + totalContribuicaoPrevidenciaria + totalIRPF
 	var remuneracaoLiquida = remuneracaoBruta - totalDescontos;
 	
 	document.getElementById("totalAuxilioAlimentacao").innerHTML = numberToReal(totalAuxilioAlimentacao);
 	document.getElementById("totalAuxilioTransporte").innerHTML = numberToReal(totalAuxilioTransporte);
-	document.getElementById("totalAuxilioSaude").innerHTML = numberToReal(auxilioSaude);
+	document.getElementById("totalAuxilioSaude").innerHTML = numberToReal(totalAuxilioSaude);
 	document.getElementById("totalAuxilioCreche").innerHTML = numberToReal(totalAuxilioCreche);
 	
 	document.getElementById("totalDescontoIamspe").innerHTML = numberToReal(totalDescontoIamspe);
