@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang = "pt-br">
+<head>
+	<meta charset = "utf-8"/>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+	<title>Calculadora de Remunerações :: TCE-SP</title>
+	<link rel="stylesheet" href="css/principal.css">
+</head>
+<body>
+	<div id="titulo" class = "titulo">
+		<h1>Calculadora de Remuneração<br>Tribunal de Contas do Estado de São Paulo</h1>
+	</div>
+	<div id="formulario" class = "conteudo">
+		<form>
+			<h1>Dados</h1>
+            <label for="cargo">Cargo:</label>
+            <select id="cargo">
+                <option value="auxiliar">Auxiliar Técnico da Fiscalização/Informática</option>
+                <option value="agente">Agente da Fiscalização/Administração/Informática</option>
+            </select>
+            <p></p>
+            <label for="nivel">Nível:</label>
+            <select id="nivel">
+				<option value = "nivel1">I</option>
+				<option value = "nivel2">II</option>
+                <option value = "nivel3">III</option>
+            </select>
+            <label for="grau">Grau:</label>
+            <select id="grau">
+                <option value = "grauA">A</option>
+                <option value = "grauB" selected>B</option>
+                <option value = "grauC">C</option>
+                <option value = "grauD">D</option>
+                <option value = "grauE">E</option>
+                <option value = "grauF">F</option>
+                <option value = "grauG">G</option>
+                <option value = "grauH">H</option>
+                <option value = "grauI">I</option>
+                <option value = "grauJ">J</option>
+                <option value = "grauK">K</option>
+                <option value = "grauL">L</option>
+            </select>
+            <p></p>
+            <label for="tempo">Tempo de exercício (em anos):</label>
+            <input id="tempo" type="number" min="1" max="100" value="0">
+            <p></p>
+            <label for="diasAuxilioRefeicao">Quantidade de dias do Auxílio Refeição:</label>
+            <input id="diasAuxilioRefeicao" type="number" min="0" max="22" value="20">
+            <p></p>
+            <label for="diasAuxilioTransporte">Quantidade de dias do Auxílio Transporte:</label>
+            <input id="diasAuxilioTransporte" type="number" min="0" max="22" value="20">
+            <p></p>
+			<label for="iamspe">IAMSPE:</label> 
+			<select id="iamspe">
+				<option value = "1">Sim
+				<option value = "0">Não
+			</select>
+            <p></p>
+            <label for="idade">Idade para fins de desconto do IAMSPE:</label>
+            <input id="idade" type="number" min="18" max="200" value="30">
+            <p></p>
+            <label for="auxilioPreEscolar">Despesas com Pré-escola (crianças de até 7 anos):</label>
+            <input id="auxilioPreEscolar" type="0" min="0" maxlength="10" value="0">
+            <p></p>
+            <input type="button" value="Calcular" onclick = "calcular()">
+        </form>
+    </div>
+    <div id="resultado" class="conteudo">
+        <h3>Resultado</h3>
+        <p>Última atualização: 28/12/2023</p>
+        <h4>Remuneração</h4>
+        <p>Vencimento Básico: <span id="vencimento"></span></p>
+        <p>Adicional por tempo de serviço (quinquênios + sexta-parte): <span id="ats"></span></p>
+        <p>Remuneração bruta sem auxílios: <span id="remuneracaoBruta"></span></p>
+        <h4>Deduções</h4>
+        <p>Dedução do teto: <span id="extraTeto"></span></p>
+        <p>Contribuição previdenciária: </a><span id="previdencia"></span></p>
+        <p>Imposto de Renda da Pessoa Física: <span id="irpf"></span></p>
+        <p>IAMSPE: <span id="deducaoIamspe"></span></p>
+        <h4>Indenizações</h4>
+        <p>Auxílio Refeição: <span id="refeicao"></span></p>
+        <p>Auxílio Alimentação: <span id="alimentacao"></span></p>
+        <p>Auxílio Transporte: <span id="transporte"></span></p>
+        <p>Auxílio Saúde (somente para nível superior): <span id="saude"></span></p>
+        <p>Reembolso de Auxílio Pré-Escolar: <span id="preEscolar"></span></p>
+        <h4>Valores líquidos</h4>
+        <p>Remuneração líquida total: <span id="total"></span></p>
+    </div>
+    <div id="Fonte" class="conteudo">
+        <h1>Fonte de informações</h1>
+        <p>Transparência do TCE-SP: 
+            <a href="https://www4.tce.sp.gov.br/transparencia/gestao-pessoas/remuneracao/tabela">
+                https://www4.tce.sp.gov.br/transparencia/gestao-pessoas/remuneracao/tabela
+            </a>
+        </p>
+    </div>
+	<div id="contato" class="titulo">
+		<p>
+			Caso tenha algum problema, <a style = "color:white" href = 
+			"mailto:lucas.cavalini.barboza@gmail.com?subject=Calculadora de Remuneração - TCE-SP">
+			entre em contato</a>.
+		<p>
+			Autor: Lucas Cavalini Barboza
+		</p>
+	</div>
+    <script src="js/funcoes_calculo.js"></script>
+    <script src="js/funcoes_formulario.js"></script>
+</body>
+</html>
