@@ -14,8 +14,8 @@ function extrairCamposCalculo() {
 
 function extrairCamposResultado() {
     const camposResultadoId = [
-        "vencimento", "ats", "remuneracaoBruta", "previdencia", "irpf", "deducaoIamspe", "refeicao", "alimentacao",
-        "saude", "transporte", "preEscolar", "total", "extraTeto"
+        "vencimento", "gratificacao", "ats", "remuneracaoBruta", "previdencia", "irpf", "deducaoIamspe", "refeicao",
+        "alimentacao", "saude", "transporte", "preEscolar", "total", "extraTeto"
     ];
     return camposResultadoId.reduce((prev, curr) => (prev[curr] = document.getElementById(curr), prev), {});
 }
@@ -30,6 +30,9 @@ function calcular() {
         return;
     }
     camposResultado["vencimento"].innerHTML = converterNumeroParaMoeda(vencimentos);
+
+    const gratificacao = vencimentos * 0.1; // A gratificação de controle externo é definida na LC 1.368/2021.
+    camposResultado["gratificacao"].innerHTML = converterNumeroParaMoeda(gratificacao);
 
     let bruto = calcularRemuneracaoBruta(camposCalculo["cargo"], camposCalculo["nivel"], camposCalculo["grau"],
         camposCalculo["tempo"]);

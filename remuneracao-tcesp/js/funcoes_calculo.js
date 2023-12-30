@@ -65,7 +65,7 @@ function calcularAts(baseCalculo, tempo) {
 }
 
 function calcularRemuneracaoBruta(cargo, nivel, grau, tempo) {
-    const baseCalculoAts = calcularVencimentoBasico(cargo, nivel, grau);
+    const baseCalculoAts = calcularVencimentoBasico(cargo, nivel, grau) * 1.1;
     return baseCalculoAts + calcularAts(baseCalculoAts, tempo);
 }
 
