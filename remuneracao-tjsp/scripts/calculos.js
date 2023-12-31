@@ -1,8 +1,7 @@
 function numberToReal(numero) {
-
-	var numero = numero.toFixed(2).split('.');
-	numero[0] = "R$ " + numero[0].split(/(?=(?:...)*$)/).join('.');
-	return numero.join(',');
+	let resultado = numero.toFixed(2).split('.');
+	resultado[0] = "R$ " + resultado[0].split(/(?=(?:...)*$)/).join('.');
+	return resultado.join(',');
 }
 
 function calcSallary() {
@@ -35,108 +34,68 @@ function calcSallary() {
 	];
 
 	// obtém os parâmetros fornecidos pelo usuário
-	var diasTrabalhados = Number(document.getElementById("diasTrabalhados").value);
-	var numAuxilioCreche = Number(document.getElementById("auxilioCreche").value);
-	var formacaoAcademica = Number(document.getElementById("formacaoAcademica").value);
-	var iamspe = Number(document.getElementById("iamspe").value);
-	var agregadosIamspe = Number(document.getElementById("agregadosIamspe").value);
-	var dependentes = Number(document.getElementById("dependentes").value);
-	var quinquenios = Number(document.getElementById("quinquenios").value);
-	var acrescimoAuxilioSaude = Number(document.getElementById("acrescimoAuxilioSaude").value);
-	
-	var adicionalQualificacao = formacaoAcademica * (base + gaj);
+	let diasTransporte = Number(document.getElementById("diasTransporte").value);
+	let diasAlimentacao = Number(document.getElementById("diasAlimentacao").value);
+	let numAuxilioCreche = Number(document.getElementById("auxilioCreche").value);
+	let formacaoAcademica = Number(document.getElementById("formacaoAcademica").value);
+	let iamspe = Number(document.getElementById("iamspe").value);
+	let agregadosIamspe = Number(document.getElementById("agregadosIamspe").value);
+	let dependentes = Number(document.getElementById("dependentes").value);
+	let quinquenios = Number(document.getElementById("quinquenios").value);
+	let acrescimoAuxilioSaude = Number(document.getElementById("acrescimoAuxilioSaude").value);
+	let adicionalQualificacao = formacaoAcademica * (base + gaj);
+	let adicionalTempoServico = 0.0;
+	let totalContribuicaoPrevidenciaria = 0.0;
 	
 	// com sexta parte (20 anos = 4 quinquenios)
 	if (quinquenios >= 4) {
-	
-		var adicionalTempoServico = (0.05 * quinquenios + 0.2) * (base + gaj);
-
-	}
-	
-	// sem sexta parte
-	else {
-	
-		var adicionalTempoServico = 0.05 * quinquenios * (base + gaj);
-	
+		adicionalTempoServico = (0.05 * quinquenios + 0.2) * (base + gaj);
+	} else { // sem sexta parte
+		adicionalTempoServico = 0.05 * quinquenios * (base + gaj);
 	}
 				
 	// cálculo dos auxílios
-	var totalAuxilioAlimentacao = diasTrabalhados * auxilioAlimentacao;
-	var totalAuxilioTransporte = diasTrabalhados * auxilioTransporte;
-	var totalAuxilioCreche = numAuxilioCreche * auxilioCreche;
-	var totalAdicionais = adicionalQualificacao + adicionalTempoServico;
-	var totalAuxilioSaude = auxilioSaude * (1 + acrescimoAuxilioSaude * percentualAcrescimoAuxilioSaude);
-	var vencimentos = base + gaj;
-	var baseCalculoDeducoes = base + gaj + adicionalQualificacao + adicionalTempoServico;
+	let totalAuxilioAlimentacao = diasAlimentacao * auxilioAlimentacao;
+	let totalAuxilioTransporte = diasTransporte * auxilioTransporte;
+	let totalAuxilioCreche = numAuxilioCreche * auxilioCreche;
+	let totalAdicionais = adicionalQualificacao + adicionalTempoServico;
+	let totalAuxilioSaude = auxilioSaude * (1 + acrescimoAuxilioSaude * percentualAcrescimoAuxilioSaude);
+	let vencimentos = base + gaj;
+	let baseCalculoDeducoes = base + gaj + adicionalQualificacao + adicionalTempoServico;
 	
 	// cálculo das deduções
-	var totalDescontoIamspe = (iamspe + agregadosIamspe) * descontoIamspe * baseCalculoDeducoes;			
-	var totalDeducaoDependenteIRPF = dependentes * deducaoDependenteIRPF;
+	let totalDescontoIamspe = (iamspe + agregadosIamspe) * descontoIamspe * baseCalculoDeducoes;			
+	let totalDeducaoDependenteIRPF = dependentes * deducaoDependenteIRPF;
 
-	if(baseCalculoDeducoes <= faixasContribuicaoPrevidenciaria[0].limite) {
-
+	if (baseCalculoDeducoes <= faixasContribuicaoPrevidenciaria[0].limite) {
 		totalContribuicaoPrevidenciaria = baseCalculoDeducoes * faixasContribuicaoPrevidenciaria[0].aliquota - faixasContribuicaoPrevidenciaria[0].deducao;
-
-	}
-
-	else if(baseCalculoDeducoes <= faixasContribuicaoPrevidenciaria[1].limite) {
-
+	} else if (baseCalculoDeducoes <= faixasContribuicaoPrevidenciaria[1].limite) {
 		totalContribuicaoPrevidenciaria = baseCalculoDeducoes * faixasContribuicaoPrevidenciaria[1].aliquota - faixasContribuicaoPrevidenciaria[1].deducao;
-
-	}
-
-
-	else if(baseCalculoDeducoes <= faixasContribuicaoPrevidenciaria[2].limite) {
-
+	} else if (baseCalculoDeducoes <= faixasContribuicaoPrevidenciaria[2].limite) {
 		totalContribuicaoPrevidenciaria = baseCalculoDeducoes * faixasContribuicaoPrevidenciaria[2].aliquota - faixasContribuicaoPrevidenciaria[2].deducao;
-
-	}
-
-	else {
-
-
+	} else {
 		totalContribuicaoPrevidenciaria = baseCalculoDeducoes * faixasContribuicaoPrevidenciaria[3].aliquota - faixasContribuicaoPrevidenciaria[3].deducao;
-
 	}
 		
-	
-	var baseCalculoIRPF = baseCalculoDeducoes - totalDeducaoDependenteIRPF - totalContribuicaoPrevidenciaria;
+	let baseCalculoIRPF = baseCalculoDeducoes - totalDeducaoDependenteIRPF - totalContribuicaoPrevidenciaria;
 	
 	// cálculo do IRPF de acordo com as faixas
-	if(baseCalculoIRPF > faixasIRPF[0].limite && baseCalculoIRPF <= faixasIRPF[1].limite) {
-	
+	if (baseCalculoIRPF > faixasIRPF[0].limite && baseCalculoIRPF <= faixasIRPF[1].limite) {
 		totalIRPF = baseCalculoIRPF * faixasIRPF[0].aliquota - faixasIRPF[0].deducao;
-	
-	}
-	
-	else if(baseCalculoIRPF > faixasIRPF[1].limite && baseCalculoIRPF <= faixasIRPF[2].limite) {
-	
+	} else if(baseCalculoIRPF > faixasIRPF[1].limite && baseCalculoIRPF <= faixasIRPF[2].limite) {
 		totalIRPF = baseCalculoIRPF * faixasIRPF[1].aliquota - faixasIRPF[1].deducao;
-		
-	}
-	
-	else if(baseCalculoIRPF > faixasIRPF[2].limite && baseCalculoIRPF <= faixasIRPF[3].limite) {
-	
+	} else if(baseCalculoIRPF > faixasIRPF[2].limite && baseCalculoIRPF <= faixasIRPF[3].limite) {
 		totalIRPF = baseCalculoIRPF * faixasIRPF[2].aliquota - faixasIRPF[2].deducao;
-		
-	}
-	
-	else if(baseCalculoIRPF > faixasIRPF[3].limite) {
-	
+	} else if(baseCalculoIRPF > faixasIRPF[3].limite) {
 		totalIRPF = baseCalculoIRPF * faixasIRPF[3].aliquota - faixasIRPF[3].deducao;
-	
-	}
-	
-	else {
-	
+	} else {
 		totalIRPF = 0;
-	
 	}
 	
-	var totalAuxilios =  totalAuxilioAlimentacao + totalAuxilioTransporte + totalAuxilioCreche + totalAuxilioSaude;
-	var remuneracaoBruta = baseCalculoDeducoes + totalAuxilios;
-	var totalDescontos = totalDescontoIamspe + totalContribuicaoPrevidenciaria + totalIRPF
-	var remuneracaoLiquida = remuneracaoBruta - totalDescontos;
+	let totalAuxilios =  totalAuxilioAlimentacao + totalAuxilioTransporte + totalAuxilioCreche + totalAuxilioSaude;
+	let remuneracaoBruta = baseCalculoDeducoes + totalAuxilios;
+	let totalDescontos = totalDescontoIamspe + totalContribuicaoPrevidenciaria + totalIRPF
+	let remuneracaoLiquida = remuneracaoBruta - totalDescontos;
 	
 	document.getElementById("totalAuxilioAlimentacao").innerHTML = numberToReal(totalAuxilioAlimentacao);
 	document.getElementById("totalAuxilioTransporte").innerHTML = numberToReal(totalAuxilioTransporte);
