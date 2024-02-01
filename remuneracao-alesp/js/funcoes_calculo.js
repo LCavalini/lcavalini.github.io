@@ -57,7 +57,7 @@ const faixasContribuicaoPrevidenciaria = [
 ];
 const tetoInss = 7507.49;
 // fonte: https://www.al.sp.gov.br/repositorio/folha-de-pagamento/folha-2022-09.html
-const tetoEstadoSp = 25322.25
+const tetoEstadoSp = 33006.39
 
 function vencimentoBasico(cargo, nivel, tempo) {
     // a progressão de nível só ocorre após o probatório
