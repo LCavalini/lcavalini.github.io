@@ -11,7 +11,7 @@ function calcSallary() {
 	const gaj =  3.951 * 972.37; // PORTARIA Nº 10.231/2023
 	const auxilioCreche = 522; // PORTARIA Nº 10.282/2023
 	const auxilioAlimentacao = 60; // PORTARIA Nº 10.227/2023
-	const auxilioTransporte = 8.8;
+	const auxilioTransporte = 10; // PORTARIA Nº 10.375/2024
 	const auxilioSaude = 500; // PORTARIA Nº 10.228/2023
 	const percentualAcrescimoAuxilioSaude = 0.5; // PORTARIA Nº 10.258/2023
 	const descontoIamspe = 0.02;
