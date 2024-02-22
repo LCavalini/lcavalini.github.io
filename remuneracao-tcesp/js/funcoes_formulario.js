@@ -65,7 +65,7 @@ function calcular() {
 
     camposResultado["refeicao"].innerHTML = converterNumeroParaMoeda(refeicao);
     camposResultado["alimentacao"].innerHTML = converterNumeroParaMoeda(auxilioAlimentacao);
-    const auxilioSaude = calcularAuxilioSaude(camposCalculo["cargo"]);
+    const auxilioSaude = calcularAuxilioSaude(camposCalculo["cargo"], camposCalculo["idade"]);
     camposResultado["saude"].innerHTML = converterNumeroParaMoeda(auxilioSaude);
     camposResultado["transporte"].innerHTML = converterNumeroParaMoeda(transporte);
 

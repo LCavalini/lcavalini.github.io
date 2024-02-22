@@ -20,7 +20,7 @@ const vencimentoAgente = {
 };
 
 const auxilioAlimentacao = 451.00;
-const auxilioSaude = 1400.00;
+const auxilioSaude = 1540.00;
 const auxilioPreEscolar = 1985.52; // indenização máxima
 
 const cotaAuxilioRefeicao = 47.00; 
@@ -135,9 +135,13 @@ function calcularIamspe(baseCalculo, idadeContribuinte, beneficiarios, agregados
     return aliquota * baseCalculo;
 }
 
-function calcularAuxilioSaude(cargo) {
+function calcularAuxilioSaude(cargo, idade) {
     if (cargo == "auxiliar") {
         return 0.0;
     }
-    return auxilioSaude;
+    if (idade < 50) {
+        return auxilioSaude;
+    } else {
+        return auxilioSaude * 1.5;
+    }
 }
