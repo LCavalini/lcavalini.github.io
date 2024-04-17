@@ -19,7 +19,7 @@ function calcSallary() {
 	]; // PORTARIA Nº 10.426/2024
 	const descontoIamspe = 0.02;
 	
-	// valores atualizados até 06/2019
+	// valores atualizados até 01/04/2024
 	const faixasIRPF = [
 		{ limite: 2259.20, aliquota: 0.075, deducao: 169.44 },
 		{ limite: 2828.66, aliquota: 0.15, deducao: 381.44 },
