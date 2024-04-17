@@ -9,40 +9,45 @@ function calcSallary() {
 	// valores atualizados até 04/2023
 	const base =  1968.34;
 	const gaj =  3.951 * 972.37; // PORTARIA Nº 10.231/2023
-	const auxilioCreche = 522; // PORTARIA Nº 10.282/2023
-	const auxilioAlimentacao = 60; // PORTARIA Nº 10.227/2023
+	const auxilioCreche = 700; // PORTARIA Nº 10.282/2023
+	const auxilioFillhoDeficiencia = 1050; // PORTARIA Nº 10.428/2024
+	const auxilioAlimentacao = 65; // PORTARIA Nº 10.425/2024
 	const auxilioTransporte = 10; // PORTARIA Nº 10.375/2024
-	const auxilioSaude = 500; // PORTARIA Nº 10.228/2023
-	const percentualAcrescimoAuxilioSaude = 0.5; // PORTARIA Nº 10.258/2023
+	const auxilioSaude = 520; // PORTARIA Nº 10.426/2024
+	const percentuaisAuxilioSaude = [ 
+		1,  1.04, 1.06, 1.1, 1.67, 1.71
+	]; // PORTARIA Nº 10.426/2024
 	const descontoIamspe = 0.02;
 	
 	// valores atualizados até 06/2019
 	const faixasIRPF = [
-		{limite: 1903.98, aliquota: 0.075, deducao: 142.8},
-		{limite: 2826.65, aliquota: 0.15, deducao: 354.8},
-		{limite: 3751.05, aliquota: 0.225, deducao: 636.13},
-		{limite: 4664.68, aliquota: 0.275, deducao: 869.36}
+		{ limite: 2259.20, aliquota: 0.075, deducao: 169.44 },
+		{ limite: 2828.66, aliquota: 0.15, deducao: 381.44 },
+		{ limite: 3751.06, aliquota: 0.225, deducao: 662.77 },
+		{ limite: 4664.68, aliquota: 0.275, deducao: 896.00 }
 	];
 	const deducaoDependenteIRPF = 189.59;
 	
-	// valor atualizado até 03/2023
+	// valor atualizado até 01/2024
 	const faixasContribuicaoPrevidenciaria = [
-		{limite: 1302.01, aliquota: 0.11, deducao: 0},
-		{limite: 3722.57, aliquota: 0.12, deducao: 13.02},
-		{limite: 7507.49, aliquota: 0.14, deducao: 87.47},
-		{limite: Infinity, aliquota: 0.16, deducao: 237.62}
+		{limite: 1412.00, aliquota: 0.11, deducao: 0},
+		{limite: 3842.09, aliquota: 0.12, deducao: 14.12},
+		{limite: 7786.02, aliquota: 0.14, deducao: 90.96},
+		{limite: Infinity, aliquota: 0.16, deducao: 246.68}
 	];
 
 	// obtém os parâmetros fornecidos pelo usuário
 	let diasTransporte = Number(document.getElementById("diasTransporte").value);
 	let diasAlimentacao = Number(document.getElementById("diasAlimentacao").value);
 	let numAuxilioCreche = Number(document.getElementById("auxilioCreche").value);
+	let numAuxilioFilhoDeficiencia = Number(document.getElementById("auxilioFilhoDeficiencia").value);
 	let formacaoAcademica = Number(document.getElementById("formacaoAcademica").value);
 	let iamspe = Number(document.getElementById("iamspe").value);
 	let agregadosIamspe = Number(document.getElementById("agregadosIamspe").value);
 	let dependentes = Number(document.getElementById("dependentes").value);
 	let quinquenios = Number(document.getElementById("quinquenios").value);
 	let acrescimoAuxilioSaude = Number(document.getElementById("acrescimoAuxilioSaude").value);
+	let faixaEtariaAuxilioSaude = Number(document.getElementById("faixaEtariaAuxilioSaude").value);
 	let adicionalQualificacao = formacaoAcademica * (base + gaj);
 	let adicionalTempoServico = 0.0;
 	let totalContribuicaoPrevidenciaria = 0.0;
@@ -58,8 +63,11 @@ function calcSallary() {
 	let totalAuxilioAlimentacao = diasAlimentacao * auxilioAlimentacao;
 	let totalAuxilioTransporte = diasTransporte * auxilioTransporte;
 	let totalAuxilioCreche = numAuxilioCreche * auxilioCreche;
+	let totalAuxilioFilhoDeficiencia = numAuxilioFilhoDeficiencia * auxilioFillhoDeficiencia;
 	let totalAdicionais = adicionalQualificacao + adicionalTempoServico;
-	let totalAuxilioSaude = auxilioSaude * (1 + acrescimoAuxilioSaude * percentualAcrescimoAuxilioSaude);
+	let totalAuxilioSaude = faixaEtariaAuxilioSaude != null && faixaEtariaAuxilioSaude > 0 && faixaEtariaAuxilioSaude < 6
+		? Math.ceil(auxilioSaude * percentuaisAuxilioSaude[faixaEtariaAuxilioSaude]) * acrescimoAuxilioSaude
+		: auxilioSaude * acrescimoAuxilioSaude;
 	let vencimentos = base + gaj;
 	let baseCalculoDeducoes = base + gaj + adicionalQualificacao + adicionalTempoServico;
 	
@@ -92,7 +100,8 @@ function calcSallary() {
 		totalIRPF = 0;
 	}
 	
-	let totalAuxilios =  totalAuxilioAlimentacao + totalAuxilioTransporte + totalAuxilioCreche + totalAuxilioSaude;
+	let totalAuxilios =  totalAuxilioAlimentacao + totalAuxilioTransporte + totalAuxilioCreche +
+		totalAuxilioFilhoDeficiencia + totalAuxilioSaude;
 	let remuneracaoBruta = baseCalculoDeducoes + totalAuxilios;
 	let totalDescontos = totalDescontoIamspe + totalContribuicaoPrevidenciaria + totalIRPF
 	let remuneracaoLiquida = remuneracaoBruta - totalDescontos;
@@ -101,12 +110,12 @@ function calcSallary() {
 	document.getElementById("totalAuxilioTransporte").innerHTML = numberToReal(totalAuxilioTransporte);
 	document.getElementById("totalAuxilioSaude").innerHTML = numberToReal(totalAuxilioSaude);
 	document.getElementById("totalAuxilioCreche").innerHTML = numberToReal(totalAuxilioCreche);
-	
+	document.getElementById("totalAuxilioFilhoDeficiencia").innerHTML = numberToReal(totalAuxilioFilhoDeficiencia);
 	document.getElementById("totalDescontoIamspe").innerHTML = numberToReal(totalDescontoIamspe);
 	document.getElementById("totalContribuicaoPrevidenciaria").innerHTML = 
-	numberToReal(totalContribuicaoPrevidenciaria);
+		numberToReal(totalContribuicaoPrevidenciaria);
 	document.getElementById("totalIRPF").innerHTML = 
-	numberToReal(totalIRPF);
+		numberToReal(totalIRPF);
 	
 	document.getElementById("totalAdicionalQualificacao").innerHTML = 
 	numberToReal(adicionalQualificacao);

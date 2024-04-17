@@ -14,63 +14,77 @@
 		<form>
 			<h1>Dados</h1>
 			<p>
-			<label>Número de dias de Auxílio Transporte (apenas trabalho presencial):</label> 
-			<input type = "number" id="diasTransporte" min = "0" max = "31" value = "20">
+				<label>Número de dias de Auxílio Transporte (apenas trabalho presencial):</label> 
+				<input type = "number" id="diasTransporte" min = "0" max = "31" value = "20">
 			</p>
-			<label>Número de dias de Auxílio Alimentação (dias de trabalho efetivo, presencial ou remoto):</label>
-			<input type = "number" id="diasAlimentacao" min = "0" max = "31" value = "20">
+				<label>Número de dias de Auxílio Alimentação (dias de trabalho efetivo, presencial ou remoto):</label>
+				<input type = "number" id="diasAlimentacao" min = "0" max = "31" value = "20">
 			<p>
-			<label>Auxílio Creche-Escola ou a Filho com Deficiência (quantidade)</label>: 
-			<input type = "number" id="auxilioCreche" min = "0" max = "20"
-			value = "0">
-			</p>
-			<p>
-			<label>Formação acadêmica</label>: 
-			<select id="formacaoAcademica">
-				<option value = "0">Ensino Médio
-				<option value = "0.05">Ensino Superior
-				<option value = "0.075">Pós-graduação (lato sensu)
-				<option value = "0.1">Mestrado
-				<option value = "0.125">Doutorado
-			</select>
-			</p>
-			<p>
-			<label>IAMSPE</label>: 
-			<select id="iamspe">
-				<option value = "1">Sim
-				<option value = "0">Não
-			</select>
-			</p>
-			<p>
-			<label>Agregados do IAMSPE</label>: 
-			<input type = "number" id="agregadosIamspe" min = "0" max = "20"
-			value = "0">
-			</p>
-			<p>
-			<label>Dependentes</label>: 
-			<input type = "number" id="dependentes" min = "0" max = "20"
-			value = "0">
-			</p>
-			<p>
-			<label>Quinquênios</label>:
-			<input type = "number" id="quinquenios" min = "0" max = "20"
-			value = "0">
-			</p>
-			<p>
-				<label>Tem mais de 50 anos de idade ou deficiência/doença grave (acréscimo de 50% no auxílio-saúde)?</label>
-				<select id="acrescimoAuxilioSaude">
-					<option value="0" selected>Não</option>
-					<option value="1">Sim</option>
+				<label>Faixa etária do Auxílio-saúde</label>
+				<select id="faixaEtariaAuxilioSaude">
+					<option value="0">18 a 19 anos</option>
+					<option value="1">20 a 29 anos</option>
+					<option value="2">30 a 39 anos</option>
+					<option value="3">40 a 49 anos</option>
+					<option value="4">50 a 59 anos</option>
+					<option value="5">A partir de 60 anos</option>
 				</select>
 			</p>
 			<p>
-			<input type = "button" value = "Calcular" onclick = "calcSallary()">
+				<label>Auxílio Creche-Escola</label>: 
+				<input type = "number" id="auxilioCreche" min = "0" max = "20"
+				value = "0">
+			</p>
+				<label>Auxílio a Filho com Deficiência</label>
+				<input type = "number" id="auxilioFilhoDeficiencia" min = "0" max = "20"
+					value = "0">
+			<p>
+				<label>Formação acadêmica</label>: 
+				<select id="formacaoAcademica">
+					<option value = "0">Ensino Médio
+					<option value = "0.05">Ensino Superior
+					<option value = "0.075">Pós-graduação (lato sensu)
+					<option value = "0.1">Mestrado
+					<option value = "0.125">Doutorado
+				</select>
+			</p>
+			<p>
+				<label>IAMSPE</label>: 
+				<select id="iamspe">
+					<option value = "1">Sim
+					<option value = "0">Não
+				</select>
+			</p>
+			<p>
+				<label>Agregados do IAMSPE</label>: 
+				<input type = "number" id="agregadosIamspe" min = "0" max = "20"
+					value = "0">
+			</p>
+			<p>
+				<label>Dependentes</label>: 
+				<input type = "number" id="dependentes" min = "0" max = "20"
+					value = "0">
+			</p>
+			<p>
+				<label>Quinquênios</label>:
+				<input type = "number" id="quinquenios" min = "0" max = "20"
+					value = "0">
+			</p>
+			<p>
+				<label>Tem deficiência/doença grave (acréscimo de 50% no auxílio-saúde)?</label>
+				<select id="acrescimoAuxilioSaude">
+					<option value="1" selected>Não</option>
+					<option value="1.5">Sim</option>
+				</select>
+			</p>
+			<p>
+				<input type = "button" value = "Calcular" onclick = "calcSallary()">
 			</p>	
 		</form>
 	</div>
 	<div id="resultado" class = "conteudo">
 		<h1>Resultado</h3>
-		<p>Última atualização: 21/02/2024 (Reajuste do Auxílio-transporte)</p>
+		<p>Última atualização: 17/04/2024 (Reajuste dos Auxílios e dos descontos de Previdência e IRPF)</p>
 		<h2>Cálculo da remuneração</h2>
 		<p>(+) Valor base: <span id="base"></span></p>
 		<p>(+) GAJ (Gratificação de Atividade Judiciária): <span id="gaj"></span></p>
@@ -86,7 +100,8 @@
 		<p>(+) Auxílio-alimentação: <span id="totalAuxilioAlimentacao"></span></p>
 		<p>(+) Auxílio-transporte: <span id="totalAuxilioTransporte"></span></p>
 		<p>(+) Auxílio-saúde: <span id="totalAuxilioSaude"></span></p>
-		<p>(+) Auxílio Creche-Escola ou a Filho com Deficiência: <span id="totalAuxilioCreche"></span></p>
+		<p>(+) Auxílio Creche-Escola: <span id="totalAuxilioCreche"></span></p>
+		<p>(+) Auxílio a Filho com Deficiência: <span id="totalAuxilioFilhoDeficiencia"></span></p>
 		<p>(=) Total de auxílios: <span class="totalAuxilios"></span></p>
 		<h2>Detalhamento dos adicionais</h2>
 		<p>(+) Adicional de qualificação: <span id="totalAdicionalQualificacao"></span></p>
