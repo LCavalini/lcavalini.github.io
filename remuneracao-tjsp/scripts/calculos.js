@@ -8,7 +8,15 @@ function calcSallary() {
 	
 	// valores atualizados até 04/2023
 	const base =  1968.34;
-	const gaj =  3.951 * 972.37; // PORTARIA Nº 10.231/2023
+	const baseGratificacao = 972.37;
+	const multiplicadoresGaj = [
+		{ cargo: "", valor:  3.951 },
+		{ cargo: "ajc", valor: 5.802 }
+	];
+	const multiplicadoresRepr = [
+		{ cargo: "", valor: 0.0 },
+		{ cargo: "ajc", valor: 1.815 }
+	];
 	const auxilioCreche = 700; // PORTARIA Nº 10.282/2023
 	const auxilioFillhoDeficiencia = 1050; // PORTARIA Nº 10.428/2024
 	const auxilioAlimentacao = 65; // PORTARIA Nº 10.425/2024
@@ -37,6 +45,7 @@ function calcSallary() {
 	];
 
 	// obtém os parâmetros fornecidos pelo usuário
+	let cargo = document.getElementById("cargo").value;
 	let diasTransporte = Number(document.getElementById("diasTransporte").value);
 	let diasAlimentacao = Number(document.getElementById("diasAlimentacao").value);
 	let numAuxilioCreche = Number(document.getElementById("auxilioCreche").value);
@@ -48,15 +57,21 @@ function calcSallary() {
 	let quinquenios = Number(document.getElementById("quinquenios").value);
 	let acrescimoAuxilioSaude = Number(document.getElementById("acrescimoAuxilioSaude").value);
 	let faixaEtariaAuxilioSaude = Number(document.getElementById("faixaEtariaAuxilioSaude").value);
-	let adicionalQualificacao = formacaoAcademica * (base + gaj);
+
+	let multiplicadorGaj = multiplicadoresGaj.filter(m => m.cargo == cargo)[0];
+	let multiplicadorRepr = multiplicadoresRepr.filter(m => m.cargo == cargo)[0];
+	let gaj = multiplicadorGaj.valor * baseGratificacao;
+	let repr = multiplicadorRepr.valor * baseGratificacao;
+	let vencimentos = base + gaj + repr;
+	let adicionalQualificacao = formacaoAcademica * (vencimentos);
 	let adicionalTempoServico = 0.0;
 	let totalContribuicaoPrevidenciaria = 0.0;
 	
 	// com sexta parte (20 anos = 4 quinquenios)
 	if (quinquenios >= 4) {
-		adicionalTempoServico = (0.05 * quinquenios + 0.2) * (base + gaj);
+		adicionalTempoServico = (0.05 * quinquenios + 0.2) * (vencimentos);
 	} else { // sem sexta parte
-		adicionalTempoServico = 0.05 * quinquenios * (base + gaj);
+		adicionalTempoServico = 0.05 * quinquenios * (vencimentos);
 	}
 				
 	// cálculo dos auxílios
@@ -68,8 +83,7 @@ function calcSallary() {
 	let totalAuxilioSaude = faixaEtariaAuxilioSaude != null && faixaEtariaAuxilioSaude > 0 && faixaEtariaAuxilioSaude < 6
 		? Math.ceil(auxilioSaude * percentuaisAuxilioSaude[faixaEtariaAuxilioSaude]) * acrescimoAuxilioSaude
 		: auxilioSaude * acrescimoAuxilioSaude;
-	let vencimentos = base + gaj;
-	let baseCalculoDeducoes = base + gaj + adicionalQualificacao + adicionalTempoServico;
+	let baseCalculoDeducoes = vencimentos + adicionalQualificacao + adicionalTempoServico;
 	
 	// cálculo das deduções
 	let totalDescontoIamspe = (iamspe + agregadosIamspe) * descontoIamspe * baseCalculoDeducoes;			
@@ -125,6 +139,7 @@ function calcSallary() {
 	
 	document.getElementById("base").innerHTML = numberToReal(base);
 	document.getElementById("gaj").innerHTML = numberToReal(gaj);
+	document.getElementById("repr").innerHTML = numberToReal(repr);
 	document.getElementById("vencimentos").innerHTML = numberToReal(vencimentos);
 	for (elementoTotalAdicionais of document.getElementsByClassName("totalAdicionais")) {
 		elementoTotalAdicionais.innerHTML = numberToReal(totalAdicionais);

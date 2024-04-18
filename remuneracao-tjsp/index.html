@@ -14,6 +14,13 @@
 		<form>
 			<h1>Dados</h1>
 			<p>
+				<label for="cargo">Cargo em comissão/Função gratificada</label>
+				<select id="cargo">
+					<option value="">Nenhum</option>
+					<option value="ajc">Assistente Judiciário</option>
+				</select>
+			</p>
+			<p>
 				<label>Número de dias de Auxílio Transporte (apenas trabalho presencial):</label> 
 				<input type = "number" id="diasTransporte" min = "0" max = "31" value = "20">
 			</p>
@@ -88,6 +95,7 @@
 		<h2>Cálculo da remuneração</h2>
 		<p>(+) Valor base: <span id="base"></span></p>
 		<p>(+) GAJ (Gratificação de Atividade Judiciária): <span id="gaj"></span></p>
+		<p>(+) Gratificação de Representação: <span id="repr"></span></p>
 		<p>(=) Vencimentos:  <span id="vencimentos"></span></p>
 		<p>(+) Total de auxílios: <span class="totalAuxilios"></span></p>
 		<p>(+) Total de adicionais: <span class="totalAdicionais"></span></p>
