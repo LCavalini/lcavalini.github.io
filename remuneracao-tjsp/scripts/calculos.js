@@ -45,6 +45,8 @@ function calcSallary() {
 		{limite: Infinity, aliquota: 0.16, deducao: 246.68}
 	];
 
+	const tetoInss = 7786.02;
+
 	// obtém os parâmetros fornecidos pelo usuário
 	let cargo = document.getElementById("cargo").value;
 	let diasTransporte = Number(document.getElementById("diasTransporte").value);
@@ -90,14 +92,16 @@ function calcSallary() {
 	let totalDescontoIamspe = (iamspe + agregadosIamspe) * descontoIamspe * baseCalculoDeducoes;			
 	let totalDeducaoDependenteIRPF = dependentes * deducaoDependenteIRPF;
 
-	if (baseCalculoDeducoes <= faixasContribuicaoPrevidenciaria[0].limite) {
-		totalContribuicaoPrevidenciaria = baseCalculoDeducoes * faixasContribuicaoPrevidenciaria[0].aliquota - faixasContribuicaoPrevidenciaria[0].deducao;
-	} else if (baseCalculoDeducoes <= faixasContribuicaoPrevidenciaria[1].limite) {
-		totalContribuicaoPrevidenciaria = baseCalculoDeducoes * faixasContribuicaoPrevidenciaria[1].aliquota - faixasContribuicaoPrevidenciaria[1].deducao;
-	} else if (baseCalculoDeducoes <= faixasContribuicaoPrevidenciaria[2].limite) {
-		totalContribuicaoPrevidenciaria = baseCalculoDeducoes * faixasContribuicaoPrevidenciaria[2].aliquota - faixasContribuicaoPrevidenciaria[2].deducao;
+	// a contribuição previdenciária SPPREV é limitada ao teto do INSS
+	let baseCalculoPrevidencia = baseCalculoDeducoes > tetoInss ? tetoInss : baseCalculoDeducoes;
+	if (baseCalculoPrevidencia <= faixasContribuicaoPrevidenciaria[0].limite) {
+		totalContribuicaoPrevidenciaria = baseCalculoPrevidencia * faixasContribuicaoPrevidenciaria[0].aliquota - faixasContribuicaoPrevidenciaria[0].deducao;
+	} else if (baseCalculoPrevidencia <= faixasContribuicaoPrevidenciaria[1].limite) {
+		totalContribuicaoPrevidenciaria = baseCalculoPrevidencia * faixasContribuicaoPrevidenciaria[1].aliquota - faixasContribuicaoPrevidenciaria[1].deducao;
+	} else if (baseCalculoPrevidencia <= faixasContribuicaoPrevidenciaria[2].limite) {
+		totalContribuicaoPrevidenciaria = baseCalculoPrevidencia * faixasContribuicaoPrevidenciaria[2].aliquota - faixasContribuicaoPrevidenciaria[2].deducao;
 	} else {
-		totalContribuicaoPrevidenciaria = baseCalculoDeducoes * faixasContribuicaoPrevidenciaria[3].aliquota - faixasContribuicaoPrevidenciaria[3].deducao;
+		totalContribuicaoPrevidenciaria = baseCalculoPrevidencia * faixasContribuicaoPrevidenciaria[3].aliquota - faixasContribuicaoPrevidenciaria[3].deducao;
 	}
 		
 	let baseCalculoIRPF = baseCalculoDeducoes - totalDeducaoDependenteIRPF - totalContribuicaoPrevidenciaria;
