@@ -18,6 +18,7 @@
 				<select id="cargo">
 					<option value="">Nenhum</option>
 					<option value="ajc">Assistente Judiciário</option>
+					<option value="csj">Chefe de Seção Judiciário</option>
 				</select>
 			</p>
 			<p>
@@ -58,17 +59,33 @@
 			<p>
 				<label>IAMSPE</label>: 
 				<select id="iamspe">
-					<option value = "1">Sim
+					<option value = "0.02">Sim (menos de 59 anos)
+					<option value = "0.03">Sim (a partir de 59 anos)</option>
 					<option value = "0">Não
 				</select>
 			</p>
 			<p>
-				<label>Agregados do IAMSPE</label>: 
-				<input type = "number" id="agregadosIamspe" min = "0" max = "20"
+				<label>Beneficiários do IAMSPE com menos de 59 anos</label>: 
+				<input type = "number" id="dependentesIamspeIdadeInferior" min = "0" max = "20"
 					value = "0">
 			</p>
 			<p>
-				<label>Dependentes</label>: 
+				<label>Beneficiários do IAMSPE com 59 anos ou mais</label>
+				<input type = "number" id="dependentesIamspeIdadeSuperior" min = "0" max = "20"
+					value = "0">
+			</p>
+			<p>
+				<label>Agregados do IAMSPE com menos de 59 anos</label>: 
+				<input type = "number" id="agregadosIamspeIdadeInferior" min = "0" max = "20"
+					value = "0">
+			</p>
+			<p>
+				<label>Agregados do IAMSPE com 59 anos ou mais</label>
+				<input type = "number" id="agregadosIamspeIdadeSuperior" min = "0" max = "20"
+					value = "0">
+			</p>
+			<p>
+				<label>Dependentes para fins de IRPF</label>: 
 				<input type = "number" id="dependentes" min = "0" max = "20"
 					value = "0">
 			</p>
@@ -91,7 +108,7 @@
 	</div>
 	<div id="resultado" class = "conteudo">
 		<h1>Resultado</h3>
-		<p>Última atualização: 18/04/2024 (Reajuste dos Vencimentos e Auxílios)</p>
+		<p>Última atualização: 20/04/2024 - Reajuste dos Vencimentos e Auxílios; adição de cargos e ajuste do IAMSPE</p>
 		<h2>Cálculo da remuneração</h2>
 		<p>(+) Valor base: <span id="base"></span></p>
 		<p>(+) GAJ (Gratificação de Atividade Judiciária): <span id="gaj"></span></p>

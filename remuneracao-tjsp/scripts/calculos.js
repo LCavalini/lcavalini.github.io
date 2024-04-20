@@ -7,16 +7,21 @@ function numberToReal(numero) {
 function calcSallary() {
 	
 	// valores atualizados até 04/2023
-	const base =  1968.34;
+	const base = [
+		{ cargo: "", valor: 1968.34 },
+		{ cargo: "csj", valor: 1997.87}
+	];
 	const baseGratificacao = 972.37;
 	// RESOLUÇÃO N° 923/2024
 	const multiplicadoresGaj = [
 		{ cargo: "", valor:  4.191 },
-		{ cargo: "ajc", valor: 6.187 }
+		{ cargo: "ajc", valor: 6.187 },
+		{ cargo: "csj", valor: 5.948 }
 	];
 	const multiplicadoresRepr = [
 		{ cargo: "", valor: 0.0 },
-		{ cargo: "ajc", valor: 1.815 }
+		{ cargo: "ajc", valor: 1.815 },
+		{ cargo: "csj", valor: 0.283 }
 	];
 	const auxilioCreche = 700; // PORTARIA Nº 10.282/2023
 	const auxilioFillhoDeficiencia = 1050; // PORTARIA Nº 10.428/2024
@@ -26,8 +31,7 @@ function calcSallary() {
 	const percentuaisAuxilioSaude = [ 
 		1,  1.04, 1.06, 1.1, 1.67, 1.71
 	]; // PORTARIA Nº 10.426/2024
-	const descontoIamspe = 0.02;
-	
+
 	// valores atualizados até 01/04/2024
 	const faixasIRPF = [
 		{ limite: 2259.20, aliquota: 0.075, deducao: 169.44 },
@@ -55,17 +59,27 @@ function calcSallary() {
 	let numAuxilioFilhoDeficiencia = Number(document.getElementById("auxilioFilhoDeficiencia").value);
 	let formacaoAcademica = Number(document.getElementById("formacaoAcademica").value);
 	let iamspe = Number(document.getElementById("iamspe").value);
-	let agregadosIamspe = Number(document.getElementById("agregadosIamspe").value);
+	let agregadosIamspeIdadeInferior = Number(document.getElementById("agregadosIamspeIdadeInferior").value);
+	let agregadosIamspeIdadeSuperior = Number(document.getElementById("agregadosIamspeIdadeSuperior").value);
+	let dependentesIamspeIdadeInferior = Number(document.getElementById("dependentesIamspeIdadeInferior").value);
+	let dependentesIamspeIdadeSuperior = Number(document.getElementById("dependentesIamspeIdadeSuperior").value);
 	let dependentes = Number(document.getElementById("dependentes").value);
 	let quinquenios = Number(document.getElementById("quinquenios").value);
 	let acrescimoAuxilioSaude = Number(document.getElementById("acrescimoAuxilioSaude").value);
 	let faixaEtariaAuxilioSaude = Number(document.getElementById("faixaEtariaAuxilioSaude").value);
 
-	let multiplicadorGaj = multiplicadoresGaj.filter(m => m.cargo == cargo)[0];
-	let multiplicadorRepr = multiplicadoresRepr.filter(m => m.cargo == cargo)[0];
+	let multiplicadorGaj = multiplicadoresGaj.filter(m => m.cargo == cargo).length == 1
+		? multiplicadoresGaj.filter(m => m.cargo == cargo)[0]
+		: multiplicadoresGaj.filter(m => m.cargo == "")[0];
+	let multiplicadorRepr = multiplicadoresRepr.filter(m => m.cargo == cargo).length == 1
+		? multiplicadoresRepr.filter(m => m.cargo == cargo)[0]
+		: multiplicadoresRepr.filter(m => m.cargo == "")[0];
 	let gaj = multiplicadorGaj.valor * baseGratificacao;
 	let repr = multiplicadorRepr.valor * baseGratificacao;
-	let vencimentos = base + gaj + repr;
+	let valorBase = base.filter(b => b.cargo == cargo).length == 1
+		? base.filter(b => b.cargo == cargo)[0].valor
+		: base.filter(b => b.cargo == "")[0].valor;
+	let vencimentos = valorBase + gaj + repr;
 	let adicionalQualificacao = formacaoAcademica * (vencimentos);
 	let adicionalTempoServico = 0.0;
 	let totalContribuicaoPrevidenciaria = 0.0;
@@ -89,7 +103,9 @@ function calcSallary() {
 	let baseCalculoDeducoes = vencimentos + adicionalQualificacao + adicionalTempoServico;
 	
 	// cálculo das deduções
-	let totalDescontoIamspe = (iamspe + agregadosIamspe) * descontoIamspe * baseCalculoDeducoes;			
+	let descontoIamspeAgregados = agregadosIamspeIdadeInferior * 0.02 + agregadosIamspeIdadeSuperior * 0.03;
+	let descontoIamspeDependentes = dependentesIamspeIdadeInferior * 0.005 + dependentesIamspeIdadeSuperior * 0.01;
+	let totalDescontoIamspe = (iamspe + descontoIamspeAgregados + descontoIamspeDependentes) * baseCalculoDeducoes;			
 	let totalDeducaoDependenteIRPF = dependentes * deducaoDependenteIRPF;
 
 	// a contribuição previdenciária SPPREV é limitada ao teto do INSS
@@ -142,7 +158,7 @@ function calcSallary() {
 	document.getElementById("totalAdicionalTempoServico").innerHTML = 
 	numberToReal(adicionalTempoServico);
 	
-	document.getElementById("base").innerHTML = numberToReal(base);
+	document.getElementById("base").innerHTML = numberToReal(valorBase);
 	document.getElementById("gaj").innerHTML = numberToReal(gaj);
 	document.getElementById("repr").innerHTML = numberToReal(repr);
 	document.getElementById("vencimentos").innerHTML = numberToReal(vencimentos);
