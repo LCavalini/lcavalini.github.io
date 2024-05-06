@@ -8,8 +8,7 @@ function calcSallary() {
 	
 	// valores atualizados até 04/2023
 	const base = [
-		{ cargo: "", valor: 1968.34 },
-		{ cargo: "csj", valor: 1997.87}
+		{ cargo: "", valor: 1968.34 }
 	];
 	const baseGratificacao = 972.37;
 	// RESOLUÇÃO N° 923/2024
@@ -80,7 +79,10 @@ function calcSallary() {
 		? base.filter(b => b.cargo == cargo)[0].valor
 		: base.filter(b => b.cargo == "")[0].valor;
 	let vencimentos = valorBase + gaj + repr;
-	let adicionalQualificacao = formacaoAcademica * (vencimentos);
+	// Assistente Judiciário não recebe adicional de nível superior.
+	let adicionalQualificacao = cargo == "ajc" && formacaoAcademica == 0.05
+		? 0.0
+		: formacaoAcademica * (vencimentos);
 	let adicionalTempoServico = 0.0;
 	let totalContribuicaoPrevidenciaria = 0.0;
 	
