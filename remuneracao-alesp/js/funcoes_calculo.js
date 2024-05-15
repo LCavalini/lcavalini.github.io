@@ -21,24 +21,24 @@ const gratificacaoReprAnalista = 2557.85;
 const gratificacaoLegAuditor = 3985.48;
 const gratificacaoReprAuditor = 2557.85
 const maximoGed = 6975.63;
-// alterado pelo Ato da Mesa nº 28/2023
-const auxilioAlimentacao = 799.78;  // creditado em espécie
-// alterado pelo Ato da Mesa nº 30/2023
-const cotaAuxilioRefeicao = 66.42;  // a base é 22 dias, havendo desconto somente em caso de falta
+// alterado pelo Ato da Mesa nº 09/2024
+const auxilioAlimentacao = 1000.52;  // creditado em espécie
+// alterado pelo Ato da Mesa nº 10/2024
+const cotaAuxilioRefeicao = 73.06;  // a base é 22 dias, havendo desconto somente em caso de falta
 // alterado pelo Ato da Mesa nº 32/2023
 const tabelaAuxilioSaude = [
-    {idadeLimite: 23, valor: 580.8},
-    {idadeLimite: 28, valor: 580.8},
-    {idadeLimite: 33, valor: 596.93},
-    {idadeLimite: 38, valor: 596.93},
-    {idadeLimite: 43, valor: 669.94},
-    {idadeLimite: 48, valor: 669.94},
-    {idadeLimite: 53, valor: 794.15},
-    {idadeLimite: 58, valor: 794.15},
-    {idadeLimite: Infinity, valor: 1082.78}
+    {idadeLimite: 23, valor: 726.0},
+    {idadeLimite: 28, valor: 740.52},
+    {idadeLimite: 33, valor: 776.01},
+    {idadeLimite: 38, valor: 790.93},
+    {idadeLimite: 43, valor: 904.42},
+    {idadeLimite: 48, valor: 921.17},
+    {idadeLimite: 53, valor: 1111.81},
+    {idadeLimite: 58, valor: 1131.66},
+    {idadeLimite: Infinity, valor: 1732.45}
 ];
-// alterado pelo Ato da Mesa nº 29/2023
-const auxilioPreEscolar = 719.09 // indenização máxima
+// alterado pelo Ato da Mesa nº 11/2024
+const auxilioPreEscolar = 1078.64 // indenização máxima
 // valores atualizados até 04/2024
 // fonte: https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/irpf-imposto-de-renda-pessoa-fisica#tabelas-de-incid-ncia-mensal
 const faixasIRPF = [
