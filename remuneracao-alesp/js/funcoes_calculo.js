@@ -1,25 +1,29 @@
 // Funções de cálculo de remuneração
 
-// reajuste: LC 1.386/2023 (03/07/2023) 
+// reajuste: NÃO PUBLICADO 
 const vencimentoTecnico = [
-    3449.66, 3579.01, 3713.22, 3852.48, 3996.95, 4146.83, 4302.35, 4463.69, 4631.09, 4804.74, 4984.94, 5171.84,
-    5365.81, 5567.03, 5775.81, 5992.41, 6217.12, 6450.24, 6692.12, 6943.08
+    3676.99, 3814.87, 3957.92, 4106.36, 4260.35, 4420.11, 4585.87, 4757.85, 4936.28, 5121.37, 5313.45, 5512.66,
+    5719.42, 5933.9, 6156.44, 6387.31, 6626.83, 6875.31, 7133.13, 7400.63
 ];
 const vencimentoAnalista = [
-    6975.63, 7237.21, 7508.6, 7790.18, 8082.33, 8385.4, 8699.87, 9026.1, 9364.58, 9715.76, 10080.11, 10458.13,
-    10850.3, 11257.19, 11679.33, 12117.31, 12571.74, 13043.15, 13532.29, 14039.72
+    7435.32, 7714.14, 8003.42, 8303.55, 8614.96, 8938.0, 9273.19, 9620.92, 9981.71, 10356.03, 10744.39, 11147.32,
+    11565.33, 11999.04, 12449.0, 12915.84, 13400.22, 13902.69, 14424.07, 14964.94
 ];
 const vencimentoAuditor = [
-    6975.63, 7237.21, 7508.6, 7790.18, 8082.33, 8385.4, 8699.87, 9026.1, 9364.58, 9715.76, 10080.11, 10458.13,
-    10850.3, 11257.19, 11679.33, 12117.31, 12571.74, 13043.15, 13532.29, 14039.72
+    7435.32, 7714.14, 8003.42, 8303.55, 8614.96, 8938.0, 9273.19, 9620.92, 9981.71, 10356.03, 10744.39, 11147.32,
+    11565.33, 11999.04, 12449.0, 12915.84, 13400.22, 13902.69, 14424.07, 14964.94
 ];
+// NÃO PUBLICADO
+const valoresAdicionalQualificacao = [
+    0, 399.38, 798.76, 1198.14, 1597.52
+]
 // reajuste: LC 1.386/2023 (03/07/2023) 
-const gratificacaoLegTecnico = 2906.28;
-const gratificacaoReprTecnico = 1893.94;
-const gratificacaoLegAnalista = 3985.48;
-const gratificacaoReprAnalista = 2557.85;
-const gratificacaoLegAuditor = 3985.48;
-const gratificacaoReprAuditor = 2557.85
+const gratificacaoLegTecnico = 3097.80;
+const gratificacaoReprTecnico = 2018.75;
+const gratificacaoLegAnalista = 4248.12;
+const gratificacaoReprAnalista = 2726.41;
+const gratificacaoLegAuditor = 4248.12;
+const gratificacaoReprAuditor = 2726.41
 const maximoGed = 6975.63;
 // alterado pelo Ato da Mesa nº 09/2024
 const auxilioAlimentacao = 1000.52;  // creditado em espécie
@@ -97,6 +101,13 @@ function gratificacaoRepr(cargo) {
     }
 }
 
+function adicionalQualificacao(adicional) {
+    if (isNaN(adicional) || adicional < 0 && adicional > 4) {
+        throw new Error('O índice do adicional de qualificação é inválido.')
+    }
+    return valoresAdicionalQualificacao[adicional];
+}
+
 function ged(percentualGed) {
     return (percentualGed / 100) * maximoGed;
 }
@@ -109,9 +120,9 @@ function ats(baseCalculo, tempo) {
     return adicionalTempo * baseCalculo;
 }
 
-function remuneracaoBruta(cargo, nivel, tempo, percentualGed) {
+function remuneracaoBruta(cargo, nivel, tempo, percentualGed, indiceQualificacao) {
     let baseCalculoAts = vencimentoBasico(cargo, nivel, tempo) + gratificacaoLeg(cargo) + gratificacaoRepr(cargo)
-    return baseCalculoAts + ats(baseCalculoAts, tempo) + ged(percentualGed);
+    return baseCalculoAts + ats(baseCalculoAts, tempo) + ged(percentualGed) + adicionalQualificacao(indiceQualificacao);
 }
 
 function extraTeto(remuneracao) {
