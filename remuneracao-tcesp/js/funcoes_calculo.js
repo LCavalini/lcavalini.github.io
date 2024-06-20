@@ -1,30 +1,30 @@
 // Funções de cálculo de remuneração
 
-// reajuste: LC 1.391/2023 (19/07/2023) 
+// reajuste: PLC nº 20/2024
 const vecimentoAuxiliar = {
-    nivel1: {grauA: 6992.38, grauB: 7691.62, grauC: 7922.36, grauD: 8160.04, grauE: 8404.84, grauF: 8656.98,
-        grauG: 8916.69, grauH: 9184.19, grauI: 9459.72, grauJ: 9743.51, grauK: 10035.81, grauL: 10336.89},
-    nivel2: {grauB: 8916.87, grauC: 9184.38, grauD: 9459.91, grauE: 9743.71, grauF: 10036.02, grauG: 10337.10,
-        grauH: 10647.21, grauI: 10966.63, grauJ: 11295.63, grauK: 11634.50, grauL: 11983.53},
-    nivel3: {grauC: 10337.34, grauD: 10647.46, grauE: 10966.89, grauF: 11295.89, grauG: 11634.77, grauH: 11983.81,
-        grauI: 12343.33, grauJ: 12713.63, grauK: 13095.04, grauL: 13487.89}
+    nivel1: {grauA: 7348.99, grauB: 8083.89, grauC: 8326.41, grauD: 8576.20, grauE: 8833.49, grauF: 9098.49,
+        grauG: 9371.44, grauH: 9652.59, grauI: 9942.17, grauJ: 10240.43, grauK: 10547.64, grauL: 10864.07},
+    nivel2: {grauB: 9371.63, grauC: 9652.78, grauD: 9942.36, grauE: 10240.63, grauF: 10547.85, grauG: 10864.29,
+        grauH: 11190.22, grauI: 11525.92, grauJ: 11871.70, grauK: 12227.85, grauL: 12594.69},
+    nivel3: {grauC: 10864.54, grauD: 11190.48, grauE: 11526.20, grauF: 11871.98, grauG: 12228.14, grauH: 12594.98,
+        grauI: 12972.83, grauJ: 13362.02, grauK: 13762.88, grauL: 14175.77}
 };
 
 const vencimentoAgente = {
-    nivel1: {grauA: 15347.34, grauB: 16882.08, grauC: 17388.54, grauD: 17910.20, grauE: 18447.50, grauF: 19000.93,
-        grauG: 19570.96, grauH: 20158.08, grauI: 20762.83, grauJ: 21385.71, grauK: 22027.28, grauL: 22688.10},
-    nivel2: {grauB: 19571.40, grauC: 20158.54, grauD: 20763.30, grauE: 21386.19, grauF: 22027.78, grauG: 22688.61,
-        grauH: 23369.27, grauI: 24070.35, grauJ: 24792.46, grauK: 25536.23, grauL: 26302.32},
-    nivel3: {grauC: 22689.13, grauD: 23369.81, grauE: 24070.90, grauF: 24793.03, grauG: 25536.82, grauH: 26302.92,
-        grauI: 27092.01, grauJ: 27904.77, grauK: 28741.91, grauL: 29604.17}
+    nivel1: {grauA: 16130.05, grauB: 17743.06, grauC: 18275.35, grauD: 18823.61, grauE: 19388.32, grauF: 19969.97,
+        grauG: 20569.07, grauH: 21186.14, grauI: 21821.73, grauJ: 22476.38, grauK: 23150.67, grauL: 23845.19},
+    nivel2: {grauB: 20569.54, grauC: 21186.63, grauD: 21822.23, grauE: 22476.89, grauF: 23151.20, grauG: 23845.74,
+        grauH: 24561.11, grauI: 25297.94, grauJ: 26056.88, grauK: 26838.59, grauL: 27643.74},
+    nivel3: {grauC: 23846.28, grauD: 24561.66, grauE: 25298.51, grauF: 26057.47, grauG: 26839.19, grauH: 27644.37,
+        grauI: 28473.70, grauJ: 29327.91, grauK: 30207.75, grauL: 31113.98}
 };
 
-const auxilioAlimentacao = 451.00;
-const auxilioSaude = 1540.00;
+const auxilioAlimentacao = 470.00;
+const auxilioSaude = 1613.00;
 const auxilioPreEscolar = 1985.52; // indenização máxima
 
-const cotaAuxilioRefeicao = 47.00; 
-const cotaAuxilioTransporte = 17.20;
+const cotaAuxilioRefeicao = 50.00; 
+const cotaAuxilioTransporte = 20.00;
 
 // valores atualizados até 04/2024
 // fonte: https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/irpf-imposto-de-renda-pessoa-fisica#tabelas-de-incid-ncia-mensal
@@ -137,7 +137,7 @@ function calcularIamspe(baseCalculo, idadeContribuinte, beneficiarios, agregados
 
 function calcularAuxilioSaude(cargo, idade) {
     if (cargo == "auxiliar") {
-        return 0.0;
+        return 0;
     }
     if (idade < 50) {
         return auxilioSaude;
