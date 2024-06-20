@@ -14,11 +14,13 @@ function calcSallary() {
 	// RESOLUÇÃO N° 923/2024
 	const multiplicadoresGaj = [
 		{ cargo: "", valor:  4.191 },
+		{ cargo: "etjGab", valor: 5.367 },
 		{ cargo: "ajc", valor: 6.187 },
 		{ cargo: "csj", valor: 5.948 }
 	];
 	const multiplicadoresRepr = [
 		{ cargo: "", valor: 0.0 },
+		{ cargo: "etjGab", valor: 0.434 },
 		{ cargo: "ajc", valor: 1.815 },
 		{ cargo: "csj", valor: 0.283 }
 	];
