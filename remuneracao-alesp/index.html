@@ -62,6 +62,15 @@
                 <option value = "100">100%
             </select>
             <p></p>
+            <label for="indiceQualificacao">Adicional de qualificação:</label>
+            <select id="indiceQualificacao">
+                <option value="0">Nenhum</option>
+                <option value="1">Graduação</option>
+                <option value="2">Pós-graduação (lato sensu)</option>
+                <option value="3">Mestrado</option>
+                <option value="4">Doutorado</option>
+            </select>
+            <p></p>
             <label for="faltas">Número de faltas (desconto do Aux. Refeição)</label>
             <input id="faltas" type="number" min="0" max="22" value="0">
             <p></p>
@@ -88,12 +97,13 @@
     </div>
     <div id="resultado" class="conteudo">
         <h3>Resultado</h3>
-        <p>Última atualização: 15/05/2024 (reajuste dos benefícios)</p>
+        <p>Última atualização: 20/06/2024 (reajuste da remuneração)</p>
         <h4>Remuneração</h4>
         <p>Vencimento Básico: <span id="vencimento"></span></p>
         <p>Gratificação Legislativa: <span id="gratificacaoLeg"></span></p>
         <p>Gratificação de Representação: <span id="gratificacaoRepr"></span></p>
         <p>Gratificação Especial de Desempenho: <span id="ged"></span></p>
+        <p>Adicional de Qualificação: <span id="adicionalQualificacao"></span></p>
         <p>Adicional por tempo de serviço (quinquênios + sexta-parte): <span id="ats"></span></p>
         <p>Remuneração bruta sem auxílios: <span id="remuneracaoBruta"></span></p>
         <h4>Deduções</h4>
@@ -168,9 +178,9 @@
             </a>
         </p>
         <p>
-            Reajuste da remuneração de 2023: 
-            <a href="https://www.al.sp.gov.br/norma/208238">
-                Lei Complementar nº 1.386/2023
+            Reajuste da remuneração de 2024: 
+            <a href="https://www.al.sp.gov.br/repositorio/legislacao/lei.complementar/2024/lei.complementar-1402-19.06.2024.html">
+                Lei Complementar nº 1.402/2024
             </a>
         </p>
     </div>
