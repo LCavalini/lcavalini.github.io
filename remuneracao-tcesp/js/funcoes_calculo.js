@@ -20,7 +20,7 @@ const vencimentoAgente = {
 };
 
 const auxilioAlimentacao = 470.00;
-const auxilioSaude = 1613.00;
+const auxilioSaude = 1540.00;
 const auxilioPreEscolar = 1985.52; // indenização máxima
 
 const cotaAuxilioRefeicao = 50.00; 
