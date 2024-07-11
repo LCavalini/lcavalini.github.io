@@ -8,7 +8,8 @@ function calcSallary() {
 	
 	// valores atualizados até 04/2023
 	const base = [
-		{ cargo: "", valor: 1968.34 }
+		{ cargo: "", valor: 1968.34 },
+		{ cargo: "csj", valor: 2687.15 }
 	];
 	const baseGratificacao = 972.37;
 	// RESOLUÇÃO N° 923/2024
