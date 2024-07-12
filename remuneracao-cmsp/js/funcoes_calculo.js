@@ -79,13 +79,11 @@ function calcularAuxilioRefeicao(faltas) {
 }
 
 
-function calcularAuxilioSaude(idades) {
+function calcularAuxilioSaude(idade) {
     let tamanho = tabelaAuxilioSaude.length;
-    for (let idade of idades) {
-        for (let i = 0; i < tamanho; i++) {
-            if (idade <= tabelaAuxilioSaude[i].idadeLimite) {
-                return tabelaAuxilioSaude[i].valor;
-            }
+    for (let i = 0; i < tamanho; i++) {
+        if (idade <= tabelaAuxilioSaude[i].idadeLimite) {
+            return tabelaAuxilioSaude[i].valor;
         }
     }
     return tabelaAuxilioSaude[tamanho-1].valor;
