@@ -1,4 +1,3 @@
-
 /**
  * Calcula o IRPF da base de cálculo (rendimento bruto - contribuição previdenciária)
  * @param {*} baseCalculo 

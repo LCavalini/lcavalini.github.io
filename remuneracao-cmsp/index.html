@@ -14,15 +14,16 @@
         </h1>
 	</div>
 	<div id="formulario" class = "conteudo">
-		<form>
+		<form onchange="formulario.atualizarValoresCalculo()">
 			<h1>Dados</h1>
             <label for="cargo">Cargo:</label>
-            <select id="cargo">
+            <select id="cargo" onchange="">
                 <option value="consultor">Consultor Técnico Legislativo</option>
+                <option value="tecnico">Técnico Legislativo</option>
             </select>
             <p></p>
-            <label for="padrao">Padrão de Vencimento:</label>
-            <select id="padrao">
+            <label for="padrao-vencimento">Padrão de Vencimento:</label>
+            <select id="padrao-vencimento">
 				<option value = "1">QPL-15 (0 anos)
 				<option value = "2">QPL-16 (4 anos)
                 <option value = "3">QPL-17 (8 anos)
@@ -36,8 +37,8 @@
             <label for="tempo">Tempo de exercício (em anos):</label>
             <input id="tempo" type="number" min="1" max="100" value="0">
             <p></p>
-            <label for="percentualGliep">GLIEP:</label>
-            <select id="percentualGliep">
+            <label for="percentual-gliep">GLIEP:</label>
+            <select id="percentual-gliep">
 				<option value = "0">Nenhum
 				<option value = "0.28">Qualificação básica e aferição de produtividade (28% do QPL-22)
                 <option value = "0.35">2ª graduação superior ou especialização e aferição de produtividade (35% do QPL-22)
@@ -47,29 +48,29 @@
             <label for="faltas">Número de faltas (desconto do Aux. Refeição)</label>
             <input id="faltas" type="number" min="0" max="22" value="0">
             <p></p>
-            <label for="idadeSaude">Idade do titular do Auxílio-Saúde:</label>
-            <input class="idadeSaude" min="1" max="100" value="30">
+            <label for="idades-saude">Idade do titular do Auxílio-Saúde:</label>
+            <input class="idades-saude" min="1" max="100" value="30">
             <p></p>
             <p></p>
-            <label for="idadeSaude">Idade do dependente 1 do Auxílio-Saúde:</label>
-            <input class="idadeSaude" min="1" max="100">
+            <label for="idades-saude">Idade do dependente 1 do Auxílio-Saúde:</label>
+            <input class="idades-saude" min="1" max="100">
             <p></p>
             <p></p>
-            <label for="idadeSaude">Idade do dependente 2 do Auxílio-Saúde:</label>
-            <input class="idadeSaude" min="1" max="100">
+            <label for="idades-saude">Idade do dependente 2 do Auxílio-Saúde:</label>
+            <input class="idades-saude" min="1" max="100">
             <p></p>
             <p></p>
-            <label for="idadeSaude">Idade do dependente 3 do Auxílio-Saúde:</label>
-            <input class="idadeSaude" min="1" max="100">
+            <label for="idades-saude">Idade do dependente 3 do Auxílio-Saúde:</label>
+            <input class="idades-saude" min="1" max="100">
             <p></p>
             <p></p>
-            <label for="idadeSaude">Idade do dependente 4 do Auxílio-Saúde:</label>
-            <input class="idadeSaude" min="1" max="100">
+            <label for="idades-saude">Idade do dependente 4 do Auxílio-Saúde:</label>
+            <input class="idades-saude" min="1" max="100">
             <p></p>
-            <label for="despesasMedicas">Despesas médicas comprovadas:</label>
-            <input id="despesasMedicas" value="0">
+            <label for="despesas-medicas">Despesas médicas comprovadas:</label>
+            <input id="despesas-medicas" value="0">
             <p></p>
-            <input type="button" value="Calcular" onclick = "calcular()">
+            <input type="button" value="Calcular" onclick = "formulario.calcular()">
         </form>
     </div>
     <div id="resultado" class="conteudo">
@@ -78,17 +79,17 @@
         <p>Última atualização: 11/07/2024</p>
         <h4>Remuneração</h4>
         <p>Vencimento Básico: <span id="vencimento"></span></p>
-        <p>GLIEP: <span id="gliep"></span></p>
+        <p>GLIEP: <span id="valor-gliep"></span></p>
         <p>Adicional por tempo de serviço (quinquênios + sexta-parte): <span id="ats"></span></p>
-        <p>Remuneração bruta sem auxílios: <span id="remuneracaoBruta"></span></p>
+        <p>Remuneração bruta sem auxílios: <span id="remuneracao-bruta"></span></p>
         <h4>Deduções</h4>
-        <p>Dedução do teto municipal: <span id="extraTeto"></span></p>
+        <p>Dedução do teto municipal: <span id="extra-teto"></span></p>
         <p>Contribuição previdenciária: </a><span id="previdencia"></span></p>
         <p>Imposto de Renda da Pessoa Física: <span id="irpf"></span></p>
         <h4>Indenizações</h4>
         <p>Auxílio Alimentação: <span id="alimentacao"></span></p>
         <p>Auxílio Refeição: <span id="refeicao"></span></p>
-        <p>Auxílio Saúde: <span id="auxilioSaude"></span></p>
+        <p>Auxílio Saúde: <span id="auxilio-saude"></span></p>
         <h4>Valores líquidos</h4>
         <p>Remuneração líquida total: <span id="liquido"></span></p>
     </div>
@@ -102,7 +103,8 @@
 		</p>
 	</div>
     <script src="../shared/js/calculo.js"></script>
-    <script src="js/funcoes_calculo.js"></script>
-    <script src="js/funcoes_formulario.js"></script>
+    <script src="js/calculo.js"></script>
+    <script src="js/formulario.js"></script>
+    <script src="js/principal.js"></script>
 </body>
 </html>
