@@ -17,33 +17,19 @@
 		<form onchange="formulario.atualizarValoresCalculo()">
 			<h1>Dados</h1>
             <label for="cargo">Cargo:</label>
-            <select id="cargo" onchange="">
+            <select id="cargo" onchange="formulario.atualizarOpcoes()">
                 <option value="consultor">Consultor Técnico Legislativo</option>
                 <option value="tecnico">Técnico Legislativo</option>
             </select>
             <p></p>
             <label for="padrao-vencimento">Padrão de Vencimento:</label>
-            <select id="padrao-vencimento">
-				<option value = "1">QPL-15 (0 anos)
-				<option value = "2">QPL-16 (4 anos)
-                <option value = "3">QPL-17 (8 anos)
-                <option value = "4">QPL-18 (12 anos)
-                <option value = "5">QPL-19 (15 anos)
-                <option value = "6">QPL-20 (17 anos)
-                <option value = "7">QPL-21 (19 anos)
-                <option value = "8">QPL-22 (21 anos)
-            </select>
+            <select id="padrao-vencimento"></select>
             <p></p>
             <label for="tempo">Tempo de exercício (em anos):</label>
             <input id="tempo" type="number" min="1" max="100" value="0">
             <p></p>
             <label for="percentual-gliep">GLIEP:</label>
-            <select id="percentual-gliep">
-				<option value = "0">Nenhum
-				<option value = "0.28">Qualificação básica e aferição de produtividade (28% do QPL-22)
-                <option value = "0.35">2ª graduação superior ou especialização e aferição de produtividade (35% do QPL-22)
-                <option value = "0.38">Mestrado ou doutorado e aferição de produtividade (38% do QPL-22)
-            </select>
+            <select id="percentual-gliep"></select>
             <p></p>
             <label for="faltas">Número de faltas (desconto do Aux. Refeição)</label>
             <input id="faltas" type="number" min="0" max="22" value="0">
@@ -78,20 +64,21 @@
         <div class="avisoRemuneracao">Aviso: esta é uma versão experimental da calculadora, que pode não refletir os valores reais.</div>
         <p>Última atualização: 11/07/2024</p>
         <h4>Remuneração</h4>
-        <p>Vencimento Básico: <span id="vencimento"></span></p>
-        <p>GLIEP: <span id="valor-gliep"></span></p>
-        <p>Adicional por tempo de serviço (quinquênios + sexta-parte): <span id="ats"></span></p>
-        <p>Remuneração bruta sem auxílios: <span id="remuneracao-bruta"></span></p>
+        <p>(+) Vencimento Básico: <span id="vencimento"></span></p>
+        <p>(+) GLIEP: <span id="valor-gliep"></span></p>
+        <p>(+) Adicional por tempo de serviço (quinquênios + sexta-parte): <span id="ats"></span></p>
+        <p>(=) Remuneração bruta sem auxílios: <span id="remuneracao-bruta"></span></p>
         <h4>Deduções</h4>
-        <p>Dedução do teto municipal: <span id="extra-teto"></span></p>
-        <p>Contribuição previdenciária: </a><span id="previdencia"></span></p>
-        <p>Imposto de Renda da Pessoa Física: <span id="irpf"></span></p>
+        <p>(-) Dedução do teto municipal: <span id="extra-teto"></span></p>
+        <p>(-) Contribuição previdenciária: </a><span id="previdencia"></span></p>
+        <p>(-) Imposto de Renda da Pessoa Física: <span id="irpf"></span></p>
+        <p>(=) Remuneração líquida em dinheiro: <span id="liquido-dinheiro"></span></p>
         <h4>Indenizações</h4>
-        <p>Auxílio Alimentação: <span id="alimentacao"></span></p>
-        <p>Auxílio Refeição: <span id="refeicao"></span></p>
-        <p>Auxílio Saúde: <span id="auxilio-saude"></span></p>
+        <p>(+) Auxílio Alimentação (Sodexo): <span id="alimentacao"></span></p>
+        <p>(+) Auxílio Refeição (Verocard): <span id="refeicao"></span></p>
+        <p>(+) Auxílio Saúde (reembolso máximo): <span id="auxilio-saude"></span></p>
         <h4>Valores líquidos</h4>
-        <p>Remuneração líquida total: <span id="liquido"></span></p>
+        <p>(=) Remuneração líquida total: <span id="liquido"></span></p>
     </div>
 	<div id="contato" class="titulo">
 		<p>

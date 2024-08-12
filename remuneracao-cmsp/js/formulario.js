@@ -10,7 +10,7 @@ class Formulario {
 
     static camposResultadoIds = [
         'vencimento', 'valor-gliep', 'ats', 'remuneracao-bruta', 'previdencia', 'irpf', 'alimentacao',
-        'liquido', 'refeicao', 'total', 'extra-teto', 'auxilio-saude'
+        'liquido', 'refeicao', 'total', 'extra-teto', 'auxilio-saude', 'liquido-dinheiro'
     ];
 
     static padroesVencimentoConsultor = [
@@ -22,18 +22,36 @@ class Formulario {
         { value: 20, label: 'QPL-20 (17 anos)' },
         { value: 21, label: 'QPL-21 (19 anos)' },
         { value: 22, label: 'QPL-22 (21 anos)' }
-    ]
+    ];
 
     static padroesVencimentoTecnico = [
         { value: 7, label: 'QPL-7 (0 anos)' },
         { value: 8, label: 'QPL-8 (4 anos)' },
         { value: 9, label: 'QPL-9 (8 anos)' },
         { value: 10, label: 'QPL-10 (12 anos)' },
-        { value: 11, label: 'QPL-11 (15 anos)' },
-        { value: 12, label: 'QPL-12 (17 anos)' },
-        { value: 13, label: 'QPL-13 (19 anos)' },
-        { value: 14, label: 'QPL-14 (21 anos)' }
-    ]
+        { value: 11, label: 'QPL-11 (14 anos)' },
+        { value: 12, label: 'QPL-12 (15 anos)' },
+        { value: 13, label: 'QPL-13 (16 anos)' },
+        { value: 14, label: 'QPL-14 (17 anos)' },
+        { value: 15, label: 'QPL-15 (18 anos)' },
+        { value: 16, label: 'QPL-16 (19 anos)' },
+        { value: 17, label: 'QPL-17 (20 anos)' },
+        { value: 18, label: 'QPL-18 (21 anos)' }
+    ];
+
+    static percentuaisGliepConsultor = [
+        { value: 0.0, label: 'Nenhum'},
+        { value: 0.28, label: 'Qualificação básica exigida e aferição de produtividade'},
+        { value: 0.35, label: '1º nível de especialização (2ª graduação superio ou especialização) e aferição de produtividade'},
+        { value: 0.38, label: '2º nível de especialização (mestrado ou doutorado) e aferição de produtividade '}
+    ];
+
+    static percentuaisGliepTecnico = [
+        { value: 0.0, label: 'Nenhum'},
+        { value: 0.18, label: 'Qualificação básica exigida e aferição de produtividade'},
+        { value: 0.23, label: '1º nível de especialização (graduação superior) e aferição de produtividade'},
+        { value: 0.25, label: '2º nível de especialização (2ª graduação superior, especialização, mestrado ou doutorado) e aferição de produtividade '}
+    ];
 
     camposCalculo = [];
     camposResultado = [];
@@ -57,6 +75,7 @@ class Formulario {
     refeicao = 0;
     saude = 0;
     liquido = 0;
+    liquidoDinheiro = 0;
 
     constructor() {
         // Define os campos de cálculo (entrada de dados) e de resultado (saída de dados).
@@ -69,35 +88,37 @@ class Formulario {
         Formulario.camposResultadoIds.forEach(id => {
             this.camposResultado[id] = document.getElementById(id);
         });
-        this.atualizarValoresCalculo();
+        this.atualizarOpcoes();
     }
 
-    atualizarPadraoVencimento() {
-        this.camposCalculo['padrao-vencimento'].innerHTML = '';
-        if (this.cargo == 'consultor') {
-            Formulario.padroesVencimentoConsultor.forEach(padrao => {
-                const option = document.createElement('option');
-                option.value = padrao.value;
-                option.innerHTML = padrao.label;
-                this.camposCalculo['padrao-vencimento'].appendChild(option);
-            });
-        } else if (this.cargo == 'tecnico') {
-            Formulario.padroesVencimentoTecnico.forEach(padrao => {
-                const option = document.createElement('option');
-                option.value = padrao.value;
-                option.innerHTML = padrao.label;
-                this.camposCalculo['padrao-vencimento'].appendChild(option);
-            });
+    alterarOptions(selectHtml, options) {
+        selectHtml.innerHTML = '';
+        options.forEach(option => {
+            const element = document.createElement('option');
+            element.value = option.value;
+            element.innerHTML = option.label;
+            selectHtml.appendChild(element);
+        })
+    }
+
+    atualizarOpcoes() {
+        let cargo = this.camposCalculo['cargo'].value;
+        if (cargo == 'consultor') {
+            this.alterarOptions(this.camposCalculo['padrao-vencimento'], Formulario.padroesVencimentoConsultor);
+            this.alterarOptions(this.camposCalculo['percentual-gliep'], Formulario.percentuaisGliepConsultor);
+        } else if (cargo == 'tecnico') {
+            this.alterarOptions(this.camposCalculo['padrao-vencimento'], Formulario.padroesVencimentoTecnico);
+            this.alterarOptions(this.camposCalculo['percentual-gliep'], Formulario.percentuaisGliepTecnico);
         }
     }
 
     atualizarValoresCalculo() {
         this.cargo = this.camposCalculo['cargo'].value;
-        this.atualizarPadraoVencimento();
         this.padraoVencimento = this.camposCalculo['padrao-vencimento'].value;
         this.tempoExercicio = this.camposCalculo['tempo'].value;
-        this.gliep = this.camposCalculo['percentual-gliep'].value;
+        this.percentualGliep = this.camposCalculo['percentual-gliep'].value;
         this.faltas = this.camposCalculo['faltas'].value;
+        this.idadesSaude = [];
         for (let idade of this.camposCalculo['idades-saude']) {
             if (idade.value) {
                 this.idadesSaude.push(idade.value);
@@ -107,7 +128,7 @@ class Formulario {
     }
 
     atualizarValoresResultado() {
-        this.camposResultado['vencimento'].innerHTML = numeroParaMoeda(this.vecimentoBasico);
+        this.camposResultado['vencimento'].innerHTML = numeroParaMoeda(this.vencimentoBasico);
         this.camposResultado['valor-gliep'].innerHTML = numeroParaMoeda(this.valorGliep);
         this.camposResultado['extra-teto'].innerHTML = numeroParaMoeda(this.extraTeto);
         this.camposResultado['remuneracao-bruta'].innerHTML = numeroParaMoeda(this.bruto);
@@ -118,40 +139,36 @@ class Formulario {
         this.camposResultado['refeicao'].innerHTML = numeroParaMoeda(this.refeicao);
         this.camposResultado['auxilio-saude'].innerHTML = numeroParaMoeda(this.saude);
         this.camposResultado['liquido'].innerHTML = numeroParaMoeda(this.liquido);
+        this.camposResultado['liquido-dinheiro'].innerHTML = numeroParaMoeda(this.liquidoDinheiro);
     }
 
     calcular() {
+        this.atualizarValoresCalculo();
 
-        this.vecimentoBasico = Calculo.vencimentoBasico(this.cargo, this.padraoVencimento);
-        this.valorGliep = Calculo.gliep(this.cargo, this.percentualGliep);
-        this.bruto = Calculo.bruto(this.cargo, this.padraoVencimento, this.tempoExercicio, this.percentualGliep);
-
-        let baseCalculoAts = Calculo.bruto(this.cargo, this.padraoVencimento, 0, 0);
-        this.ats = Calculo.ats(baseCalculoAts, this.tempoExercicio); 
+        this.vencimentoBasico = Calculo.vencimentoBasico(this.padraoVencimento);
+        this.valorGliep = Calculo.gliep(this.percentualGliep);
+        this.bruto = Calculo.bruto(this.padraoVencimento, this.tempoExercicio, this.percentualGliep);
+        let baseCalculoAts = Calculo.bruto(this.padraoVencimento, 0, 0);
+        this.ats = Calculo.ats(baseCalculoAts, this.tempoExercicio);
     
         this.extraTeto = Calculo.extraTeto(this.bruto);
 
         // Se a remuneração bruta ultrapassar o teto, então aquela deve ser equivalente a este.
-        if (this.extraTeto > 0) {
-            this.bruto = Calculo.tetoMunicipioSp;
-        } 
+        let brutoDeduzido = this.extraTeto > 0 ? Calculo.tetoMunicipioSp : this.bruto;
     
-        this.previdencia = Calculo.previdencia(this.bruto);
-
-        let baseCalculoIrpf = this.bruto - this.previdencia;
+        this.previdencia = Calculo.previdencia(brutoDeduzido);
+        let baseCalculoIrpf = brutoDeduzido - this.previdencia;
         this.irpf = calcularIrpf(baseCalculoIrpf);
-        
         this.refeicao = Calculo.auxilioRefeicao(this.faltas);
-    
         let totalReembolso = this.idadesSaude.map(i => Calculo.auxilioSaude(i)).reduce((i, j) =>  i + j);
-
         if (this.despesasMedicas > totalReembolso) {
             this.saude = parseFloat(totalReembolso);
         } else {
             this.saude = parseFloat(this.despesasMedicas);
         }
-    
-        this.liquido = this.bruto - this.previdencia - this.irpf + Calculo.auxilioAlimentacao + this.refeicao +
+        
+        this.liquidoDinheiro = brutoDeduzido - this.previdencia - this.irpf;
+        this.liquido = brutoDeduzido - this.previdencia - this.irpf + Calculo.auxilioAlimentacao + this.refeicao +
             this.saude;
 
         this.atualizarValoresResultado();

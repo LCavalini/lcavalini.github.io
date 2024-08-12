@@ -1,11 +1,28 @@
 // Funções de cálculo de remuneração
 
 class Calculo {
-
-    static vencimentoConsultor = [
-        14748.70, 16223.57, 17845.95, 19630.55, 21593.6, 23752.95, 26128.27, 28743.5
-    ];
     
+    static padraoQpl22 = 28743.5;
+
+    static vencimento = [
+        { padrao: 7, valor: 6880.32 },
+        { padrao: 8, valor: 7568.36 },
+        { padrao: 9, valor: 8325.21 },
+        { padrao: 10, valor: 9157.81 },
+        { padrao: 11, valor: 10073.53 },
+        { padrao: 12, valor: 11080.92 },
+        { padrao: 13, valor: 12189.06 },
+        { padrao: 14, valor: 13407.96 },
+        { padrao: 15, valor: 14748.70 },
+        { padrao: 16, valor: 16223.57 },
+        { padrao: 17, valor: 17845.95 },
+        { padrao: 18, valor: 19630.55 },
+        { padrao: 19, valor: 21593.6 },
+        { padrao: 20, valor: 23752.95 },
+        { padrao: 21, valor: 26128.27 },
+        { padrao: 22, valor: Calculo.padraoQpl22 }
+    ];
+
     static auxilioAlimentacao = 1859.00;
     static cotaAuxilioRefeicao = 85;  // a base é 22 dias;
     
@@ -25,21 +42,16 @@ class Calculo {
         {idadeLimite: Infinity, valor: 3093.49}
     ];
     
-    static vencimentoBasico(cargo, padrao) {
-        if (cargo == 'consultor') {
-            return Calculo.vencimentoConsultor[padrao-1];
-        } else {
+    static vencimentoBasico(padrao) {
+        let registro = Calculo.vencimento.find(vencimento => Number(vencimento.padrao) === Number(padrao));
+        if (registro == undefined) {
             throw new Error(`O cargo ${cargo} é inválido`);        
         }
+        return registro.valor;
     }
     
-    static gliep(cargo, percentual) {
-        if (cargo == 'consultor') {
-            let qpl22 = Calculo.vencimentoConsultor.length - 1;
-            return percentual * Calculo.vencimentoConsultor[qpl22];
-        } else {
-            throw new Error(`O cargo ${cargo} é inválido`);        
-        }
+    static gliep(percentual) {
+        return percentual * Calculo.padraoQpl22;
     }
     
     static ats(baseCalculo, tempo) {
@@ -56,9 +68,9 @@ class Calculo {
         return adicionalTempo * baseCalculo;
     }
     
-    static bruto(cargo, padrao, tempo, percentualGliep) {
-        let baseCalculoAts = Calculo.vencimentoBasico(cargo, padrao);
-        return baseCalculoAts + Calculo.ats(baseCalculoAts, tempo) + Calculo.gliep(cargo, percentualGliep);
+    static bruto(padrao, tempo, percentualGliep) {
+        let baseCalculoAts = Calculo.vencimentoBasico(padrao);
+        return baseCalculoAts + Calculo.ats(baseCalculoAts, tempo) + Calculo.gliep(percentualGliep);
     }
     
     static extraTeto(remuneracao) {
