@@ -2,24 +2,24 @@
 
 class Calculo {
     
-    static padraoQpl22 = 28743.5;
+    static padraoQpl22 = 30002.47;
 
     static vencimento = [
-        { padrao: 7, valor: 6880.32 },
-        { padrao: 8, valor: 7568.36 },
-        { padrao: 9, valor: 8325.21 },
-        { padrao: 10, valor: 9157.81 },
-        { padrao: 11, valor: 10073.53 },
-        { padrao: 12, valor: 11080.92 },
-        { padrao: 13, valor: 12189.06 },
-        { padrao: 14, valor: 13407.96 },
-        { padrao: 15, valor: 14748.70 },
-        { padrao: 16, valor: 16223.57 },
-        { padrao: 17, valor: 17845.95 },
-        { padrao: 18, valor: 19630.55 },
-        { padrao: 19, valor: 21593.6 },
-        { padrao: 20, valor: 23752.95 },
-        { padrao: 21, valor: 26128.27 },
+        { padrao: 7, valor: 7181.67 },
+        { padrao: 8, valor: 7899.85 },
+        { padrao: 9, valor: 8689.85 },
+        { padrao: 10, valor: 9558.92 },
+        { padrao: 11, valor: 10514.75 },
+        { padrao: 12, valor: 11566.26 },
+        { padrao: 13, valor: 12722.94 },
+        { padrao: 14, valor: 13995.23 },
+        { padrao: 15, valor: 15394.69 },
+        { padrao: 16, valor: 16934.16 },
+        { padrao: 17, valor: 18627.60 },
+        { padrao: 18, valor: 20490.36 },
+        { padrao: 19, valor: 22539.4 },
+        { padrao: 20, valor: 24793.33 },
+        { padrao: 21, valor: 27272.69 },
         { padrao: 22, valor: Calculo.padraoQpl22 }
     ];
 
