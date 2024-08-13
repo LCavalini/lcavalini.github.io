@@ -42,10 +42,24 @@ h2 {
 .titulo {
     background-color: #4E4E4E;
     color: white;
+    font-size: 2rem;
 }
 
 .avisoRemuneracao {
     background-color: yellow;
     color: black;
+}
+
+div .form-group {
+    margin-top: 5pt;
+    margin-bottom: 5pt;
+}
+
+div .form-section {
+    margin-top: 5pt;
+    margin-bottom: 5pt;
+    padding-top: 5pt;
+    padding-bottom: 5pt;
+    background-color: lightgrey;
 }
 

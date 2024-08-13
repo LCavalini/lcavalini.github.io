@@ -1,11 +1,11 @@
 class Formulario {
 
     static camposCalculoIds = [
-        'cargo', 'padrao-vencimento', 'tempo', 'percentual-gliep', 'faltas', 'despesas-medicas'
+        'cargo', 'padrao-vencimento', 'tempo', 'percentual-gliep', 'faltas'
     ];
 
     static camposCalculoClasses = [
-        'idades-saude'
+        'idade-auxilio-saude', 'despesa-auxilio-saude'
     ];
 
     static camposResultadoIds = [
@@ -62,7 +62,7 @@ class Formulario {
     percentualGliep = 0.0;
     faltas = 0;
     idadesSaude = [];
-    despesasMedicas = 0;
+    despesasMedicas = [];
 
     vencimentoBasico = 0;
     valorGliep = 0;
@@ -89,6 +89,22 @@ class Formulario {
             this.camposResultado[id] = document.getElementById(id);
         });
         this.atualizarOpcoes();
+        this.atualizarBeneficiariosAuxilioSaude();
+    }
+
+    atualizarBeneficiariosAuxilioSaude() {
+        let campoBeneficiarios = document.getElementById('beneficiarios-auxilio-saude');
+        let quantidade = campoBeneficiarios.value;
+        if (quantidade < 1) {
+            campoBeneficiarios.value = 1;
+            quantidade = 1;
+        }
+        let areaAuxilioSaude = document.getElementById('area-auxilio-saude');
+        areaAuxilioSaude.innerHTML = '';
+        for (let i = 0; i < quantidade; i++) {
+            let fragmento = document.getElementById('depedente-auxilio-saude');
+            areaAuxilioSaude.insertAdjacentHTML('beforeend', fragmento.innerHTML);
+        }
     }
 
     alterarOptions(selectHtml, options) {
@@ -119,12 +135,17 @@ class Formulario {
         this.percentualGliep = this.camposCalculo['percentual-gliep'].value;
         this.faltas = this.camposCalculo['faltas'].value;
         this.idadesSaude = [];
-        for (let idade of this.camposCalculo['idades-saude']) {
+        for (let idade of this.camposCalculo['idade-auxilio-saude']) {
             if (idade.value) {
                 this.idadesSaude.push(idade.value);
             }
         }
-        this.despesasMedicas = this.camposCalculo['despesas-medicas'].value;
+        this.despesasMedicas = [];
+        for (let despesa of this.camposCalculo['despesa-auxilio-saude']) {
+            if (despesa.value) {
+                this.despesasMedicas.push(despesa.value);
+            }
+        }
     }
 
     atualizarValoresResultado() {
@@ -160,11 +181,14 @@ class Formulario {
         let baseCalculoIrpf = brutoDeduzido - this.previdencia;
         this.irpf = calcularIrpf(baseCalculoIrpf);
         this.refeicao = Calculo.auxilioRefeicao(this.faltas);
-        let totalReembolso = this.idadesSaude.map(i => Calculo.auxilioSaude(i)).reduce((i, j) =>  i + j);
-        if (this.despesasMedicas > totalReembolso) {
-            this.saude = parseFloat(totalReembolso);
-        } else {
-            this.saude = parseFloat(this.despesasMedicas);
+
+        for (let i = 0; i < this.idadesSaude.length; i++) {
+            let totalReembolso = Calculo.auxilioSaude(this.idadesSaude[i]);
+            if (this.despesasMedicas[i] > totalReembolso) {
+                this.saude += parseFloat(totalReembolso);
+            } else {
+                this.saude += parseFloat(this.despesasMedicas[i]);
+            }
         }
         
         this.liquidoDinheiro = brutoDeduzido - this.previdencia - this.irpf;
