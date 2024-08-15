@@ -89,27 +89,29 @@ class Formulario {
         Formulario.camposResultadoIds.forEach(id => {
             this.camposResultado[id] = document.getElementById(id);
         });
-        this.atualizarOpcoes();
-        this.atualizarBeneficiariosAuxilioSaude(true);
         this.recuperarEntrada();
     }
 
-    atualizarBeneficiariosAuxilioSaude(inicial=false) {
-        if (inicial) {
-            this.quantidadeBeneficiarios = localStorage.getItem('beneficiarios-auxilio-saude');
-            this.camposCalculo['beneficiarios-auxilio-saude'].value = this.quantidadeBeneficiarios;
-        } else {
-            this.quantidadeBeneficiarios = this.camposCalculo['beneficiarios-auxilio-saude'].value;
-        }
+    atualizarBeneficiariosAuxilioSaude() {
+        this.atualizarValoresCalculo();
+        // O valor mínimo de quantidade de beneficiários do auxílio saúde é 1.
         if (this.quantidadeBeneficiarios < 1) {
             this.camposCalculo['beneficiarios-auxilio-saude'].value = 1;
             this.quantidadeBeneficiarios = 1;
         }
+        // Limpa a área de dados do auxílio saúde e a reconstrói.
         let areaAuxilioSaude = document.getElementById('area-auxilio-saude');
         areaAuxilioSaude.innerHTML = '';
         for (let i = 0; i < this.quantidadeBeneficiarios; i++) {
             let fragmento = document.getElementById('depedente-auxilio-saude');
             areaAuxilioSaude.insertAdjacentHTML('beforeend', fragmento.innerHTML);
+        }
+        // Insere os valores anteriormente preenchidos.
+        for (let i = 0; i < this.camposCalculo['idade-auxilio-saude'].length && i < this.idadesSaude.length; i++) {
+            this.camposCalculo['idade-auxilio-saude'][i].value = this.idadesSaude[i];
+        }
+        for (let i = 0; i < this.camposCalculo['despesa-auxilio-saude'].length && i < this.despesasMedicas.length; i++) {
+            this.camposCalculo['despesa-auxilio-saude'][i].value = this.despesasMedicas[i];
         }
     }
 
@@ -124,11 +126,11 @@ class Formulario {
     }
 
     atualizarOpcoes() {
-        let cargo = this.camposCalculo['cargo'].value;
-        if (cargo == 'consultor') {
+        this.atualizarValoresCalculo();
+        if (this.cargo == 'consultor') {
             this.alterarOptions(this.camposCalculo['padrao-vencimento'], Formulario.padroesVencimentoConsultor);
             this.alterarOptions(this.camposCalculo['percentual-gliep'], Formulario.percentuaisGliepConsultor);
-        } else if (cargo == 'tecnico') {
+        } else if (this.cargo == 'tecnico') {
             this.alterarOptions(this.camposCalculo['padrao-vencimento'], Formulario.padroesVencimentoTecnico);
             this.alterarOptions(this.camposCalculo['percentual-gliep'], Formulario.percentuaisGliepTecnico);
         }
@@ -223,8 +225,21 @@ class Formulario {
     }
 
     recuperarEntrada() {
+        let cargo = localStorage.getItem('cargo');
+        if (cargo != undefined) {
+            this.cargo = cargo;
+            this.camposCalculo['cargo'].value = cargo;
+        }
+        this.atualizarOpcoes();
+        let quantidadeBeneficiarios = localStorage.getItem('beneficiarios-auxilio-saude');
+        if (quantidadeBeneficiarios != undefined) {
+            this.quantidadeBeneficiarios = quantidadeBeneficiarios;
+            this.camposCalculo['beneficiarios-auxilio-saude'].value = quantidadeBeneficiarios;
+        }
+        this.atualizarBeneficiariosAuxilioSaude();
         for (let [nomeCampo, campo] of Object.entries(this.camposCalculo)) {
             let valorSalvo = localStorage.getItem(nomeCampo);
+            // Se não existir valor, passa para o próximo.
             if (valorSalvo == undefined) {
                 continue;
             }
