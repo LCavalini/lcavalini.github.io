@@ -225,6 +225,9 @@ class Formulario {
     recuperarEntrada() {
         for (let [nomeCampo, campo] of Object.entries(this.camposCalculo)) {
             let valorSalvo = localStorage.getItem(nomeCampo);
+            if (valorSalvo == undefined) {
+                continue;
+            }
             // É uma lista de campos e não apenas um campo.
             if (campo instanceof HTMLCollection) {
                 let valorSalvoLista = valorSalvo.split(',');
