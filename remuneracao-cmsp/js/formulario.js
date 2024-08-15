@@ -1,11 +1,11 @@
 class Formulario {
 
     static camposCalculoIds = [
-        'cargo', 'padrao-vencimento', 'tempo', 'percentual-gliep', 'faltas', 'despesas-medicas'
+        'cargo', 'padrao-vencimento', 'tempo', 'percentual-gliep', 'faltas', 'beneficiarios-auxilio-saude'
     ];
 
     static camposCalculoClasses = [
-        'idades-saude'
+        'idade-auxilio-saude', 'despesa-auxilio-saude'
     ];
 
     static camposResultadoIds = [
@@ -62,7 +62,8 @@ class Formulario {
     percentualGliep = 0.0;
     faltas = 0;
     idadesSaude = [];
-    despesasMedicas = 0;
+    despesasMedicas = [];
+    quantidadeBeneficiarios = 1;
 
     vencimentoBasico = 0;
     valorGliep = 0;
@@ -89,6 +90,27 @@ class Formulario {
             this.camposResultado[id] = document.getElementById(id);
         });
         this.atualizarOpcoes();
+        this.atualizarBeneficiariosAuxilioSaude(true);
+        this.recuperarEntrada();
+    }
+
+    atualizarBeneficiariosAuxilioSaude(inicial=false) {
+        if (inicial) {
+            this.quantidadeBeneficiarios = localStorage.getItem('beneficiarios-auxilio-saude');
+            this.camposCalculo['beneficiarios-auxilio-saude'].value = this.quantidadeBeneficiarios;
+        } else {
+            this.quantidadeBeneficiarios = this.camposCalculo['beneficiarios-auxilio-saude'].value;
+        }
+        if (this.quantidadeBeneficiarios < 1) {
+            this.camposCalculo['beneficiarios-auxilio-saude'].value = 1;
+            this.quantidadeBeneficiarios = 1;
+        }
+        let areaAuxilioSaude = document.getElementById('area-auxilio-saude');
+        areaAuxilioSaude.innerHTML = '';
+        for (let i = 0; i < this.quantidadeBeneficiarios; i++) {
+            let fragmento = document.getElementById('depedente-auxilio-saude');
+            areaAuxilioSaude.insertAdjacentHTML('beforeend', fragmento.innerHTML);
+        }
     }
 
     alterarOptions(selectHtml, options) {
@@ -118,13 +140,19 @@ class Formulario {
         this.tempoExercicio = this.camposCalculo['tempo'].value;
         this.percentualGliep = this.camposCalculo['percentual-gliep'].value;
         this.faltas = this.camposCalculo['faltas'].value;
+        this.quantidadeBeneficiarios = this.camposCalculo['beneficiarios-auxilio-saude'].value;
         this.idadesSaude = [];
-        for (let idade of this.camposCalculo['idades-saude']) {
+        for (let idade of this.camposCalculo['idade-auxilio-saude']) {
             if (idade.value) {
                 this.idadesSaude.push(idade.value);
             }
         }
-        this.despesasMedicas = this.camposCalculo['despesas-medicas'].value;
+        this.despesasMedicas = [];
+        for (let despesa of this.camposCalculo['despesa-auxilio-saude']) {
+            if (despesa.value) {
+                this.despesasMedicas.push(despesa.value);
+            }
+        }
     }
 
     atualizarValoresResultado() {
@@ -160,18 +188,55 @@ class Formulario {
         let baseCalculoIrpf = brutoDeduzido - this.previdencia;
         this.irpf = calcularIrpf(baseCalculoIrpf);
         this.refeicao = Calculo.auxilioRefeicao(this.faltas);
-        let totalReembolso = this.idadesSaude.map(i => Calculo.auxilioSaude(i)).reduce((i, j) =>  i + j);
-        if (this.despesasMedicas > totalReembolso) {
-            this.saude = parseFloat(totalReembolso);
-        } else {
-            this.saude = parseFloat(this.despesasMedicas);
+
+        this.saude = 0;
+        for (let i = 0; i < this.idadesSaude.length; i++) {
+            let totalReembolso = Calculo.auxilioSaude(this.idadesSaude[i]);
+            if (this.despesasMedicas[i] > totalReembolso) {
+                this.saude += parseFloat(totalReembolso);
+            } else {
+                this.saude += parseFloat(this.despesasMedicas[i]);
+            }
         }
         
         this.liquidoDinheiro = brutoDeduzido - this.previdencia - this.irpf;
         this.liquido = brutoDeduzido - this.previdencia - this.irpf + Calculo.auxilioAlimentacao + this.refeicao +
             this.saude;
 
+        this.salvarEntrada();
         this.atualizarValoresResultado();
     };
+
+    salvarEntrada() {
+        for (let [nomeCampo, campo] of Object.entries(this.camposCalculo)) {
+            // É uma lista de campos e não apenas um campo.
+            if (campo instanceof HTMLCollection) {
+                let valores = [];
+                for (let item of campo) {
+                    valores.push(item.value);
+                }
+                localStorage.setItem(nomeCampo, valores);
+            } else {
+                localStorage.setItem(nomeCampo, campo.value);
+            }
+        }
+    }
+
+    recuperarEntrada() {
+        for (let [nomeCampo, campo] of Object.entries(this.camposCalculo)) {
+            let valorSalvo = localStorage.getItem(nomeCampo);
+            // É uma lista de campos e não apenas um campo.
+            if (campo instanceof HTMLCollection) {
+                let valorSalvoLista = valorSalvo.split(',');
+                for (let i = 0; i < campo.length; i++) {
+                    if (i < valorSalvoLista.length) {
+                        campo[i].value = valorSalvoLista[i];
+                    }
+                }
+            } else {
+                campo.value = valorSalvo;
+            }
+        }
+    }
 
 }
