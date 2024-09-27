@@ -1,7 +1,8 @@
 class Formulario {
 
     static camposCalculoIds = [
-        'cargo', 'padrao-vencimento', 'tempo', 'percentual-gliep', 'faltas', 'beneficiarios-auxilio-saude'
+        'cargo', 'padrao-vencimento', 'tempo', 'percentual-gliep', 'faltas', 'beneficiarios-auxilio-saude',
+        'percentual-prevcom'
     ];
 
     static camposCalculoClasses = [
@@ -9,8 +10,9 @@ class Formulario {
     ];
 
     static camposResultadoIds = [
-        'vencimento', 'valor-gliep', 'ats', 'remuneracao-bruta', 'previdencia', 'irpf', 'alimentacao',
-        'liquido', 'refeicao', 'total', 'extra-teto', 'auxilio-saude', 'liquido-dinheiro'
+        'vencimento', 'valor-gliep', 'ats', 'remuneracao-bruta', 'previdencia', 'prevcom', 'irpf',
+        'alimentacao', 'liquido', 'refeicao', 'total', 'extra-teto', 'auxilio-saude', 'liquido-dinheiro',
+        'contrapartida-prevcom'
     ];
 
     static padroesVencimentoConsultor = [
@@ -60,6 +62,7 @@ class Formulario {
     padraoVencimento = 0;
     tempoExercicio = 0;
     percentualGliep = 0.0;
+    percentualPrevcom = 0.0;
     faltas = 0;
     idadesSaude = [];
     despesasMedicas = [];
@@ -71,12 +74,14 @@ class Formulario {
     ats = 0;
     extraTeto = 0;
     previdencia = 0;
+    prevcom = 0;
     irpf = 0;
     alimentacao = 0;
     refeicao = 0;
     saude = 0;
     liquido = 0;
     liquidoDinheiro = 0;
+    contrapartidaPrevcom = 0;
 
     constructor() {
         // Define os campos de cálculo (entrada de dados) e de resultado (saída de dados).
@@ -143,6 +148,7 @@ class Formulario {
         this.percentualGliep = this.camposCalculo['percentual-gliep'].value;
         this.faltas = this.camposCalculo['faltas'].value;
         this.quantidadeBeneficiarios = this.camposCalculo['beneficiarios-auxilio-saude'].value;
+        this.percentualPrevcom = this.camposCalculo['percentual-prevcom'].value;
         this.idadesSaude = [];
         for (let idade of this.camposCalculo['idade-auxilio-saude']) {
             if (idade.value) {
@@ -164,12 +170,14 @@ class Formulario {
         this.camposResultado['remuneracao-bruta'].innerHTML = numeroParaMoeda(this.bruto);
         this.camposResultado['ats'].innerHTML = numeroParaMoeda(this.ats);
         this.camposResultado['previdencia'].innerHTML = numeroParaMoeda(this.previdencia);
+        this.camposResultado['prevcom'].innerHTML = numeroParaMoeda(this.prevcom);
         this.camposResultado['irpf'].innerHTML = numeroParaMoeda(this.irpf);
         this.camposResultado['alimentacao'].innerHTML = numeroParaMoeda(Calculo.auxilioAlimentacao);
         this.camposResultado['refeicao'].innerHTML = numeroParaMoeda(this.refeicao);
         this.camposResultado['auxilio-saude'].innerHTML = numeroParaMoeda(this.saude);
         this.camposResultado['liquido'].innerHTML = numeroParaMoeda(this.liquido);
         this.camposResultado['liquido-dinheiro'].innerHTML = numeroParaMoeda(this.liquidoDinheiro);
+        this.camposResultado['contrapartida-prevcom'].innerHTML = numeroParaMoeda(this.contrapartidaPrevcom);
     }
 
     calcular() {
@@ -187,7 +195,8 @@ class Formulario {
         let brutoDeduzido = this.extraTeto > 0 ? Calculo.tetoMunicipioSp : this.bruto;
     
         this.previdencia = Calculo.previdencia(brutoDeduzido);
-        let baseCalculoIrpf = brutoDeduzido - this.previdencia;
+        this.prevcom = Calculo.prevcom(this.percentualPrevcom, brutoDeduzido);
+        let baseCalculoIrpf = brutoDeduzido - this.previdencia - this.prevcom;
         this.irpf = calcularIrpf(baseCalculoIrpf);
         this.refeicao = Calculo.auxilioRefeicao(this.faltas);
 
@@ -201,9 +210,10 @@ class Formulario {
             }
         }
         
-        this.liquidoDinheiro = brutoDeduzido - this.previdencia - this.irpf;
-        this.liquido = brutoDeduzido - this.previdencia - this.irpf + Calculo.auxilioAlimentacao + this.refeicao +
-            this.saude;
+        this.liquidoDinheiro = brutoDeduzido - this.previdencia - this.prevcom - this.irpf;
+        this.liquido = brutoDeduzido - this.previdencia - this.irpf - this.prevcom 
+            + Calculo.auxilioAlimentacao + this.refeicao + this.saude;
+        this.contrapartidaPrevcom = Calculo.contrapartidaPrevcom(this.percentualPrevcom, brutoDeduzido);
 
         this.salvarEntrada();
         this.atualizarValoresResultado();

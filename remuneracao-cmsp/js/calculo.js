@@ -30,16 +30,16 @@ class Calculo {
     static tetoMunicipioSp = 38039.38;
     
     static tabelaAuxilioSaude = [
-        {idadeLimite: 18, valor: 515.68},
-        {idadeLimite: 23, valor: 724.43},
-        {idadeLimite: 28, valor: 761.75},
-        {idadeLimite: 33, valor: 814.51},
-        {idadeLimite: 38, valor: 867.1},
-        {idadeLimite: 43, valor: 939.53},
-        {idadeLimite: 48, valor: 1263.25},
-        {idadeLimite: 53, valor: 1542.11},
-        {idadeLimite: 58, valor: 1813.91},
-        {idadeLimite: Infinity, valor: 3093.49}
+        {idadeLimite: 18, valor: 654.86},
+        {idadeLimite: 23, valor: 919.97},
+        {idadeLimite: 28, valor: 967.33},
+        {idadeLimite: 33, valor: 1034.33},
+        {idadeLimite: 38, valor: 1101.14},
+        {idadeLimite: 43, valor: 1193.12},
+        {idadeLimite: 48, valor: 1604.20},
+        {idadeLimite: 53, valor: 1958.33},
+        {idadeLimite: 58, valor: 2303.48},
+        {idadeLimite: Infinity, valor: 5892.63}
     ];
     
     static vencimentoBasico(padrao) {
@@ -86,6 +86,24 @@ class Calculo {
             baseCalculo = obterTetoInss();
         }
         return baseCalculo * 0.14;
+    }
+
+    static prevcom(percentualPrevcom, remuneracaoBruta) {
+        let baseCalculo = remuneracaoBruta - obterTetoInss();
+        if (baseCalculo > 0) {
+            return (remuneracaoBruta - obterTetoInss()) * (percentualPrevcom / 100);
+        }
+        return 0;
+    }
+
+    static contrapartidaPrevcom(percentualPrevcom, remuneracaoBruta) {
+        let baseCalculo = remuneracaoBruta - obterTetoInss();
+        let percentual = percentualPrevcom > 7.5 ? 7.5 : percentualPrevcom;
+        percentual /= 100;
+        if (baseCalculo > 0) {
+            return percentual * baseCalculo;
+        }
+        return 0;
     }
     
     static auxilioRefeicao(faltas) {
