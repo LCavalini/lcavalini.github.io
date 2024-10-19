@@ -44,7 +44,7 @@ class Formulario {
     static percentuaisGliepConsultor = [
         { value: 0.0, label: 'Nenhum'},
         { value: 0.28, label: 'Qualificação básica exigida e aferição de produtividade'},
-        { value: 0.35, label: '1º nível de especialização (2ª graduação superio ou especialização) e aferição de produtividade'},
+        { value: 0.35, label: '1º nível de especialização (2ª graduação superior ou especialização) e aferição de produtividade'},
         { value: 0.38, label: '2º nível de especialização (mestrado ou doutorado) e aferição de produtividade '}
     ];
 
