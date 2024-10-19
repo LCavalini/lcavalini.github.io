@@ -2,7 +2,7 @@ class Formulario {
 
     static camposCalculoIds = [
         'cargo', 'padrao-vencimento', 'tempo', 'percentual-gliep', 'faltas', 'beneficiarios-auxilio-saude',
-        'percentual-prevcom'
+        'percentual-prevcom', 'funcao-gratificada'
     ];
 
     static camposCalculoClasses = [
@@ -12,7 +12,7 @@ class Formulario {
     static camposResultadoIds = [
         'vencimento', 'valor-gliep', 'ats', 'remuneracao-bruta', 'previdencia', 'prevcom', 'irpf',
         'alimentacao', 'liquido', 'refeicao', 'total', 'extra-teto', 'auxilio-saude', 'liquido-dinheiro',
-        'contrapartida-prevcom'
+        'contrapartida-prevcom', 'acrescimo-fg'
     ];
 
     static padroesVencimentoConsultor = [
@@ -55,6 +55,16 @@ class Formulario {
         { value: 0.25, label: '2º nível de especialização (2ª graduação superior, especialização, mestrado ou doutorado) e aferição de produtividade '}
     ];
 
+    // Valores reajustados a partir do Anexo da Lei nº 14.381/2007:
+    // https://legislacao.prefeitura.sp.gov.br/leis/lei-14381-de-7-de-maio-de-2007
+    static opcoesFuncaoGratificada = [
+        { value: 0.0, label: 'Nenhum' },
+        { value: 3608.98, label: 'FG-1' },
+        { value: 7217.96, label: 'FG-2' },
+        { value: 10826.94, label: 'FG-3' },
+        { value: 14435.89, label: 'FG-4' }
+    ];
+
     camposCalculo = [];
     camposResultado = [];
 
@@ -82,6 +92,7 @@ class Formulario {
     liquido = 0;
     liquidoDinheiro = 0;
     contrapartidaPrevcom = 0;
+    acrescimoFg = 0;
 
     constructor() {
         // Define os campos de cálculo (entrada de dados) e de resultado (saída de dados).
@@ -139,6 +150,7 @@ class Formulario {
             this.alterarOptions(this.camposCalculo['padrao-vencimento'], Formulario.padroesVencimentoTecnico);
             this.alterarOptions(this.camposCalculo['percentual-gliep'], Formulario.percentuaisGliepTecnico);
         }
+        this.alterarOptions(this.camposCalculo['funcao-gratificada'], Formulario.opcoesFuncaoGratificada);
     }
 
     atualizarValoresCalculo() {
@@ -150,6 +162,7 @@ class Formulario {
         this.quantidadeBeneficiarios = this.camposCalculo['beneficiarios-auxilio-saude'].value;
         this.percentualPrevcom = this.camposCalculo['percentual-prevcom'].value;
         this.idadesSaude = [];
+        this.acrescimoFg = this.camposCalculo['funcao-gratificada'].value;
         for (let idade of this.camposCalculo['idade-auxilio-saude']) {
             if (idade.value) {
                 this.idadesSaude.push(idade.value);
@@ -169,6 +182,7 @@ class Formulario {
         this.camposResultado['extra-teto'].innerHTML = numeroParaMoeda(this.extraTeto);
         this.camposResultado['remuneracao-bruta'].innerHTML = numeroParaMoeda(this.bruto);
         this.camposResultado['ats'].innerHTML = numeroParaMoeda(this.ats);
+        this.camposResultado['acrescimo-fg'].innerHTML = numeroParaMoeda(this.acrescimoFg);
         this.camposResultado['previdencia'].innerHTML = numeroParaMoeda(this.previdencia);
         this.camposResultado['prevcom'].innerHTML = numeroParaMoeda(this.prevcom);
         this.camposResultado['irpf'].innerHTML = numeroParaMoeda(this.irpf);
@@ -185,8 +199,8 @@ class Formulario {
 
         this.vencimentoBasico = Calculo.vencimentoBasico(this.padraoVencimento);
         this.valorGliep = Calculo.gliep(this.percentualGliep);
-        this.bruto = Calculo.bruto(this.padraoVencimento, this.tempoExercicio, this.percentualGliep);
-        let baseCalculoAts = Calculo.bruto(this.padraoVencimento, 0, 0);
+        this.bruto = Calculo.bruto(this.padraoVencimento, this.tempoExercicio, this.percentualGliep, this.acrescimoFg);
+        let baseCalculoAts = Calculo.bruto(this.padraoVencimento, 0, 0, 0);
         this.ats = Calculo.ats(baseCalculoAts, this.tempoExercicio);
     
         this.extraTeto = Calculo.extraTeto(this.bruto);

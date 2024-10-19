@@ -68,9 +68,9 @@ class Calculo {
         return adicionalTempo * baseCalculo;
     }
     
-    static bruto(padrao, tempo, percentualGliep) {
+    static bruto(padrao, tempo, percentualGliep, acrescimoFg) {
         let baseCalculoAts = Calculo.vencimentoBasico(padrao);
-        return baseCalculoAts + Calculo.ats(baseCalculoAts, tempo) + Calculo.gliep(percentualGliep);
+        return baseCalculoAts + Calculo.ats(baseCalculoAts, tempo) + Calculo.gliep(percentualGliep) + Number.parseFloat(acrescimoFg);
     }
     
     static extraTeto(remuneracao) {
