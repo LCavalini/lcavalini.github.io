@@ -13,7 +13,7 @@ class Calculo {
         { padrao: 12, valor: 11566.26 },
         { padrao: 13, valor: 12722.94 },
         { padrao: 14, valor: 13995.23 },
-        { padrao: 15, valor: 15394.69 },
+        { padrao: 15, valor: 15394.70 },
         { padrao: 16, valor: 16934.16 },
         { padrao: 17, valor: 18627.60 },
         { padrao: 18, valor: 20490.36 },
@@ -41,6 +41,8 @@ class Calculo {
         {idadeLimite: 58, valor: 2303.48},
         {idadeLimite: Infinity, valor: 5892.63}
     ];
+
+    static mensalidadeSindicato = 78.50;
     
     static vencimentoBasico(padrao) {
         let registro = Calculo.vencimento.find(vencimento => Number(vencimento.padrao) === Number(padrao));
@@ -106,8 +108,8 @@ class Calculo {
         return 0;
     }
     
-    static auxilioRefeicao(faltas) {
-        return Calculo.cotaAuxilioRefeicao * (22 - faltas);
+    static auxilioRefeicao(diasTrabalhados) {
+        return Calculo.cotaAuxilioRefeicao * diasTrabalhados;
     }
     
     

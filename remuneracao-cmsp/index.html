@@ -56,12 +56,19 @@
                     <select class="form-control" id="percentual-gliep"></select>
                 </div>
                 <div class="form-group">
+                    <label for="sindicalizado">Sindicalizado:</label>
+                    <select class="form-control" id="sindicalizado">
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="percentual-prevcom">Previdência complementar (%):</label>
                     <input class="form-control" id="percentual-prevcom" type="number" min="0" max="12" value="7.5"></select>
                 </div>
                 <div class="form-group">
-                    <label for="faltas">Número de faltas (desconto do Auxílio Refeição):</label>
-                    <input class="form-control" id="faltas" type="number" min="0" max="22" value="0">
+                    <label for="dias-trabalhados">Dias trabalhados (somente para fins de Auxílio Refeição):</label>
+                    <input class="form-control" id="dias-trabalhados" type="number" min="0" value="20">
                 </div>
                 <div class="form-group">
                     <label for="beneficiarios-auxilio-saude">Beneficiários do Auxílio Saúde: </label>
@@ -88,15 +95,16 @@
             <div class="item-resultado">(-) Previdência obrigatória (IPREM): </a><span id="previdencia"></span></div>
             <div class="item-resultado">(-) Previdência complementar (SP Previdência): </a><span id="prevcom"></span></div>
             <div class="item-resultado">(-) Imposto de Renda da Pessoa Física: <span id="irpf"></span></div>
+            <div class="item-resultado">(-) Desconto do Sindicato: <span id="desconto-sindicato"></span> </div>
             <div class="item-resultado">(=) Remuneração líquida em dinheiro: <span id="liquido-dinheiro"></span></div>
             <div class="subsecao">Indenizações</div>
-            <div class="item-resultado">(+) Auxílio-Alimentação (Sodexo): <span id="alimentacao"></span></div>
-            <div class="item-resultado">(+) Auxílio-Refeição (Verocard): <span id="refeicao"></span></div>
+            <div class="item-resultado">(+) Auxílio-Alimentação (Verocard): <span id="alimentacao"></span></div>
+            <div class="item-resultado">(+) Auxílio-Refeição (Sodexo): <span id="refeicao"></span></div>
             <div class="item-resultado">(+) Auxílio-Saúde (reembolso): <span id="auxilio-saude"></span></div>
             <div class="subsecao">Valores líquidos</div>
             <div class="item-resultado">(=) Remuneração líquida total: <span id="liquido"></span></div>
             <div class="item-resultado">(*) Contrapartida da Previdência Complementar (SP Previdência): <span id="contrapartida-prevcom"></span></div>
-            <div class="alert alert-info mt-3"><strong>Última atualização:</strong> 19/10/2024.</div>
+            <div class="alert alert-info mt-3"><strong>Última atualização:</strong> 24/10/2024.</div>
             <div class="subsecao">Legislação</div>
                 <ul>
                     <li>
