@@ -2,7 +2,7 @@ class Formulario {
 
     static camposCalculoIds = [
         'cargo', 'padrao-vencimento', 'tempo', 'percentual-gliep', 'dias-trabalhados', 'beneficiarios-auxilio-saude',
-        'percentual-prevcom', 'funcao-gratificada', 'sindicalizado'
+        'percentual-prevcom', 'funcao-gratificada', 'sindicalizado', 'regime-previdencia', 'gliep-previdencia'
     ];
 
     static camposCalculoClasses = [
@@ -78,6 +78,8 @@ class Formulario {
     despesasMedicas = [];
     quantidadeBeneficiarios = 1;
     sindicalizado = 0;
+    isRegimeAntigo = false;
+    isIncluiGliepPrevidencia = true;
 
     vencimentoBasico = 0;
     valorGliep = 0;
@@ -155,6 +157,16 @@ class Formulario {
         this.alterarOptions(this.camposCalculo['funcao-gratificada'], Formulario.opcoesFuncaoGratificada);
     }
 
+    atualizarRegimePrevidencia(form) {
+        if (form.value == "1") {
+            this.camposCalculo['percentual-prevcom'].value = 0;
+            this.camposCalculo['percentual-prevcom'].disabled = true;
+        } else {
+            this.camposCalculo['percentual-prevcom'].value = 7.5;
+            this.camposCalculo['percentual-prevcom'].disabled = false;
+        }
+    }
+
     atualizarValoresCalculo() {
         this.cargo = this.camposCalculo['cargo'].value;
         this.padraoVencimento = this.camposCalculo['padrao-vencimento'].value;
@@ -177,6 +189,8 @@ class Formulario {
                 this.despesasMedicas.push(despesa.value);
             }
         }
+        this.isRegimeAntigo = this.camposCalculo['regime-previdencia'].value == "1";
+        this.isIncluiGliepPrevidencia = this.camposCalculo['gliep-previdencia'].value == "1";
     }
 
     atualizarValoresResultado() {
@@ -211,9 +225,10 @@ class Formulario {
 
         // Se a remuneração bruta ultrapassar o teto, então aquela deve ser equivalente a este.
         let brutoDeduzido = this.extraTeto > 0 ? Calculo.tetoMunicipioSp : this.bruto;
+        let baseCalculoPrevidencia = this.isIncluiGliepPrevidencia ? brutoDeduzido : brutoDeduzido - this.valorGliep;
     
-        this.previdencia = Calculo.previdencia(brutoDeduzido);
-        this.prevcom = Calculo.prevcom(this.percentualPrevcom, brutoDeduzido);
+        this.previdencia = Calculo.previdencia(baseCalculoPrevidencia, this.isRegimeAntigo);
+        this.prevcom = Calculo.prevcom(this.percentualPrevcom, baseCalculoPrevidencia);
         let baseCalculoIrpf = brutoDeduzido - this.previdencia - this.prevcom;
         this.irpf = calcularIrpf(baseCalculoIrpf);
         this.refeicao = Calculo.auxilioRefeicao(this.diasTrabalhados);

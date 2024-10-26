@@ -82,8 +82,12 @@ class Calculo {
         return 0.00;
     }
     
-    static previdencia(baseCalculo) {
-        // a contribuição previdenciária é limitada ao teto do INSS.
+    static previdencia(baseCalculo, isRegimeAntigo) {
+        // No regime de previdência antigo, não há limitação ao teto do INSS.
+        if (isRegimeAntigo) {
+            return baseCalculo * 0.14;
+        }
+        // No regime de previdência novo, há limitação ao teto do INSS.
         if (baseCalculo > obterTetoInss()) {
             baseCalculo = obterTetoInss();
         }

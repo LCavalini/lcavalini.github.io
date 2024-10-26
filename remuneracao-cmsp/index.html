@@ -56,6 +56,20 @@
                     <select class="form-control" id="percentual-gliep"></select>
                 </div>
                 <div class="form-group">
+                    <label for="regime-previdencia">Regime Previdenciário:</label>
+                    <select class="form-control" id="regime-previdencia" onchange="formulario.atualizarRegimePrevidencia(this)">
+                        <option value="0" selected>Lei Municipal nº 17.020/2018 (Reforma da Previdência)</option>
+                        <option value="1">Anterior à Lei Municipal nº 17.020/2018 (Reforma da Previdência)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="gliep-previdencia">Incluir a GLIEP no cálculo previdencário:</label>
+                    <select class="form-control" id="gliep-previdencia">
+                        <option value="1" selected>Sim</option>
+                        <option value="0">Não</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="sindicalizado">Sindicalizado:</label>
                     <select class="form-control" id="sindicalizado">
                         <option value="0">Não</option>
