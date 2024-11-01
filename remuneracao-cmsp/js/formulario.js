@@ -2,7 +2,8 @@ class Formulario {
 
     static camposCalculoIds = [
         'cargo', 'padrao-vencimento', 'tempo', 'percentual-gliep', 'dias-trabalhados', 'beneficiarios-auxilio-saude',
-        'percentual-prevcom', 'funcao-gratificada', 'sindicalizado', 'regime-previdencia', 'gliep-previdencia'
+        'percentual-prevcom', 'funcao-gratificada', 'sindicalizado', 'regime-previdencia', 'gliep-previdencia',
+        'participacao-comite'
     ];
 
     static camposCalculoClasses = [
@@ -12,7 +13,7 @@ class Formulario {
     static camposResultadoIds = [
         'vencimento', 'valor-gliep', 'ats', 'remuneracao-bruta', 'previdencia', 'prevcom', 'irpf',
         'alimentacao', 'liquido', 'refeicao', 'total', 'extra-teto', 'auxilio-saude', 'liquido-dinheiro',
-        'contrapartida-prevcom', 'acrescimo-fg', 'desconto-sindicato'
+        'contrapartida-prevcom', 'acrescimo-fg', 'desconto-sindicato', 'indenizacao-comite'
     ];
 
     static padroesVencimentoConsultor = [
@@ -80,6 +81,7 @@ class Formulario {
     sindicalizado = 0;
     isRegimeAntigo = false;
     isIncluiGliepPrevidencia = true;
+    isParticipacaoComite = false;
 
     vencimentoBasico = 0;
     valorGliep = 0;
@@ -97,6 +99,7 @@ class Formulario {
     contrapartidaPrevcom = 0;
     acrescimoFg = 0;
     descontoSindicato = 0;
+    indenizacaoComite = 0;
 
     constructor() {
         // Define os campos de cálculo (entrada de dados) e de resultado (saída de dados).
@@ -191,6 +194,7 @@ class Formulario {
         }
         this.isRegimeAntigo = this.camposCalculo['regime-previdencia'].value == "1";
         this.isIncluiGliepPrevidencia = this.camposCalculo['gliep-previdencia'].value == "1";
+        this.isParticipacaoComite = this.camposCalculo['participacao-comite'].value == "1";
     }
 
     atualizarValoresResultado() {
@@ -210,13 +214,16 @@ class Formulario {
         this.camposResultado['liquido'].innerHTML = numeroParaMoeda(this.liquido);
         this.camposResultado['liquido-dinheiro'].innerHTML = numeroParaMoeda(this.liquidoDinheiro);
         this.camposResultado['contrapartida-prevcom'].innerHTML = numeroParaMoeda(this.contrapartidaPrevcom);
+        this.camposResultado['indenizacao-comite'].innerHTML = numeroParaMoeda(this.indenizacaoComite);
     }
 
     calcular() {
         this.atualizarValoresCalculo();
 
         this.vencimentoBasico = Calculo.vencimentoBasico(this.padraoVencimento);
-        this.valorGliep = Calculo.gliep(this.percentualGliep);
+        // Se tem acréscimo de função gratificada, então tem função, o que eleva o valor da GLIEP.  
+        let temFuncao = this.acrescimoFg > 0;
+        this.valorGliep = Calculo.gliep(this.percentualGliep, temFuncao);
         this.bruto = Calculo.bruto(this.padraoVencimento, this.tempoExercicio, this.percentualGliep, this.acrescimoFg);
         let baseCalculoAts = Calculo.bruto(this.padraoVencimento, 0, 0, 0);
         this.ats = Calculo.ats(baseCalculoAts, this.tempoExercicio);
@@ -232,6 +239,8 @@ class Formulario {
         let baseCalculoIrpf = brutoDeduzido - this.previdencia - this.prevcom;
         this.irpf = calcularIrpf(baseCalculoIrpf);
         this.refeicao = Calculo.auxilioRefeicao(this.diasTrabalhados);
+        // O valor da indenização por participação em Comitê considera o bruto deduzido do teto.
+        this.indenizacaoComite = this.isParticipacaoComite ? Calculo.indenizacaoComite(brutoDeduzido) : 0.00;
 
         this.saude = 0;
         for (let i = 0; i < this.idadesSaude.length; i++) {
@@ -246,7 +255,7 @@ class Formulario {
         this.descontoSindicato = Number.parseInt(this.sindicalizado) * Calculo.mensalidadeSindicato;
                 
         this.liquidoDinheiro = brutoDeduzido - this.previdencia - this.prevcom - this.irpf - this.descontoSindicato;
-        this.liquido = this.liquidoDinheiro + Calculo.auxilioAlimentacao + this.refeicao + this.saude;
+        this.liquido = this.liquidoDinheiro + Calculo.auxilioAlimentacao + this.refeicao + this.saude + this.indenizacaoComite;
         this.contrapartidaPrevcom = Calculo.contrapartidaPrevcom(this.percentualPrevcom, brutoDeduzido);
 
         this.salvarEntrada();

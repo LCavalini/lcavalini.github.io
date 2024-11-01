@@ -85,6 +85,13 @@
                     <input class="form-control" id="dias-trabalhados" type="number" min="0" value="20">
                 </div>
                 <div class="form-group">
+                    <label for="participacao-comite">Indenização por participação em Comitê:</label>
+                    <select class="form-control" id="participacao-comite">
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="beneficiarios-auxilio-saude">Beneficiários do Auxílio Saúde: </label>
                     <input class="form-control" type="number" id="beneficiarios-auxilio-saude" min="1" value="1"
                         onchange="formulario.atualizarBeneficiariosAuxilioSaude()">
@@ -110,15 +117,16 @@
             <div class="item-resultado">(-) Previdência complementar (SP Previdência): </a><span id="prevcom"></span></div>
             <div class="item-resultado">(-) Imposto de Renda da Pessoa Física: <span id="irpf"></span></div>
             <div class="item-resultado">(-) Desconto do Sindicato: <span id="desconto-sindicato"></span> </div>
-            <div class="item-resultado">(=) Remuneração líquida em dinheiro: <span id="liquido-dinheiro"></span></div>
+            <div class="item-resultado">(=) Remuneração líquida sem indenizações: <span id="liquido-dinheiro"></span></div>
             <div class="subsecao">Indenizações</div>
             <div class="item-resultado">(+) Auxílio-Alimentação (Verocard): <span id="alimentacao"></span></div>
             <div class="item-resultado">(+) Auxílio-Refeição (Sodexo): <span id="refeicao"></span></div>
             <div class="item-resultado">(+) Auxílio-Saúde (reembolso): <span id="auxilio-saude"></span></div>
+            <div class="item-resultado">(+) Indenização por participação em Comitê: <span id="indenizacao-comite"></span></div>
             <div class="subsecao">Valores líquidos</div>
-            <div class="item-resultado">(=) Remuneração líquida total: <span id="liquido"></span></div>
+            <div class="item-resultado">(=) Remuneração líquida com indenizações: <span id="liquido"></span></div>
             <div class="item-resultado">(*) Contrapartida da Previdência Complementar (SP Previdência): <span id="contrapartida-prevcom"></span></div>
-            <div class="alert alert-info mt-3"><strong>Última atualização:</strong> 25/10/2024.</div>
+            <div class="alert alert-info mt-3"><strong>Última atualização:</strong> 01/11/2024.</div>
             <div class="subsecao">Legislação</div>
                 <ul>
                     <li>
@@ -171,6 +179,12 @@
                         Regulamentação do Auxílio-Refeição:
                         <a href="https://www.saopaulo.sp.leg.br/iah/fulltext/atoscmsp/AC103208.pdf" target="_blank">
                             Ato nº 1032/2008.
+                        </a>
+                    </li>
+                    <li>
+                        Acúmulo de acervo técnico, procedimental ou administrativo:
+                        <a href="https://app-plpconsulta-prd.azurewebsites.net/Forms/MostrarArquivo?TIPO=Lei&NUMERO=17970&ANO=2023&DOCUMENTO=Atualizado#art10" target="_blank">
+                            Lei Municipal nº 17.970/2023.
                         </a>
                     </li>
                 </ul>

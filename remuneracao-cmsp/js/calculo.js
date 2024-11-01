@@ -52,8 +52,10 @@ class Calculo {
         return registro.valor;
     }
     
-    static gliep(percentual) {
-        return percentual * Calculo.padraoQpl22;
+    static gliep(percentual, temFuncao) {
+        let valorGliep = percentual * Calculo.padraoQpl22;
+        // Art. 29, §6º, da Lei nº 14.381/2007: aplica-se o fator 1.12 para quem tem função gratificada.
+        return temFuncao ? valorGliep * 1.12 : valorGliep;
     }
     
     static ats(baseCalculo, tempo) {
@@ -125,6 +127,10 @@ class Calculo {
             }
         }
         return Calculo.tabelaAuxilioSaude[tamanho-1].valor;
+    }
+
+    static indenizacaoComite(brutoDeduzido) {
+        return (brutoDeduzido / 30) * 5;
     }
 
 }
