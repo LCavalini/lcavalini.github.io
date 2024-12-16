@@ -15,24 +15,28 @@ function calcSallary() {
 	// RESOLUÇÃO N° 923/2024
 	const multiplicadoresGaj = [
 		{ cargo: "", valor:  4.191 },
+		{ cargo: "estenotipista", valor: 4.191 },
+		{ cargo: "etjGabUpj", valor: 4.191 }, // COMUNICADO Nº 94/2024 SGP
 		{ cargo: "etjGab", valor: 5.367 },
 		{ cargo: "ajc", valor: 6.187 },
 		{ cargo: "csj", valor: 5.948 }
 	];
 	const multiplicadoresRepr = [
 		{ cargo: "", valor: 0.0 },
+		{ cargo: "etjGabUpj", valor: 0.6999 },  // COMUNICADO Nº 94/2024 SGP
 		{ cargo: "etjGab", valor: 0.434 },
 		{ cargo: "ajc", valor: 1.815 },
-		{ cargo: "csj", valor: 0.283 }
+		{ cargo: "csj", valor: 0.283 },
+		{ cargo: "estenotipista", valor: 2.3080 }
 	];
 	const auxilioCreche = 700; // PORTARIA Nº 10.282/2023
 	const auxilioFillhoDeficiencia = 1050; // PORTARIA Nº 10.428/2024
 	const auxilioAlimentacao = 65; // PORTARIA Nº 10.425/2024
 	const auxilioTransporte = 12; // PORTARIA Nº 10.442/2024
-	const auxilioSaude = 520; // PORTARIA Nº 10.426/2024
+	const auxilioSaude = 624; // COMUNICADO Nº 94/2024 SGP
 	const percentuaisAuxilioSaude = [ 
 		1,  1.04, 1.06, 1.1, 1.67, 1.71
-	]; // PORTARIA Nº 10.426/2024
+	]; // COMUNICADO Nº 94/2024 SGP
 
 	// valores atualizados até 01/04/2024
 	const faixasIRPF = [
@@ -90,10 +94,11 @@ function calcSallary() {
 	let totalContribuicaoPrevidenciaria = 0.0;
 	
 	// com sexta parte (20 anos = 4 quinquenios)
+	// COMUNICADO Nº 94/2024 SGP: incluiu o adicional de qualificação na base de cálculo do adicional de tempo.
 	if (quinquenios >= 4) {
-		adicionalTempoServico = (0.05 * quinquenios + 0.2) * (vencimentos);
+		adicionalTempoServico = (0.05 * quinquenios + 0.2) * (vencimentos + adicionalQualificacao);
 	} else { // sem sexta parte
-		adicionalTempoServico = 0.05 * quinquenios * (vencimentos);
+		adicionalTempoServico = 0.05 * quinquenios * (vencimentos + adicionalQualificacao);
 	}
 				
 	// cálculo dos auxílios
