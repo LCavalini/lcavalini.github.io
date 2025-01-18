@@ -14,7 +14,7 @@
 		<form>
 			<h1>Dados</h1>
 			<p>
-				<label for="cargo">Cargo em comissão/Função gratificada</label>
+				<label for="cargo">Cargo em comissão/Função gratificada: </label>
 				<select id="cargo">
 					<option value="">Nenhum</option>
 					<option value="etjGabUpj">Escrevente - Gabinete (UPJ)</option>
@@ -25,13 +25,36 @@
 				</select>
 			</p>
 			<p>
-				<label>Número de dias de Auxílio Transporte (apenas trabalho presencial):</label> 
+				<label for="padraoVencimento">Padrão de vencimento (progressão): </label>
+				<select id="padraoVencimento">
+					<option value="5A-CE">5A-CE</option>
+					<option value="5B-CE">5B-CE</option>
+					<option value="5C-CE">5C-CE</option>
+					<option value="5D-CE">5D-CE</option>
+					<option value="5E-CE">5E-CE</option>
+					<option value="5F-CE">5F-CE</option>
+					<option value="5G-CE">5G-CE</option>
+					<option value="5H-CE">5H-CE</option>
+					<option value="5I-CE">5I-CE</option>
+					<option value="5J-CE">5J-CE</option>
+					<option value="5K-CE">5K-CE</option>
+					<option value="5L-CE">5L-CE</option>
+					<option value="5M-CE">5M-CE</option>
+					<option value="5N-CE">5N-CE</option>
+					<option value="5O-CE">5O-CE</option>
+					<option value="5P-CE">5P-CE</option>
+					<option value="5Q-CE">5Q-CE</option>
+					<option value="5R-CE">5R-CE</option>
+				</select>
+			</p>
+			<p>
+				<label>Número de dias de Auxílio Transporte (apenas trabalho presencial): </label> 
 				<input type = "number" id="diasTransporte" min = "0" max = "31" value = "20">
 			</p>
-				<label>Número de dias de Auxílio Alimentação (dias de trabalho efetivo, presencial ou remoto):</label>
+				<label>Número de dias de Auxílio Alimentação (dias de trabalho efetivo, presencial ou remoto): </label>
 				<input type = "number" id="diasAlimentacao" min = "0" max = "31" value = "20">
 			<p>
-				<label>Faixa etária do Auxílio-saúde</label>
+				<label>Faixa etária do Auxílio-saúde: </label>
 				<select id="faixaEtariaAuxilioSaude">
 					<option value="0">18 a 19 anos</option>
 					<option value="1">20 a 29 anos</option>
@@ -42,15 +65,15 @@
 				</select>
 			</p>
 			<p>
-				<label>Auxílio Creche-Escola</label>: 
+				<label>Auxílio Creche-Escola: </label> 
 				<input type = "number" id="auxilioCreche" min = "0" max = "20"
 				value = "0">
 			</p>
-				<label>Auxílio a Filho com Deficiência</label>
+				<label>Auxílio a Filho com Deficiência: </label>
 				<input type = "number" id="auxilioFilhoDeficiencia" min = "0" max = "20"
 					value = "0">
 			<p>
-				<label>Formação acadêmica</label>: 
+				<label>Formação acadêmica: </label>
 				<select id="formacaoAcademica">
 					<option value = "0">Ensino Médio
 					<option value = "0.05">Ensino Superior
@@ -60,7 +83,7 @@
 				</select>
 			</p>
 			<p>
-				<label>IAMSPE</label>: 
+				<label>IAMSPE: </label>
 				<select id="iamspe">
 					<option value = "0.02">Sim (menos de 59 anos)
 					<option value = "0.03">Sim (a partir de 59 anos)</option>
@@ -68,37 +91,37 @@
 				</select>
 			</p>
 			<p>
-				<label>Beneficiários do IAMSPE com menos de 59 anos</label>: 
+				<label>Beneficiários do IAMSPE com menos de 59 anos: </label> 
 				<input type = "number" id="dependentesIamspeIdadeInferior" min = "0" max = "20"
 					value = "0">
 			</p>
 			<p>
-				<label>Beneficiários do IAMSPE com 59 anos ou mais</label>
+				<label>Beneficiários do IAMSPE com 59 anos ou mais: </label>
 				<input type = "number" id="dependentesIamspeIdadeSuperior" min = "0" max = "20"
 					value = "0">
 			</p>
 			<p>
-				<label>Agregados do IAMSPE com menos de 59 anos</label>: 
+				<label>Agregados do IAMSPE com menos de 59 anos: </label>: 
 				<input type = "number" id="agregadosIamspeIdadeInferior" min = "0" max = "20"
 					value = "0">
 			</p>
 			<p>
-				<label>Agregados do IAMSPE com 59 anos ou mais</label>
+				<label>Agregados do IAMSPE com 59 anos ou mais: </label>
 				<input type = "number" id="agregadosIamspeIdadeSuperior" min = "0" max = "20"
 					value = "0">
 			</p>
 			<p>
-				<label>Dependentes para fins de IRPF</label>: 
+				<label>Dependentes para fins de IRPF: </label>
 				<input type = "number" id="dependentes" min = "0" max = "20"
 					value = "0">
 			</p>
 			<p>
-				<label>Quinquênios</label>:
+				<label>Quinquênios: </label>
 				<input type = "number" id="quinquenios" min = "0" max = "20"
 					value = "0">
 			</p>
 			<p>
-				<label>Tem deficiência/doença grave (acréscimo de 50% no auxílio-saúde)?</label>
+				<label>Tem deficiência/doença grave (acréscimo de 50% no auxílio-saúde)? </label>
 				<select id="acrescimoAuxilioSaude">
 					<option value="1" selected>Não</option>
 					<option value="1.5">Sim</option>
@@ -111,7 +134,7 @@
 	</div>
 	<div id="resultado" class = "conteudo">
 		<h1>Resultado</h3>
-		<p>Última atualização: 16/12/2024 (Atualização do auxílio-saúde e do cálculo do ATS; inclusão de escrevente de cargos/funções)</p>
+		<p>Última atualização: 17/01/2025 (adição das escalas de progressão e promoção)</p>
 		<h2>Cálculo da remuneração</h2>
 		<p>(+) Valor base: <span id="base"></span></p>
 		<p>(+) GAJ (Gratificação de Atividade Judiciária): <span id="gaj"></span></p>

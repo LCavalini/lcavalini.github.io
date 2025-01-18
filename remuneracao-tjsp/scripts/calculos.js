@@ -29,6 +29,26 @@ function calcSallary() {
 		{ cargo: "csj", valor: 0.283 },
 		{ cargo: "estenotipista", valor: 2.3080 }
 	];
+	const valoresProgressao = [
+		{ padrao: "5A-CE", valor: 0.0 },
+		{ padrao: "5B-CE", valor: 29.53 },
+		{ padrao: "5C-CE", valor: 59.49},
+		{ padrao: "5D-CE", valor: 89.91 },
+		{ padrao: "5E-CE", valor: 120.79 },
+		{ padrao: "5F-CE", valor: 152.12 },
+		{ padrao: "5G-CE", valor: 215.74 },
+		{ padrao: "5H-CE", valor: 248.5 },
+		{ padrao: "5I-CE", valor: 281.75 },
+		{ padrao: "5J-CE", valor: 315.5 },
+		{ padrao: "5K-CE", valor: 349.76 },
+		{ padrao: "5L-CE", valor: 384.53 },
+		{ padrao: "5M-CE", valor: 455.12 },
+		{ padrao: "5N-CE", valor: 491.47 },
+		{ padrao: "5O-CE", valor: 528.37 },
+		{ padrao: "5P-CE", valor: 565.82 },
+		{ padrao: "5Q-CE", valor: 603.83 },
+		{ padrao: "5R-CE", valor: 642.41 }
+	]
 	const auxilioCreche = 700; // PORTARIA Nº 10.282/2023
 	const auxilioFillhoDeficiencia = 1050; // PORTARIA Nº 10.428/2024
 	const auxilioAlimentacao = 65; // PORTARIA Nº 10.425/2024
@@ -73,6 +93,7 @@ function calcSallary() {
 	let quinquenios = Number(document.getElementById("quinquenios").value);
 	let acrescimoAuxilioSaude = Number(document.getElementById("acrescimoAuxilioSaude").value);
 	let faixaEtariaAuxilioSaude = Number(document.getElementById("faixaEtariaAuxilioSaude").value);
+	let padraoVecimento = document.getElementById("padraoVencimento").value;
 
 	let multiplicadorGaj = multiplicadoresGaj.filter(m => m.cargo == cargo).length == 1
 		? multiplicadoresGaj.filter(m => m.cargo == cargo)[0]
@@ -82,10 +103,13 @@ function calcSallary() {
 		: multiplicadoresRepr.filter(m => m.cargo == "")[0];
 	let gaj = multiplicadorGaj.valor * baseGratificacao;
 	let repr = multiplicadorRepr.valor * baseGratificacao;
+	let adicionalProgressao = valoresProgressao.filter(v => v.padrao == padraoVecimento).length == 1
+		? valoresProgressao.filter(v => v.padrao == padraoVecimento)[0].valor
+		: valoresProgressao.filter(v => v.padrao == "5A-CE")[0].valor;
 	let valorBase = base.filter(b => b.cargo == cargo).length == 1
 		? base.filter(b => b.cargo == cargo)[0].valor
 		: base.filter(b => b.cargo == "")[0].valor;
-	let vencimentos = valorBase + gaj + repr;
+	let vencimentos = valorBase + gaj + repr + adicionalProgressao;
 	// Assistente Judiciário não recebe adicional de nível superior.
 	let adicionalQualificacao = cargo == "ajc" && formacaoAcademica == 0.05
 		? 0.0
