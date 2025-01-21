@@ -6,10 +6,10 @@
 function calcularIrpf(baseCalculo) {
     
     const faixas = [
-        { limite: 2259.20, aliquota: 0.075, deducao: 169.44 },
-        { limite: 2828.66, aliquota: 0.15, deducao: 381.44 },
-        { limite: 3751.06, aliquota: 0.225, deducao: 662.77 },
-        { limite: 4664.68, aliquota: 0.275, deducao: 896.00 }
+      { limite: 2259.20, aliquota: 0.075, deducao: 169.44 },
+      { limite: 2828.65, aliquota: 0.15, deducao: 381.44 },
+      { limite: 3751.05, aliquota: 0.225, deducao: 662.77 },
+      { limite: 4664.68, aliquota: 0.275, deducao: 896.00 }
     ];
 
     if (baseCalculo > faixas[0].limite && baseCalculo <= faixas[1].limite) {
@@ -37,7 +37,7 @@ function calcularIrpf(baseCalculo) {
  * @returns 
  */
 function obterTetoInss() {
-    return 7786.02;
+    return 8157.41;
 }
 
 /**

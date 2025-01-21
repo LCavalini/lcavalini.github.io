@@ -47,19 +47,19 @@ const auxilioPreEscolar = 1078.64 // indenização máxima
 // fonte: https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/irpf-imposto-de-renda-pessoa-fisica#tabelas-de-incid-ncia-mensal
 const faixasIRPF = [
     { limite: 2259.20, aliquota: 0.075, deducao: 169.44 },
-    { limite: 2828.66, aliquota: 0.15, deducao: 381.44 },
-    { limite: 3751.06, aliquota: 0.225, deducao: 662.77 },
+    { limite: 2828.65, aliquota: 0.15, deducao: 381.44 },
+    { limite: 3751.05, aliquota: 0.225, deducao: 662.77 },
     { limite: 4664.68, aliquota: 0.275, deducao: 896.00 }
 ];
-// valor atualizado até 01/2024
-// fonte: https://portal.fazenda.sp.gov.br/servicos/folha/Paginas/Contribuicao_Previdenciaria_Servidores_Ativos.aspx
+// valor atualizado até 01/2025
+// fonte: https://www.apatej.org.br/portaria-da-spprev-estabelece-aliquotas-de-contribuicao-previdenciaria-para-servidores.
 const faixasContribuicaoPrevidenciaria = [
-    {limite: 1412.00, aliquota: 0.11, deducao: 0},
-    {limite: 3842.09, aliquota: 0.12, deducao: 14.12},
-    {limite: 7786.02, aliquota: 0.14, deducao: 90.96},
-    {limite: Infinity, aliquota: 0.16, deducao: 246.68}
+    {limite: 1518.00, aliquota: 0.11, deducao: 0},
+    {limite: 4022.46, aliquota: 0.12, deducao: 15.18},
+    {limite: 8157.41, aliquota: 0.14, deducao: 95.63},
+    {limite: Infinity, aliquota: 0.16, deducao: 258.78}
 ];
-const tetoInss = 7786.02;
+const tetoInss = 8157.41;
 // fonte: https://www.al.sp.gov.br/repositorio/folha-de-pagamento/folha-2022-09.html
 const tetoEstadoSp = 33006.39
 
