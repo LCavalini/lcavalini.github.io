@@ -52,7 +52,7 @@ function calcSallary() {
 	const auxilioCreche = 700; // PORTARIA Nº 10.282/2023
 	const auxilioFillhoDeficiencia = 1050; // PORTARIA Nº 10.428/2024
 	const auxilioAlimentacao = 65; // PORTARIA Nº 10.425/2024
-	const auxilioTransporte = 12; // PORTARIA Nº 10.442/2024
+	const auxilioTransporte = 14; // PORTARIA Nº 10.536/2025
 	const auxilioSaude = 624; // COMUNICADO Nº 94/2024 SGP
 	const percentuaisAuxilioSaude = [ 
 		1,  1.04, 1.06, 1.1, 1.67, 1.71
