@@ -244,11 +244,12 @@ class Formulario {
 
         this.saude = 0;
         for (let i = 0; i < this.idadesSaude.length; i++) {
-            let totalReembolso = Calculo.auxilioSaude(this.idadesSaude[i]);
-            if (this.despesasMedicas[i] > totalReembolso) {
-                this.saude += parseFloat(totalReembolso);
+            let reembolso = parseFloat(Calculo.auxilioSaude(this.idadesSaude[i]));
+            let despesa = parseFloat(this.despesasMedicas[i].replace(',', '.'));
+            if (despesa > reembolso) {
+                this.saude += reembolso;
             } else {
-                this.saude += parseFloat(this.despesasMedicas[i]);
+                this.saude += despesa;
             }
         }
 
@@ -268,7 +269,12 @@ class Formulario {
             if (campo instanceof HTMLCollection) {
                 let valores = [];
                 for (let item of campo) {
-                    valores.push(item.value);
+                    let valor = item.value;
+                    // Para salvar corretamente valores decimais, é preciso converter o separador.
+                    if (nomeCampo == 'despesa-auxilio-saude') {
+                        valor = item.value.replace(',', '.');
+                    }
+                    valores.push(valor);
                 }
                 localStorage.setItem(nomeCampo, valores);
             } else {
@@ -300,8 +306,13 @@ class Formulario {
             if (campo instanceof HTMLCollection) {
                 let valorSalvoLista = valorSalvo.split(',');
                 for (let i = 0; i < campo.length; i++) {
+                    let valor = valorSalvoLista[i];
+                    if (nomeCampo == 'despesa-auxilio-saude') {
+                        // Para mostrar corretamente valores decimais, é preciso converter o separador.
+                        valor = valor.replace('.', ',');
+                    }
                     if (i < valorSalvoLista.length) {
-                        campo[i].value = valorSalvoLista[i];
+                        campo[i].value = valor;
                     }
                 }
             } else {
