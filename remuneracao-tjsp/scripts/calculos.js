@@ -6,20 +6,20 @@ function numberToReal(numero) {
 
 function calcSallary() {
 	
-	// valores atualizados até 04/2023
+	// valores atualizados até 04/2025
 	const base = [
 		{ cargo: "", valor: 1968.34 },
 		{ cargo: "csj", valor: 2687.15 }
 	];
 	const baseGratificacao = 972.37;
-	// RESOLUÇÃO N° 923/2024
+	// COMUNICADO Nº 35/2025 SGP
 	const multiplicadoresGaj = [
-		{ cargo: "", valor:  4.191 },
-		{ cargo: "estenotipista", valor: 4.191 },
-		{ cargo: "etjGabUpj", valor: 4.191 }, // COMUNICADO Nº 94/2024 SGP
-		{ cargo: "etjGab", valor: 5.367 },
-		{ cargo: "ajc", valor: 6.187 },
-		{ cargo: "csj", valor: 5.948 }
+		{ cargo: "", valor:  4.50175 },
+		{ cargo: "estenotipista", valor: 4.50175 },
+		{ cargo: "etjGabUpj", valor: 4.50175 },
+		{ cargo: "etjGab", valor: 5.758 },
+		{ cargo: "ajc", valor: 6.741 },
+		{ cargo: "csj", valor: 6.397 }
 	];
 	const multiplicadoresRepr = [
 		{ cargo: "", valor: 0.0 },
@@ -49,9 +49,9 @@ function calcSallary() {
 		{ padrao: "5Q-CE", valor: 603.83 },
 		{ padrao: "5R-CE", valor: 642.41 }
 	]
-	const auxilioCreche = 700; // PORTARIA Nº 10.282/2023
-	const auxilioFillhoDeficiencia = 1050; // PORTARIA Nº 10.428/2024
-	const auxilioAlimentacao = 65; // PORTARIA Nº 10.425/2024
+	const auxilioCreche = 805; // COMUNICADO Nº 35/2025 SGP
+	const auxilioFillhoDeficiencia = 1207.5; // COMUNICADO Nº 35/2025 SGP
+	const auxilioAlimentacao = 80; // COMUNICADO Nº 35/2025 SGP
 	const auxilioTransporte = 14; // PORTARIA Nº 10.536/2025
 	const auxilioSaude = 624; // COMUNICADO Nº 94/2024 SGP
 	const percentuaisAuxilioSaude = [ 
