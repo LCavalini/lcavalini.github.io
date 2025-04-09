@@ -195,6 +195,7 @@ function calcSallary() {
 	numberToReal(adicionalTempoServico);
 	
 	document.getElementById("base").innerHTML = numberToReal(valorBase);
+	document.getElementById("progressao").innerHTML = numberToReal(adicionalProgressao);
 	document.getElementById("gaj").innerHTML = numberToReal(gaj);
 	document.getElementById("repr").innerHTML = numberToReal(repr);
 	document.getElementById("vencimentos").innerHTML = numberToReal(vencimentos);
