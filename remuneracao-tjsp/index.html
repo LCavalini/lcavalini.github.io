@@ -4,176 +4,195 @@
 	<meta charset = "utf-8"/>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
 	<title>Calculadora de Remunerações :: Escrevente Técnico Judiciário - TJ-SP</title>
-	<link rel="stylesheet" href="estilos/principal.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="./css/base.css" rel="stylesheet">
 </head>
 <body>
-	<div id="titulo" class = "titulo">
-		<h1>Calculadora de Remuneração<br>Escrevente Técnico Judiciário - TJ/SP</h1>
-	</div>
-	<div id="formulario" class = "conteudo">
-		<form>
-			<h1>Dados</h1>
-			<p>
-				<label for="cargo">Cargo em comissão/Função gratificada: </label>
-				<select id="cargo">
-					<option value="">Nenhum</option>
-					<option value="etjGabUpj">Escrevente - Gabinete (UPJ)</option>
-					<option value="etjGab">Escrevente - Gabinete (2º Grau)</option>
-					<option value="ajc">Assistente Judiciário</option>
-					<option value="csj">Chefe de Seção Judiciário</option>
-					<option value="estenotipista">Estenotipista</option>
-				</select>
-			</p>
-			<p>
-				<label for="padraoVencimento">Padrão de vencimento (progressão): </label>
-				<select id="padraoVencimento">
-					<option value="5A-CE">5A-CE</option>
-					<option value="5B-CE">5B-CE</option>
-					<option value="5C-CE">5C-CE</option>
-					<option value="5D-CE">5D-CE</option>
-					<option value="5E-CE">5E-CE</option>
-					<option value="5F-CE">5F-CE</option>
-					<option value="5G-CE">5G-CE</option>
-					<option value="5H-CE">5H-CE</option>
-					<option value="5I-CE">5I-CE</option>
-					<option value="5J-CE">5J-CE</option>
-					<option value="5K-CE">5K-CE</option>
-					<option value="5L-CE">5L-CE</option>
-					<option value="5M-CE">5M-CE</option>
-					<option value="5N-CE">5N-CE</option>
-					<option value="5O-CE">5O-CE</option>
-					<option value="5P-CE">5P-CE</option>
-					<option value="5Q-CE">5Q-CE</option>
-					<option value="5R-CE">5R-CE</option>
-				</select>
-			</p>
-			<p>
-				<label>Número de dias de Auxílio Transporte (apenas trabalho presencial): </label> 
-				<input type = "number" id="diasTransporte" min = "0" max = "31" value = "20">
-			</p>
-				<label>Número de dias de Auxílio Alimentação (dias de trabalho efetivo, presencial ou remoto): </label>
-				<input type = "number" id="diasAlimentacao" min = "0" max = "31" value = "20">
-			<p>
-				<label>Faixa etária do Auxílio-saúde: </label>
-				<select id="faixaEtariaAuxilioSaude">
-					<option value="0">18 a 19 anos</option>
-					<option value="1">20 a 29 anos</option>
-					<option value="2">30 a 39 anos</option>
-					<option value="3">40 a 49 anos</option>
-					<option value="4">50 a 59 anos</option>
-					<option value="5">A partir de 60 anos</option>
-				</select>
-			</p>
-			<p>
-				<label>Auxílio Creche-Escola: </label> 
-				<input type = "number" id="auxilioCreche" min = "0" max = "20"
-				value = "0">
-			</p>
-				<label>Auxílio a Filho com Deficiência: </label>
-				<input type = "number" id="auxilioFilhoDeficiencia" min = "0" max = "20"
-					value = "0">
-			<p>
-				<label>Formação acadêmica: </label>
-				<select id="formacaoAcademica">
-					<option value = "0">Ensino Médio
-					<option value = "0.05">Ensino Superior
-					<option value = "0.075">Pós-graduação (lato sensu)
-					<option value = "0.1">Mestrado
-					<option value = "0.125">Doutorado
-				</select>
-			</p>
-			<p>
-				<label>IAMSPE: </label>
-				<select id="iamspe">
-					<option value = "0.02">Sim (menos de 59 anos)
-					<option value = "0.03">Sim (a partir de 59 anos)</option>
-					<option value = "0">Não
-				</select>
-			</p>
-			<p>
-				<label>Beneficiários do IAMSPE com menos de 59 anos: </label> 
-				<input type = "number" id="dependentesIamspeIdadeInferior" min = "0" max = "20"
-					value = "0">
-			</p>
-			<p>
-				<label>Beneficiários do IAMSPE com 59 anos ou mais: </label>
-				<input type = "number" id="dependentesIamspeIdadeSuperior" min = "0" max = "20"
-					value = "0">
-			</p>
-			<p>
-				<label>Agregados do IAMSPE com menos de 59 anos: </label>: 
-				<input type = "number" id="agregadosIamspeIdadeInferior" min = "0" max = "20"
-					value = "0">
-			</p>
-			<p>
-				<label>Agregados do IAMSPE com 59 anos ou mais: </label>
-				<input type = "number" id="agregadosIamspeIdadeSuperior" min = "0" max = "20"
-					value = "0">
-			</p>
-			<p>
-				<label>Dependentes para fins de IRPF: </label>
-				<input type = "number" id="dependentes" min = "0" max = "20"
-					value = "0">
-			</p>
-			<p>
-				<label>Quinquênios: </label>
-				<input type = "number" id="quinquenios" min = "0" max = "20"
-					value = "0">
-			</p>
-			<p>
-				<label>Servidor ou dependente com deficiência/doença grave (acréscimo de 50% no auxílio-saúde)? </label>
-				<select id="acrescimoAuxilioSaude">
-					<option value="1" selected>Não</option>
-					<option value="1.5">Sim</option>
-				</select>
-			</p>
-			<p>
-				<input type = "button" value = "Calcular" onclick = "calcSallary()">
-			</p>	
-		</form>
-	</div>
-	<div id="resultado" class = "conteudo">
-		<h1>Resultado</h3>
-		<p>Última atualização: 09/04/2025 (reajuste de 2025 - COMUNICADO Nº 35/2025 - SGP)</p>
-		<h2>Cálculo da remuneração</h2>
-		<p>(+) Valor base: <span id="base"></span></p>
-		<p>(+) Progressão: <span id="progressao"></span></p>
-		<p>(+) GAJ (Gratificação de Atividade Judiciária): <span id="gaj"></span></p>
-		<p>(+) Gratificação de Representação: <span id="repr"></span></p>
-		<p>(=) Vencimentos:  <span id="vencimentos"></span></p>
-		<p>(+) Total de auxílios: <span class="totalAuxilios"></span></p>
-		<p>(+) Total de adicionais: <span class="totalAdicionais"></span></p>
-		<p>(=) Valor bruto: <span id="remuneracaoBruta"></span></p>
-		<p>(−) Total de descontos: <span class="totalDescontos"></span></p>
-		<p>(=) Valor líquido: <span id="remuneracaoLiquida"></span></p>
-		<p><span class="avisoRemuneracao"><strong>Atenção!</strong> A remuneração líquida <strong>inclui os valores de todos os auxílios e adicionais</strong>, que são depositados em dinheiro junto com os demais componentes da remuneração.</span></p>
-		<p><span class="avisoRemuneracao"><strong>Atenção!</strong> Este cálculo é válido apenas para um mês completo de trabalho (não retorna resultados corretos para a primeira remuneração).</span></p>
-		<h2>Detalhamento dos auxílios</h2>
-		<p>(+) Auxílio-alimentação: <span id="totalAuxilioAlimentacao"></span></p>
-		<p>(+) Auxílio-transporte: <span id="totalAuxilioTransporte"></span></p>
-		<p>(+) Auxílio-saúde: <span id="totalAuxilioSaude"></span></p>
-		<p>(+) Auxílio Creche-Escola: <span id="totalAuxilioCreche"></span></p>
-		<p>(+) Auxílio a Filho com Deficiência: <span id="totalAuxilioFilhoDeficiencia"></span></p>
-		<p>(=) Total de auxílios: <span class="totalAuxilios"></span></p>
-		<h2>Detalhamento dos adicionais</h2>
-		<p>(+) Adicional de qualificação: <span id="totalAdicionalQualificacao"></span></p>
-		<p>(+) Adicional de tempo de serviço: <span id="totalAdicionalTempoServico"></span></p>
-		<p>(=) Total de adicionais: <span class="totalAdicionais"></span></p>
-		<h2>Detalhamento dos descontos</h2>
-		<p>(+) IAMSPE: <span id="totalDescontoIamspe"></span></p>
-		<p>(+) Contribuição Previdenciária: <span id="totalContribuicaoPrevidenciaria"></span></p>
-		<p>(+) Imposto de Renda: <span id="totalIRPF"></span></p>
-		<p>(=) Total de descontos: <span class="totalDescontos"></span></p>
-	</div>
-	<div id="contato" class = "titulo">
-		<p>
-			Caso tenha algum problema, <a style = "color:white" href = 
-			"mailto:lucas.cavalini.barboza@gmail.com?subject=Calculadora de Remuneração - TJ-SP">
-			entre em contato</a>.
-		<p>
-			Autor: Lucas Cavalini Barboza
-		</p>
-	</div>
-	<script src="scripts/calculos.js"></script>
+	<header class="col-lg-12 bg-primary p-3">
+        <div class="titulo">
+            Calculadora de Remuneração - Escrevente Técnico Judiciário - TJ/SP
+        </div>
+    </header>
+	<main class="row col-lg-12">
+		<section class="formulario col-lg-6 py-3 px-4" id="formulario">
+			<form>
+                <div class="secao">
+                    Informações para o cálculo
+                </div>
+				<div class="subsecao">Vencimentos:</div>
+				<div class="form-group">
+					<label for="cargo">Cargo em comissão/Função gratificada: </label>
+					<select id="cargo" class="form-select">
+						<option value="">Nenhum</option>
+						<option value="etjGabUpj">Escrevente - Gabinete (UPJ)</option>
+						<option value="etjGab">Escrevente - Gabinete (2º Grau)</option>
+						<option value="ajc">Assistente Judiciário</option>
+						<option value="csj">Chefe de Seção Judiciário</option>
+						<option value="estenotipista">Estenotipista</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="padraoVencimento">Padrão de vencimento (progressão): </label>
+					<select id="padraoVencimento" class="form-select">
+						<option value="5A-CE">5A-CE</option>
+						<option value="5B-CE">5B-CE</option>
+						<option value="5C-CE">5C-CE</option>
+						<option value="5D-CE">5D-CE</option>
+						<option value="5E-CE">5E-CE</option>
+						<option value="5F-CE">5F-CE</option>
+						<option value="5G-CE">5G-CE</option>
+						<option value="5H-CE">5H-CE</option>
+						<option value="5I-CE">5I-CE</option>
+						<option value="5J-CE">5J-CE</option>
+						<option value="5K-CE">5K-CE</option>
+						<option value="5L-CE">5L-CE</option>
+						<option value="5M-CE">5M-CE</option>
+						<option value="5N-CE">5N-CE</option>
+						<option value="5O-CE">5O-CE</option>
+						<option value="5P-CE">5P-CE</option>
+						<option value="5Q-CE">5Q-CE</option>
+						<option value="5R-CE">5R-CE</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Formação acadêmica: </label>
+					<select id="formacaoAcademica" class="form-select">
+						<option value = "0">Ensino Médio
+						<option value = "0.05">Ensino Superior
+						<option value = "0.075">Pós-graduação (lato sensu)
+						<option value = "0.1">Mestrado
+						<option value = "0.125">Doutorado
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Dependentes para fins de IRPF: </label>
+					<input type = "number" id="dependentes" class="form-control" min = "0" max = "20" value = "0">
+				</div>
+				<div class="form-group">
+					<label>Quinquênios: </label>
+					<input type = "number" id="quinquenios" class="form-control" min = "0" max = "20" value = "0">
+				</div>
+				<div class="subsecao">
+					Benefícios:
+				</div>
+				<div class="form-group">
+					<label>Número de dias de Auxílio Transporte (apenas trabalho presencial): </label> 
+					<input type = "number" id="diasTransporte" class="form-control" min = "0" max = "31" value = "20">
+				</div>
+				<div class="form-group">
+					<label>Número de dias de Auxílio Alimentação (dias de trabalho efetivo, presencial ou remoto): </label>
+					<input type = "number" id="diasAlimentacao" class="form-control" min = "0" max = "31" value = "20">
+				</div>
+				<div class="form-group">
+					<label>Faixa etária do Auxílio-saúde: </label>
+					<select id="faixaEtariaAuxilioSaude" class="form-select">
+						<option value="0">18 a 19 anos</option>
+						<option value="1">20 a 29 anos</option>
+						<option value="2">30 a 39 anos</option>
+						<option value="3">40 a 49 anos</option>
+						<option value="4">50 a 59 anos</option>
+						<option value="5">A partir de 60 anos</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Auxílio Creche-Escola: </label> 
+					<input type = "number" id="auxilioCreche" class="form-control" min = "0" max = "20" value = "0">
+				</div>
+				<div class="form-group">
+					<label>Auxílio a Filho com Deficiência: </label>
+					<input type = "number" id="auxilioFilhoDeficiencia" class="form-control" min = "0" max = "20"
+						value = "0">
+				</div>
+				<div class="form-group">
+					<label>Servidor ou dependente com deficiência/doença grave (acréscimo de 50% no auxílio-saúde)? </label>
+					<select id="acrescimoAuxilioSaude" class="form-select">
+						<option value="1" selected>Não</option>
+						<option value="1.5">Sim</option>
+					</select>
+				</div>
+				<div class="subsecao">
+					IAMSPE:
+				</div>
+				<div class="form-group">
+					<label>IAMSPE e faixa etária: </label>
+					<select id="iamspe" class="form-select">
+						<option value = "0.02">Sim (menos de 59 anos)
+						<option value = "0.03">Sim (a partir de 59 anos)</option>
+						<option value = "0">Não
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Beneficiários do IAMSPE com menos de 59 anos: </label> 
+					<input type = "number" id="dependentesIamspeIdadeInferior" class="form-control" min = "0" max = "20"
+						value = "0">
+				</div>
+				<div class="form-group">
+					<label>Beneficiários do IAMSPE com 59 anos ou mais: </label>
+					<input type = "number" id="dependentesIamspeIdadeSuperior" class="form-control" min = "0" max = "20"
+						value = "0">
+				</div>
+				<div class="form-group">
+					<label>Agregados do IAMSPE com menos de 59 anos: </label>
+					<input type = "number" id="agregadosIamspeIdadeInferior" class="form-control" min = "0" max = "20"
+						value = "0">
+				</div>
+				<div class="form-group">
+					<label>Agregados do IAMSPE com 59 anos ou mais: </label>
+					<input type = "number" id="agregadosIamspeIdadeSuperior" class="form-control"  min = "0" max = "20" value = "0">
+				</div>
+                <div class="d-grid gap-2 py-2">
+					<input type = "button" class="btn btn-success btn-block" value = "Calcular" onclick = "calcSallary()">
+				</div>	
+			</form>
+		</div>
+		</section>
+		<section id="resultado" id="resultado" class="conteudo col-lg-6 py-3 px-4">
+			<div class="secao">Resultado do cálculo</div>
+			<div class="subsecao">Cálculo da remuneração:</div>
+			<div class="item-resultado">(+) Valor base: <span id="base"></span></div>
+			<div class="item-resultado">(+) Progressão: <span id="progressao"></span></div>
+			<div class="item-resultado">(+) GAJ (Gratificação de Atividade Judiciária): <span id="gaj"></span></div>
+			<div class="item-resultado">(+) Gratificação de Representação: <span id="repr"></span></div>
+			<div class="item-resultado">(=) Vencimentos:  <span id="vencimentos"></span></div>
+			<div class="item-resultado">(+) Total de auxílios: <span class="totalAuxilios"></span></div>
+			<div class="item-resultado">(+) Total de adicionais: <span class="totalAdicionais"></span></div>
+			<div class="item-resultado">(=) Valor bruto: <span id="remuneracaoBruta"></span></div>
+			<div class="item-resultado">(−) Total de descontos: <span class="totalDescontos"></span></div>
+			<div class="item-resultado">(=) Valor líquido: <span id="remuneracaoLiquida"></span></div>
+			<div class="alert alert-warning mt-3"><strong>Atenção!</strong> A remuneração líquida <strong>inclui os valores de todos os auxílios e adicionais</strong>, que são depositados em dinheiro junto com os demais componentes da remuneração.</div>
+			<div class="alert alert-warning mt-3"><strong>Atenção!</strong> Este cálculo é válido apenas para um mês completo de trabalho (não retorna resultados corretos para a primeira remuneração).</div>
+			<div class="subsecao">Detalhamento dos auxílios:</div>
+			<div class="item-resultado">(+) Auxílio-alimentação: <span id="totalAuxilioAlimentacao"></span></div>
+			<div class="item-resultado">(+) Auxílio-transporte: <span id="totalAuxilioTransporte"></span></div>
+			<div class="item-resultado">(+) Auxílio-saúde: <span id="totalAuxilioSaude"></span></div>
+			<div class="item-resultado">(+) Auxílio Creche-Escola: <span id="totalAuxilioCreche"></span></div>
+			<div class="item-resultado">(+) Auxílio a Filho com Deficiência: <span id="totalAuxilioFilhoDeficiencia"></span></div>
+			<div class="item-resultado">(=) Total de auxílios: <span class="totalAuxilios"></span></div>
+			<div class="subsecao">Detalhamento dos adicionais:</div>
+			<div class="item-resultado">(+) Adicional de qualificação: <span id="totalAdicionalQualificacao"></span></div>
+			<div class="item-resultado">(+) Adicional de tempo de serviço: <span id="totalAdicionalTempoServico"></span></div>
+			<div class="item-resultado">(=) Total de adicionais: <span class="totalAdicionais"></span></div>
+			<div class="subsecao">Detalhamento dos descontos:</div>
+			<div class="item-resultado">(+) IAMSPE: <span id="totalDescontoIamspe"></span></div>
+			<div class="item-resultado">(+) Contribuição Previdenciária: <span id="totalContribuicaoPrevidenciaria"></span></div>
+			<div class="item-resultado">(+) Imposto de Renda: <span id="totalIRPF"></span></div>
+			<div class="item-resultado">(=) Total de descontos: <span class="totalDescontos"></span></div>
+
+			<div class="alert alert-info mt-3"><strong>Última atualização:</strong> 10/04/2025 (reajuste de 2025 - COMUNICADO Nº 35/2025 - SGP) e melhoria visual.</div>
+		</section>
+	</main>
+	<footer id="contato" class="titulo col-lg-12 bg-primary">
+		Caso tenha algum problema, <a style = "color:white" href = 
+		"mailto:lucas.cavalini.barboza@gmail.com?subject=Calculadora de Remuneração - TJ-SP">
+		entre em contato</a>.
+		<br>
+		Autor: Lucas Cavalini Barboza
+	</footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="../shared/js/calculo.js"></script>
+    <script src="./js/calculo.js"></script>
 </body>
 </html>
