@@ -236,6 +236,7 @@ class Formulario {
     
         this.previdencia = Calculo.previdencia(baseCalculoPrevidencia, this.isRegimeAntigo);
         this.prevcom = Calculo.prevcom(this.percentualPrevcom, baseCalculoPrevidencia);
+        this.contrapartidaPrevcom = Calculo.contrapartidaPrevcom(this.percentualPrevcom, baseCalculoPrevidencia);
         let baseCalculoIrpf = brutoDeduzido - this.previdencia - this.prevcom;
         this.irpf = calcularIrpf(baseCalculoIrpf);
         this.refeicao = Calculo.auxilioRefeicao(this.diasTrabalhados);
@@ -257,7 +258,6 @@ class Formulario {
                 
         this.liquidoDinheiro = brutoDeduzido - this.previdencia - this.prevcom - this.irpf - this.descontoSindicato;
         this.liquido = this.liquidoDinheiro + Calculo.auxilioAlimentacao + this.refeicao + this.saude + this.indenizacaoComite;
-        this.contrapartidaPrevcom = Calculo.contrapartidaPrevcom(this.percentualPrevcom, brutoDeduzido);
 
         this.salvarEntrada();
         this.atualizarValoresResultado();

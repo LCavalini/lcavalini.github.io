@@ -99,7 +99,7 @@ class Calculo {
     static prevcom(percentualPrevcom, remuneracaoBruta) {
         let baseCalculo = remuneracaoBruta - obterTetoInss();
         if (baseCalculo > 0) {
-            return (remuneracaoBruta - obterTetoInss()) * (percentualPrevcom / 100);
+            return (percentualPrevcom / 100) * baseCalculo;
         }
         return 0;
     }
