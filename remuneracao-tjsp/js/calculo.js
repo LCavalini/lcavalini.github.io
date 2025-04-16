@@ -17,7 +17,8 @@ function calcSallary() {
 		{ cargo: "", valor:  4.50175 },
 		{ cargo: "estenotipista", valor: 4.50175 },
 		{ cargo: "etjGabUpj", valor: 4.50175 },
-		{ cargo: "etjGab", valor: 5.758 },
+		{ cargo: "etjGab", valor: 5.75824 },
+		{ cargo: "esadm", valor: 5.75824 },
 		{ cargo: "ajc", valor: 6.741 },
 		{ cargo: "csj", valor: 6.397 }
 	];
@@ -25,6 +26,7 @@ function calcSallary() {
 		{ cargo: "", valor: 0.0 },
 		{ cargo: "etjGabUpj", valor: 0.6999 },  // COMUNICADO Nº 94/2024 SGP
 		{ cargo: "etjGab", valor: 0.434 },
+		{ cargo: "esadm", valor: 0.434 },
 		{ cargo: "ajc", valor: 2.8704369 },
 		{ cargo: "csj", valor: 0.283 },
 		{ cargo: "estenotipista", valor: 2.3080 }
