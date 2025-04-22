@@ -12,15 +12,17 @@ function calcSallary() {
 		{ cargo: "csj", valor: 2687.15 }
 	];
 	const baseGratificacao = 972.37;
-	// COMUNICADO Nº 35/2025 SGP
+	// Resolução nº 959/2025.
 	const multiplicadoresGaj = [
-		{ cargo: "", valor:  4.50175 },
-		{ cargo: "estenotipista", valor: 4.50175 },
-		{ cargo: "etjGabUpj", valor: 4.50175 },
-		{ cargo: "etjGab", valor: 5.75824 },
-		{ cargo: "esadm", valor: 5.75824 },
-		{ cargo: "ajc", valor: 6.741 },
-		{ cargo: "csj", valor: 6.397 }
+		{ cargo: "", valor:  4.502 },
+		{ cargo: "estenotipista", valor: 4.502 },
+		{ cargo: "etjGabUpj", valor: 4.502 },
+		{ cargo: "etjGab", valor: 5.759 },
+		{ cargo: "esadm", valor: 5.759 },
+		{ cargo: "ajc", valor: 7.819 },
+		{ cargo: "csj", valor: 6.398 },
+		{ cargo: "ajur", valor: 10.785 },
+		{ cargo: "coord", valor: 11.327 }
 	];
 	const multiplicadoresRepr = [
 		{ cargo: "", valor: 0.0 },
@@ -29,7 +31,9 @@ function calcSallary() {
 		{ cargo: "esadm", valor: 0.434 },
 		{ cargo: "ajc", valor: 2.8704369 },
 		{ cargo: "csj", valor: 0.283 },
-		{ cargo: "estenotipista", valor: 2.3080 }
+		{ cargo: "estenotipista", valor: 2.424 },
+		{ cargo: "ajur", valor: 3.35149 },
+		{ cargo: "coord", valor: 3.56111 }
 	];
 	const valoresProgressao = [
 		{ padrao: "5A-CE", valor: 0.0 },
