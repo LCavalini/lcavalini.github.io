@@ -2,44 +2,44 @@
 
 class Calculo {
     
-    static padraoQpl22 = 30002.47;
+    static padraoQpl22 = 31520.59; // Conforme PL 374/2025.
 
-    static vencimento = [
-        { padrao: 7, valor: 7181.67 },
-        { padrao: 8, valor: 7899.85 },
-        { padrao: 9, valor: 8689.85 },
-        { padrao: 10, valor: 9558.92 },
-        { padrao: 11, valor: 10514.75 },
-        { padrao: 12, valor: 11566.26 },
-        { padrao: 13, valor: 12722.94 },
-        { padrao: 14, valor: 13995.23 },
-        { padrao: 15, valor: 15394.70 },
-        { padrao: 16, valor: 16934.16 },
-        { padrao: 17, valor: 18627.60 },
-        { padrao: 18, valor: 20490.36 },
-        { padrao: 19, valor: 22539.4 },
-        { padrao: 20, valor: 24793.33 },
-        { padrao: 21, valor: 27272.69 },
+    static vencimento = [ // Conforme PL 374/2025.
+        { padrao: 7, valor: 7545.06 },
+        { padrao: 8, valor: 8299.58 },
+        { padrao: 9, valor:  9129.56 },
+        { padrao: 10, valor: 10042.6 },
+        { padrao: 11, valor: 11046.8 },
+        { padrao: 12, valor: 12151.51 },
+        { padrao: 13, valor: 13366.72 },
+        { padrao: 14, valor: 14703.39 },
+        { padrao: 15, valor: 16173.67 },
+        { padrao: 16, valor: 17791.03 },
+        { padrao: 17, valor: 19570.16 },
+        { padrao: 18, valor: 21527.17 },
+        { padrao: 19, valor: 23679.89 },
+        { padrao: 20, valor: 26047.87 },
+        { padrao: 21, valor: 28652.69 },
         { padrao: 22, valor: Calculo.padraoQpl22 }
     ];
 
-    static auxilioAlimentacao = 1859.00;
-    static cotaAuxilioRefeicao = 85;  // a base é 22 dias;
+    static auxilioAlimentacao = 2034; // Conforme estimativa.
+    static cotaAuxilioRefeicao = 93;  // Conforme estimativa.
     
     static aliquotaPrevidencia = 0.14;
     static tetoMunicipioSp = 38039.38;
     
-    static tabelaAuxilioSaude = [
-        {idadeLimite: 18, valor: 654.86},
-        {idadeLimite: 23, valor: 919.97},
-        {idadeLimite: 28, valor: 967.33},
-        {idadeLimite: 33, valor: 1034.33},
-        {idadeLimite: 38, valor: 1101.14},
-        {idadeLimite: 43, valor: 1193.12},
-        {idadeLimite: 48, valor: 1604.20},
-        {idadeLimite: 53, valor: 1958.33},
-        {idadeLimite: 58, valor: 2303.48},
-        {idadeLimite: Infinity, valor: 5892.63}
+    static tabelaAuxilioSaude = [ // Conforme estimativa.
+        {idadeLimite: 18, valor: 798.93},
+        {idadeLimite: 23, valor: 1122.36},
+        {idadeLimite: 28, valor: 1180.14},
+        {idadeLimite: 33, valor: 1261.88},
+        {idadeLimite: 38, valor: 1343.39},
+        {idadeLimite: 43, valor: 1455.61},
+        {idadeLimite: 48, valor: 1957.12},
+        {idadeLimite: 53, valor: 2389.16},
+        {idadeLimite: 58, valor: 2810.25},
+        {idadeLimite: Infinity, valor: 7189.01}
     ];
 
     static mensalidadeSindicato = 78.50;
