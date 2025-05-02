@@ -29,7 +29,7 @@ function calcSallary() {
 		{ cargo: "etjGabUpj", valor: 0.6999 },  // COMUNICADO Nº 94/2024 SGP
 		{ cargo: "etjGab", valor: 0.434 },
 		{ cargo: "esadm", valor: 0.434 },
-		{ cargo: "ajc", valor: 2.8704369 },
+		{ cargo: "ajc", valor: 1.815 },
 		{ cargo: "csj", valor: 0.283 },
 		{ cargo: "estenotipista", valor: 2.424 },
 		{ cargo: "ajur", valor: 3.35149 },
