@@ -52,7 +52,7 @@ function calcular() {
     const previdencia = calcularContribuicaoPrevidenciaria(bruto);
     camposResultado["previdencia"].innerHTML = converterNumeroParaMoeda(previdencia);
 
-    const irpf = calcularImpostoRenda(bruto - previdencia)
+    const irpf = calcularIrpf(bruto, bruto - previdencia)
     camposResultado["irpf"].innerHTML = converterNumeroParaMoeda(irpf);
 
     const deducaoIamspe = camposCalculo["iamspe"] == 1

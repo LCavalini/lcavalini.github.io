@@ -26,15 +26,6 @@ const auxilioPreEscolar = 1985.52; // indenização máxima
 const cotaAuxilioRefeicao = 50.00; 
 const cotaAuxilioTransporte = 20.00;
 
-// valores atualizados até 04/2024
-// fonte: https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/irpf-imposto-de-renda-pessoa-fisica#tabelas-de-incid-ncia-mensal
-const faixasIRPF = [
-    { limite: 2259.20, aliquota: 0.075, deducao: 169.44 },
-    { limite: 2828.65, aliquota: 0.15, deducao: 381.44 },
-    { limite: 3751.05, aliquota: 0.225, deducao: 662.77 },
-    { limite: 4664.68, aliquota: 0.275, deducao: 896.00 }
-];
-
 // valor atualizado até 01/2024
 // fonte: https://www.apatej.org.br/portaria-da-spprev-estabelece-aliquotas-de-contribuicao-previdenciaria-para-servidores.
 const faixasContribuicaoPrevidenciaria = [
@@ -85,19 +76,6 @@ function calcularContribuicaoPrevidenciaria(baseCalculo) {
 		return baseCalculo * faixasContribuicaoPrevidenciaria[2].aliquota - faixasContribuicaoPrevidenciaria[2].deducao;
 	else 
         return baseCalculo * faixasContribuicaoPrevidenciaria[3].aliquota - faixasContribuicaoPrevidenciaria[3].deducao;
-}
-
-function calcularImpostoRenda(baseCalculo) {
-    if (baseCalculo > faixasIRPF[0].limite && baseCalculo <= faixasIRPF[1].limite)
-		return baseCalculo * faixasIRPF[0].aliquota - faixasIRPF[0].deducao;
-	else if (baseCalculo > faixasIRPF[1].limite && baseCalculo <= faixasIRPF[2].limite)
-        return baseCalculo * faixasIRPF[1].aliquota - faixasIRPF[1].deducao;
-	else if (baseCalculo > faixasIRPF[2].limite && baseCalculo <= faixasIRPF[3].limite)
-		return baseCalculo * faixasIRPF[2].aliquota - faixasIRPF[2].deducao;
-	else if(baseCalculo > faixasIRPF[3].limite) 
-		return baseCalculo * faixasIRPF[3].aliquota - faixasIRPF[3].deducao;
-	else 
-		return 0;
 }
 
 function calcularAuxilioRefeicao(dias) {

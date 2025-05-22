@@ -42,7 +42,7 @@ function calcular() {
     // O adicional de qualificação não entra na base de cálculo para a contribuição previdenciária.
     previdencia = contribuicaoPrevidenciaria(bruto - qualificacao);
     camposResultado['previdencia'].innerHTML = numeroParaMoeda(previdencia);
-    irpf = impostoRenda(bruto - previdencia)
+    irpf = calcularIrpf(bruto, bruto - previdencia);
     camposResultado['irpf'].innerHTML = numeroParaMoeda(irpf);
     if (camposCalculo['iamspe'] == 1)
         deducaoIamspe = iampse(bruto, camposCalculo['idade'], [], []);

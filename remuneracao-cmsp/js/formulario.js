@@ -238,7 +238,7 @@ class Formulario {
         this.prevcom = Calculo.prevcom(this.percentualPrevcom, baseCalculoPrevidencia);
         this.contrapartidaPrevcom = Calculo.contrapartidaPrevcom(this.percentualPrevcom, baseCalculoPrevidencia);
         let baseCalculoIrpf = brutoDeduzido - this.previdencia - this.prevcom;
-        this.irpf = calcularIrpf(baseCalculoIrpf);
+        this.irpf = calcularIrpf(brutoDeduzido, baseCalculoIrpf);
         this.refeicao = Calculo.auxilioRefeicao(this.diasTrabalhados);
         // O valor da indenização por participação em Comitê considera o bruto deduzido do teto.
         this.indenizacaoComite = this.isParticipacaoComite ? Calculo.indenizacaoComite(brutoDeduzido) : 0.00;

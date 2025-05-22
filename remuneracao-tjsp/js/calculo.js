@@ -64,13 +64,6 @@ function calcSallary() {
 		1,  1.04, 1.06, 1.1, 1.67, 1.71
 	]; // COMUNICADO Nº 94/2024 SGP
 
-	// valores atualizados até 01/04/2024
-	const faixasIRPF = [
-		{ limite: 2259.20, aliquota: 0.075, deducao: 169.44 },
-		{ limite: 2828.65, aliquota: 0.15, deducao: 381.44 },
-		{ limite: 3751.05, aliquota: 0.225, deducao: 662.77 },
-		{ limite: 4664.68, aliquota: 0.275, deducao: 896.00 }
-	];
 	const deducaoDependenteIRPF = 189.59;
 	
 	// valor atualizado até 01/2025
@@ -164,18 +157,7 @@ function calcSallary() {
 		
 	let baseCalculoIRPF = baseCalculoDeducoes - totalDeducaoDependenteIRPF - totalContribuicaoPrevidenciaria;
 	
-	// cálculo do IRPF de acordo com as faixas
-	if (baseCalculoIRPF > faixasIRPF[0].limite && baseCalculoIRPF <= faixasIRPF[1].limite) {
-		totalIRPF = baseCalculoIRPF * faixasIRPF[0].aliquota - faixasIRPF[0].deducao;
-	} else if(baseCalculoIRPF > faixasIRPF[1].limite && baseCalculoIRPF <= faixasIRPF[2].limite) {
-		totalIRPF = baseCalculoIRPF * faixasIRPF[1].aliquota - faixasIRPF[1].deducao;
-	} else if(baseCalculoIRPF > faixasIRPF[2].limite && baseCalculoIRPF <= faixasIRPF[3].limite) {
-		totalIRPF = baseCalculoIRPF * faixasIRPF[2].aliquota - faixasIRPF[2].deducao;
-	} else if(baseCalculoIRPF > faixasIRPF[3].limite) {
-		totalIRPF = baseCalculoIRPF * faixasIRPF[3].aliquota - faixasIRPF[3].deducao;
-	} else {
-		totalIRPF = 0;
-	}
+	let totalIRPF = calcularIrpf(baseCalculoDeducoes, baseCalculoIRPF);
 	
 	let totalAuxilios =  totalAuxilioAlimentacao + totalAuxilioTransporte + totalAuxilioCreche +
 		totalAuxilioFilhoDeficiencia + totalAuxilioSaude;
