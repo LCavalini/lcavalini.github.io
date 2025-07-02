@@ -7,9 +7,7 @@ function numeroParaMoeda(numero) {
 
 function calcular() {
     camposCalculoId = [
-        'cargo', 'nivel', 'tempo', 'percentualGed', 'faltas', 'iamspe', 'idade', 'auxilioPreEscolar', 'despesasMedicas',
-        'indiceQualificacao'
-    ];
+        'cargo', 'nivel', 'tempo', 'percentualGed', 'faltas', 'iamspe', 'idade', 'auxilioPreEscolar', 'despesasMedicas'];
     camposResultadoId = [
         'vencimento', 'gratificacaoLeg', 'gratificacaoRepr', 'ged', 'ats', 'remuneracaoBruta', 'previdencia', 'irpf',
         'deducaoIamspe', 'alimentacao', 'saude', 'preEscolar', 'liquido', 'refeicao', 'total', 'extraTeto',
@@ -29,9 +27,16 @@ function calcular() {
     camposResultado['gratificacaoLeg'].innerHTML = numeroParaMoeda(gratificacaoLeg(camposCalculo['cargo']));
     camposResultado['gratificacaoRepr'].innerHTML = numeroParaMoeda(gratificacaoRepr(camposCalculo['cargo']));
     camposResultado['ged'].innerHTML = numeroParaMoeda(ged(camposCalculo['percentualGed']));
-    qualificacao = adicionalQualificacao(camposCalculo['indiceQualificacao']);
+    let adicionaisQualificacao = [];
+    let camposAdicionaisQualificacao = document.getElementsByClassName('adicionalQualificacao');
+    for (let campo of camposAdicionaisQualificacao) {
+        if (campo.checked == true && adicionaisQualificacao.length < 3) {
+            adicionaisQualificacao.push(campo.name);
+        }
+    }
+    qualificacao = adicionalQualificacao(adicionaisQualificacao);
     bruto = remuneracaoBruta(camposCalculo['cargo'], camposCalculo['nivel'], camposCalculo['tempo'],
-                             camposCalculo['percentualGed'], camposCalculo['indiceQualificacao']);
+                             camposCalculo['percentualGed'], qualificacao);
     baseAts = remuneracaoBruta(camposCalculo['cargo'], camposCalculo['nivel'], 0, 0, 0);
     camposResultado['ats'].innerHTML = numeroParaMoeda(ats(baseAts, camposCalculo['tempo']));
     camposResultado['adicionalQualificacao'].innerHTML = numeroParaMoeda(qualificacao);
@@ -51,7 +56,6 @@ function calcular() {
     camposResultado['alimentacao'].innerHTML = numeroParaMoeda(auxilioAlimentacao);
     if (camposCalculo['despesasMedicas'] < auxilioSaude(camposCalculo['idade'])) saude = parseFloat(camposCalculo['despesasMedicas']);
     else saude = auxilioSaude(camposCalculo['idade']);
-    console.log(numeroParaMoeda(saude))
     camposResultado['saude'].innerHTML = numeroParaMoeda(saude)
     if (camposCalculo['auxilioPreEscolar'] == 1) preEscolar = auxilioPreEscolar;
     else preEscolar = 0.00;

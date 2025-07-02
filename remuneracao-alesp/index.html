@@ -62,14 +62,15 @@
                 <option value = "100">100%
             </select>
             <p></p>
-            <label for="indiceQualificacao">Adicional de qualificação:</label>
-            <select id="indiceQualificacao">
-                <option value="0">Nenhum</option>
-                <option value="1">Graduação</option>
-                <option value="2">Pós-graduação (lato sensu)</option>
-                <option value="3">Mestrado</option>
-                <option value="4">Doutorado</option>
-            </select>
+            <span>Adicional de qualificação (marque no máximo 3):</span><br/>
+            <input type="checkbox" id="adicionalGrad" class="adicionalQualificacao" name="adicionalGrad">
+            <label for="adicionalGrad">Graduação</label><br/>
+            <input type="checkbox" id="adicionalPos" class="adicionalQualificacao" name="adicionalPos">
+            <label for="adicionalPos">Pós-graduação (lato sensu)</label><br/>
+            <input type="checkbox" id="adicionalMes" class="adicionalQualificacao" name="adicionalMes">
+            <label for="adicionalMes">Mestrado</label><br/>
+            <input type="checkbox" id="adicionalDout" class="adicionalQualificacao" name="adicionalDout">
+            <label for="adicionalDout">Doutorado</label>
             <p></p>
             <label for="faltas">Número de faltas (desconto do Aux. Refeição)</label>
             <input id="faltas" type="number" min="0" max="22" value="0">
@@ -97,7 +98,7 @@
     </div>
     <div id="resultado" class="conteudo">
         <h3>Resultado</h3>
-        <p>Última atualização: 21/01/2025 (reajuste do Teto do INSS e da Contribuição Previdenciária)</p>
+        <p>Última atualização: 02/07/2025 (reajuste da remuneração e dos benefícios)</p>
         <h4>Remuneração</h4>
         <p>Vencimento Básico: <span id="vencimento"></span></p>
         <p>Gratificação Legislativa: <span id="gratificacaoLeg"></span></p>
@@ -154,33 +155,33 @@
             </a>
         </p>
         <p>
-            Ato da Mesa nº 09/2024 (atualização do auxílio alimentação): 
-            <a href="https://www.al.sp.gov.br/norma/209432">
-                https://www.al.sp.gov.br/norma/209432
+            Ato da Mesa nº 17/2025 (atualização do auxílio alimentação): 
+            <a href="https://www.al.sp.gov.br/norma/211128">
+                https://www.al.sp.gov.br/norma/211128
             </a>
         </p>
         <p>
-            Ato da Mesa nº 11/2024 (atualização do auxílio pré-escolar): 
-            <a href="https://www.al.sp.gov.br/norma/209435">
-                https://www.al.sp.gov.br/norma/209435
+            Ato da Mesa nº 18/2025 (atualização do auxílio pré-escolar): 
+            <a href="https://www.al.sp.gov.br/norma/211129">
+                https://www.al.sp.gov.br/norma/211129
             </a>
         </p>
         <p>
-            Ato da Mesa nº 10/2024 (atualização do vale-refeição): 
-            <a href="https://www.al.sp.gov.br/norma/209433">
-                https://www.al.sp.gov.br/norma/209433
+            Ato da Mesa nº 16/2025 (atualização do vale-refeição): 
+            <a href="https://www.al.sp.gov.br/norma/211127">
+                https://www.al.sp.gov.br/norma/211127
             </a>
         </p>
         <p>
-            Ato da Mesa nº 13/2024 (atualização do auxílio-saúde): 
-            <a href="https://www.al.sp.gov.br/norma/209441">
-                https://www.al.sp.gov.br/norma/209441
+            Ato da Mesa nº 20/2025 (atualização do auxílio-saúde): 
+            <a href="https://www.al.sp.gov.br/norma/211131">
+                https://www.al.sp.gov.br/norma/211131
             </a>
         </p>
         <p>
-            Reajuste da remuneração de 2024: 
-            <a href="https://www.al.sp.gov.br/repositorio/legislacao/lei.complementar/2024/lei.complementar-1402-19.06.2024.html">
-                Lei Complementar nº 1.402/2024
+            Reajuste da remuneração de 2025: 
+            <a href="https://www.al.sp.gov.br/propositura/?id=1000612728&tipo=2&ano=2025">
+                PLC nº 21/2025
             </a>
         </p>
     </div>

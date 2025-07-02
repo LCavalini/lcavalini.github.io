@@ -1,58 +1,55 @@
 // Funções de cálculo de remuneração
 
 // LC 1.402/2024
-const vencimentoTecnico = [
-    3676.98, 3814.86, 3957.92, 4106.34, 4260.34, 4420.09, 4585.87, 4757.83, 4936.27, 5121.36, 5313.43, 5512.65,
-    5719.40, 5933.89, 6156.42, 6387.29, 6626.81, 6875.31, 7133.12, 7400.62
-];
-const vencimentoAnalista = [
-    7435.32, 7714.13, 8003.42, 8303.54, 8614.95, 8937.98, 9273.18, 9620.91, 9981.69, 10356.02, 10744.37, 11147.31,
-    11565.32, 11999.02, 12448.99, 12915.83, 13400.20, 13902.69, 14424.06, 14964.93
-];
-const vencimentoAuditor = [
-    7435.32, 7714.13, 8003.42, 8303.54, 8614.95, 8937.98, 9273.18, 9620.91, 9981.69, 10356.02, 10744.37, 11147.31,
-    11565.32, 11999.02, 12448.99, 12915.83, 13400.20, 13902.69, 14424.06, 14964.93
-];
+const vencimentoTecnico = [3934.37, 4081.9, 4234.97, 4393.78, 4558.56, 4729.5, 4906.88, 5090.88, 5281.81, 5479.86,
+    5685.37, 5898.54, 6119.76, 6349.26, 6587.37, 6834.4, 7090.69, 7356.58, 7632.44, 7918.66];
+const vencimentoAnalista = [7955.79, 8254.12, 8563.66, 8884.79, 9218, 9563.64, 9922.3, 10294.37, 10680.41, 11080.94,
+    11496.48, 11927.62, 12374.89, 12838.95, 13320.42, 13819.94, 14338.21, 14875.88, 15433.74, 16012.48];
+const vencimentoAuditor = [7955.79, 8254.12, 8563.66, 8884.79, 9218, 9563.64, 9922.3, 10294.37, 10680.41, 11080.94,
+    11496.48, 11927.62, 12374.89, 12838.95, 13320.42, 13819.94, 14338.21, 14875.88, 15433.74, 16012.48];
 // LC 1.402/2024
-const valoresAdicionalQualificacao = [
-    0, 399.38, 798.76, 1198.14, 1597.52
-]
-// reajuste: LC 1.386/2023 (03/07/2023) 
-const gratificacaoLegTecnico = 3097.79;
-const gratificacaoReprTecnico = 2018.75;
-const gratificacaoLegAnalista = 4248.12;
-const gratificacaoReprAnalista = 2726.40;
-const gratificacaoLegAuditor = 4248.12;
-const gratificacaoReprAuditor = 2726.40
-const maximoGed = 7435.32;
-// alterado pelo Ato da Mesa nº 09/2024
-const auxilioAlimentacao = 1000.52;  // creditado em espécie
-// alterado pelo Ato da Mesa nº 10/2024
-const cotaAuxilioRefeicao = 73.06;  // a base é 22 dias, havendo desconto somente em caso de falta
-// alterado pelo Ato da Mesa nº 32/2023
+const valoresAdicionaisQualificacao = {
+    adicionalGrad: 399.38,
+    adicionalPos: 798.76,
+    adicionalMes: 1198.14,
+    adicionalDout: 1597.52
+};
+
+// reajuste: PLC 21/2025.
+const gratificacaoLegTecnico = 3314.64;
+const gratificacaoReprTecnico = 2160.06;
+const gratificacaoLegAnalista = 4545.49;
+const gratificacaoReprAnalista = 2917.25;
+const gratificacaoLegAuditor = 4545.49;
+const gratificacaoReprAuditor = 2917.25;
+const maximoGed = 7955.79;
+// alterado pelo Ato da Mesa nº 17/2025.
+const auxilioAlimentacao = 1100.57;  // creditado em espécie
+// alterado pelo Ato da Mesa nº 16/2025.
+const cotaAuxilioRefeicao = 76.75;  // a base é 22 dias, havendo desconto somente em caso de falta
+// alterado pelo Ato da Mesa nº 20/2025.
 const tabelaAuxilioSaude = [
-    {idadeLimite: 23, valor: 726.0},
-    {idadeLimite: 28, valor: 740.52},
-    {idadeLimite: 33, valor: 776.01},
-    {idadeLimite: 38, valor: 790.93},
-    {idadeLimite: 43, valor: 904.42},
-    {idadeLimite: 48, valor: 921.17},
-    {idadeLimite: 53, valor: 1111.81},
-    {idadeLimite: 58, valor: 1131.66},
-    {idadeLimite: Infinity, valor: 1732.45}
+    {idadeLimite: 23, valor: 871.2},
+    {idadeLimite: 28, valor: 888.62},
+    {idadeLimite: 33, valor: 931.21},
+    {idadeLimite: 38, valor: 949.11},
+    {idadeLimite: 43, valor: 1085.3},
+    {idadeLimite: 48, valor: 1105.4},
+    {idadeLimite: 53, valor: 1334.17},
+    {idadeLimite: 58, valor: 1357.99},
+    {idadeLimite: Infinity, valor: 2078.94}
 ];
-// alterado pelo Ato da Mesa nº 11/2024
-const auxilioPreEscolar = 1078.64 // indenização máxima
-// valores atualizados até 04/2024
+// alterado pelo Ato da Mesa nº 18/2025.
+const auxilioPreEscolar = 1294.36 // indenização máxima
+// valores atualizados até 07/2025
 // fonte: https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/irpf-imposto-de-renda-pessoa-fisica#tabelas-de-incid-ncia-mensal
 const faixasIRPF = [
-    { limite: 2259.20, aliquota: 0.075, deducao: 169.44 },
-    { limite: 2828.65, aliquota: 0.15, deducao: 381.44 },
-    { limite: 3751.05, aliquota: 0.225, deducao: 662.77 },
-    { limite: 4664.68, aliquota: 0.275, deducao: 896.00 }
+      { limite: 3036, aliquota: 0.075, deducao: 182.16 },
+      { limite: 3533.31, aliquota: 0.15, deducao: 394.16 },
+      { limite: 4688.85, aliquota: 0.225, deducao: 675.49 },
+      { limite: 5830.85, aliquota: 0.275, deducao: 908.73 }
 ];
 // valor atualizado até 01/2025
-// fonte: https://www.apatej.org.br/portaria-da-spprev-estabelece-aliquotas-de-contribuicao-previdenciaria-para-servidores.
 const faixasContribuicaoPrevidenciaria = [
     {limite: 1518.00, aliquota: 0.11, deducao: 0},
     {limite: 4022.46, aliquota: 0.12, deducao: 15.18},
@@ -61,7 +58,7 @@ const faixasContribuicaoPrevidenciaria = [
 ];
 const tetoInss = 8157.41;
 // fonte: https://www.al.sp.gov.br/repositorio/folha-de-pagamento/folha-2022-09.html
-const tetoEstadoSp = 33006.39
+const tetoEstadoSp = 34774.64;
 
 function vencimentoBasico(cargo, nivel, tempo) {
     // a progressão de nível só ocorre após o probatório
@@ -101,11 +98,13 @@ function gratificacaoRepr(cargo) {
     }
 }
 
-function adicionalQualificacao(adicional) {
-    if (isNaN(adicional) || adicional < 0 && adicional > 4) {
-        throw new Error('O índice do adicional de qualificação é inválido.')
+function adicionalQualificacao(adicionais) {
+    if (adicionais == undefined || adicionais.length == 0) {
+        return 0;
     }
-    return valoresAdicionalQualificacao[adicional];
+    return adicionais.map(adicional => adicional in valoresAdicionaisQualificacao
+            ? valoresAdicionaisQualificacao[adicional] : 0)
+        .reduce((x, y) => x + y);
 }
 
 function ged(percentualGed) {
@@ -120,9 +119,9 @@ function ats(baseCalculo, tempo) {
     return adicionalTempo * baseCalculo;
 }
 
-function remuneracaoBruta(cargo, nivel, tempo, percentualGed, indiceQualificacao) {
+function remuneracaoBruta(cargo, nivel, tempo, percentualGed, valorQualificacao) {
     let baseCalculoAts = vencimentoBasico(cargo, nivel, tempo) + gratificacaoLeg(cargo) + gratificacaoRepr(cargo)
-    return baseCalculoAts + ats(baseCalculoAts, tempo) + ged(percentualGed) + adicionalQualificacao(indiceQualificacao);
+    return baseCalculoAts + ats(baseCalculoAts, tempo) + ged(percentualGed) + valorQualificacao;
 }
 
 function extraTeto(remuneracao) {
