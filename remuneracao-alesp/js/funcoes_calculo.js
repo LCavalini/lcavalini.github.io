@@ -9,10 +9,10 @@ const vencimentoAuditor = [7955.79, 8254.12, 8563.66, 8884.79, 9218, 9563.64, 99
     11496.48, 11927.62, 12374.89, 12838.95, 13320.42, 13819.94, 14338.21, 14875.88, 15433.74, 16012.48];
 // LC 1.402/2024
 const valoresAdicionaisQualificacao = {
-    adicionalGrad: 399.38,
-    adicionalPos: 798.76,
-    adicionalMes: 1198.14,
-    adicionalDout: 1597.52
+    adicionalGrad: 427.34,
+    adicionalPos: 854.67,
+    adicionalMes: 1282.01,
+    adicionalDout: 1709.35
 };
 
 // reajuste: PLC 21/2025.
