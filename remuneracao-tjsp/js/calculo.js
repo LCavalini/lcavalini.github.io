@@ -6,7 +6,7 @@ function numberToReal(numero) {
 
 function calcSallary() {
 	
-	// valores atualizados até 04/2025.
+	// valores atualizados até 07/2025.
 	const base = [
 		{ cargo: "", valor: 1968.34 },
 		{ cargo: "csj", valor: 2687.15 }
@@ -14,16 +14,16 @@ function calcSallary() {
 	const baseGratificacao = 972.37;
 	// Resolução nº 959/2025.
 	const multiplicadoresGaj = [
-		{ cargo: "", valor:  4.502 },
-		{ cargo: "estenotipista", valor: 4.502 },
-		{ cargo: "etjGabUpj", valor: 4.502 },
-		{ cargo: "etjGab", valor: 5.759 },
-		{ cargo: "esadm", valor: 5.759 },
-		{ cargo: "ajc", valor: 7.819 },
-		{ cargo: "csj", valor: 6.398 },
-		{ cargo: "ajur", valor: 10.785 },
-		{ cargo: "coord", valor: 11.327 },
-		{ cargo: "eqgab", valor: 5.502 } // Comunicado SGP nº 58/2025.
+		{ cargo: "", valor:  4.66516 },
+		{ cargo: "estenotipista", valor: 4.66516 },
+		{ cargo: "etjGabUpj", valor: 4.66516 },
+		{ cargo: "etjGab", valor: 5.954 },
+		{ cargo: "esadm", valor: 5.954 },
+		{ cargo: "ajc", valor: 8.065 },
+		{ cargo: "csj", valor: 6.61 },
+		{ cargo: "ajur", valor: 11.105 },
+		{ cargo: "coord", valor: 11.661 },
+		{ cargo: "eqgab", valor: 5.690 } // Comunicado SGP nº 58/2025.
 	];
 	const multiplicadoresRepr = [
 		{ cargo: "", valor: 0.0 },
@@ -60,7 +60,7 @@ function calcSallary() {
 	const auxilioFillhoDeficiencia = 1207.5; // COMUNICADO Nº 35/2025 SGP.
 	const auxilioAlimentacao = 80; // COMUNICADO Nº 35/2025 SGP.
 	const auxilioTransporte = 14; // PORTARIA Nº 10.536/2025.
-	const auxilioSaude = 624; // COMUNICADO Nº 94/2024 SGP.
+	const auxilioSaude = 718; // COMUNICADO Nº 94/2024 SGP.
 	const percentuaisAuxilioSaude = [ 
 		1,  1.04, 1.06, 1.1, 1.67, 1.71
 	]; // COMUNICADO Nº 94/2024 SGP.
