@@ -120,8 +120,12 @@ function ats(baseCalculo, tempo) {
 }
 
 function remuneracaoBruta(cargo, nivel, tempo, percentualGed, valorQualificacao) {
-    let baseCalculoAts = vencimentoBasico(cargo, nivel, tempo) + gratificacaoLeg(cargo) + gratificacaoRepr(cargo)
-    return baseCalculoAts + ats(baseCalculoAts, tempo) + ged(percentualGed) + valorQualificacao;
+    let baseCalculoAts = valorBaseAts(cargo, nivel, tempo);
+    return baseCalculoAts + ats(baseCalculoAts, tempo) + gratificacaoRepr(cargo) + ged(percentualGed) + valorQualificacao;
+}
+
+function valorBaseAts(cargo, nivel) {
+    return vencimentoBasico(cargo, nivel, tempo) + gratificacaoLeg(cargo);
 }
 
 function extraTeto(remuneracao) {

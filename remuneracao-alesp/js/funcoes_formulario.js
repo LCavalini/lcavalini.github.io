@@ -37,7 +37,7 @@ function calcular() {
     qualificacao = adicionalQualificacao(adicionaisQualificacao);
     bruto = remuneracaoBruta(camposCalculo['cargo'], camposCalculo['nivel'], camposCalculo['tempo'],
                              camposCalculo['percentualGed'], qualificacao);
-    baseAts = remuneracaoBruta(camposCalculo['cargo'], camposCalculo['nivel'], 0, 0, 0);
+    baseAts = valorBaseAts(camposCalculo['cargo'], camposCalculo['nivel']);
     camposResultado['ats'].innerHTML = numeroParaMoeda(ats(baseAts, camposCalculo['tempo']));
     camposResultado['adicionalQualificacao'].innerHTML = numeroParaMoeda(qualificacao);
     camposResultado['remuneracaoBruta'].innerHTML = numeroParaMoeda(bruto);
