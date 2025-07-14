@@ -23,7 +23,7 @@ function calcSallary() {
 		{ cargo: "csj", valor: 6.61 },
 		{ cargo: "ajur", valor: 11.105 },
 		{ cargo: "coord", valor: 11.661 },
-		{ cargo: "eqgab", valor: 5.690 } // Comunicado SGP nº 58/2025.
+		{ cargo: "eqgab", valor: 4.66516 } // Comunicado SGP nº 58/2025.
 	];
 	const multiplicadoresRepr = [
 		{ cargo: "", valor: 0.0 },
@@ -34,7 +34,8 @@ function calcSallary() {
 		{ cargo: "csj", valor: 0.283 },
 		{ cargo: "estenotipista", valor: 2.424 },
 		{ cargo: "ajur", valor: 3.35149 },
-		{ cargo: "coord", valor: 3.56111 }
+		{ cargo: "coord", valor: 3.56111 },
+		{ cargo: "eqgab", valor: 1.02484 }
 	];
 	const valoresProgressao = [
 		{ padrao: "5A-CE", valor: 0.0 },
