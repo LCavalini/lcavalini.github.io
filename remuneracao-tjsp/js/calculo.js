@@ -9,7 +9,8 @@ function calcSallary() {
 	// valores atualizados até 07/2025.
 	const base = [
 		{ cargo: "", valor: 1968.34 },
-		{ cargo: "csj", valor: 2687.15 }
+		{ cargo: "csj", valor: 2687.15 },
+		{ cargo: "csjGab", valor: 2687.15 }
 	];
 	const baseGratificacao = 972.37;
 	// Resolução nº 959/2025.
@@ -21,6 +22,7 @@ function calcSallary() {
 		{ cargo: "esadm", valor: 5.954 },
 		{ cargo: "ajc", valor: 8.065 },
 		{ cargo: "csj", valor: 6.61 },
+		{ cargo: "csjGab", valor: 9.14637 }, // Não tenho a informação exata de quanto é GAJ e quanto é Representação.
 		{ cargo: "ajur", valor: 11.105 },
 		{ cargo: "coord", valor: 11.661 },
 		{ cargo: "eqgab", valor: 4.66516 } // Comunicado SGP nº 58/2025.
@@ -32,6 +34,7 @@ function calcSallary() {
 		{ cargo: "esadm", valor: 0.434 },
 		{ cargo: "ajc", valor: 1.815 },
 		{ cargo: "csj", valor: 0.283 },
+		{ cargo: "csjGab", valor: 0.283 },
 		{ cargo: "estenotipista", valor: 2.424 },
 		{ cargo: "ajur", valor: 3.35149 },
 		{ cargo: "coord", valor: 3.56111 },
