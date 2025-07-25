@@ -42,7 +42,7 @@ class Calculo {
         {idadeLimite: Infinity, valor: 7189.01}
     ];
 
-    static mensalidadeSindicato = 78.50;
+    static mensalidadeSindicato = 82.50;
     
     static vencimentoBasico(padrao) {
         let registro = Calculo.vencimento.find(vencimento => Number(vencimento.padrao) === Number(padrao));
