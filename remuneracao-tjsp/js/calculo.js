@@ -38,7 +38,7 @@ function calcSallary() {
 		{ cargo: "estenotipista", valor: 2.424 },
 		{ cargo: "ajur", valor: 3.35149 },
 		{ cargo: "coord", valor: 3.56111 },
-		{ cargo: "eqgab", valor: 1.02484 }
+		{ cargo: "eqgab", valor: 1 }
 	];
 	const valoresProgressao = [
 		{ padrao: "5A-CE", valor: 0.0 },
