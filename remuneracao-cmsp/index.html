@@ -92,6 +92,13 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="insalubridade">Adicional de insalubridade:</label>
+                    <select class="form-control" id="insalubridade">
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="beneficiarios-auxilio-saude">Beneficiários do Auxílio Saúde: </label>
                     <input class="form-control" type="number" id="beneficiarios-auxilio-saude" min="1" value="1"
                         onchange="formulario.atualizarBeneficiariosAuxilioSaude()">
@@ -110,6 +117,7 @@
             <div class="item-resultado">(+) GLIEP: <span id="valor-gliep"></span></div>
             <div class="item-resultado">(+) Adicional por tempo de serviço (quinquênios + sexta-parte): <span id="ats"></span></div>
             <div class="item-resultado">(+) Função gratificada: <span id="acrescimo-fg"></span></div>
+            <div class="item-resultado">(+) Adicional de insalubridade <span id="adicional-insalubridade"></span></div>
             <div class="item-resultado">(=) Remuneração bruta sem auxílios: <span id="remuneracao-bruta"></span></div>
             <div class="subsecao">Deduções</div>
             <div class="item-resultado">(-) Dedução do teto municipal: <span id="extra-teto"></span></div>
@@ -126,7 +134,7 @@
             <div class="subsecao">Valores líquidos</div>
             <div class="item-resultado">(=) Remuneração líquida com indenizações: <span id="liquido"></span></div>
             <div class="item-resultado">(*) Contrapartida da Previdência Complementar (SP Previdência): <span id="contrapartida-prevcom"></span></div>
-            <div class="alert alert-info mt-3"><strong>Última atualização:</strong> 25/07/2025 (atualização do desconto do sindicato).</div>
+            <div class="alert alert-info mt-3"><strong>Última atualização:</strong> 22/08/2025 (inclusão do adicional de insalubridade).</div>
             <div class="subsecao">Legislação</div>
                 <ul>
                     <li>

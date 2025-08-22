@@ -3,7 +3,7 @@ class Formulario {
     static camposCalculoIds = [
         'cargo', 'padrao-vencimento', 'tempo', 'percentual-gliep', 'dias-trabalhados', 'beneficiarios-auxilio-saude',
         'percentual-prevcom', 'funcao-gratificada', 'sindicalizado', 'regime-previdencia', 'gliep-previdencia',
-        'participacao-comite'
+        'participacao-comite', 'insalubridade'
     ];
 
     static camposCalculoClasses = [
@@ -13,7 +13,7 @@ class Formulario {
     static camposResultadoIds = [
         'vencimento', 'valor-gliep', 'ats', 'remuneracao-bruta', 'previdencia', 'prevcom', 'irpf',
         'alimentacao', 'liquido', 'refeicao', 'total', 'extra-teto', 'auxilio-saude', 'liquido-dinheiro',
-        'contrapartida-prevcom', 'acrescimo-fg', 'desconto-sindicato', 'indenizacao-comite'
+        'contrapartida-prevcom', 'acrescimo-fg', 'desconto-sindicato', 'indenizacao-comite', 'adicional-insalubridade'
     ];
 
     static padroesVencimentoConsultor = [
@@ -82,6 +82,7 @@ class Formulario {
     isRegimeAntigo = false;
     isIncluiGliepPrevidencia = true;
     isParticipacaoComite = false;
+    isAdicionalInsalubridade = false;
 
     vencimentoBasico = 0;
     valorGliep = 0;
@@ -100,6 +101,7 @@ class Formulario {
     acrescimoFg = 0;
     descontoSindicato = 0;
     indenizacaoComite = 0;
+    adicionalInsalubridade = 0;
 
     constructor() {
         // Define os campos de cálculo (entrada de dados) e de resultado (saída de dados).
@@ -195,6 +197,7 @@ class Formulario {
         this.isRegimeAntigo = this.camposCalculo['regime-previdencia'].value == "1";
         this.isIncluiGliepPrevidencia = this.camposCalculo['gliep-previdencia'].value == "1";
         this.isParticipacaoComite = this.camposCalculo['participacao-comite'].value == "1";
+        this.isAdicionalInsalubridade = this.camposCalculo['insalubridade'].value == "1";
     }
 
     atualizarValoresResultado() {
@@ -215,6 +218,7 @@ class Formulario {
         this.camposResultado['liquido-dinheiro'].innerHTML = numeroParaMoeda(this.liquidoDinheiro);
         this.camposResultado['contrapartida-prevcom'].innerHTML = numeroParaMoeda(this.contrapartidaPrevcom);
         this.camposResultado['indenizacao-comite'].innerHTML = numeroParaMoeda(this.indenizacaoComite);
+        this.camposResultado['adicional-insalubridade'].innerHTML = numeroParaMoeda(this.adicionalInsalubridade);
     }
 
     calcular() {
@@ -224,15 +228,16 @@ class Formulario {
         // Se tem acréscimo de função gratificada, então tem função, o que eleva o valor da GLIEP.  
         let temFuncao = this.acrescimoFg > 0;
         this.valorGliep = Calculo.gliep(this.percentualGliep, temFuncao);
-        this.bruto = Calculo.bruto(this.padraoVencimento, this.tempoExercicio, this.percentualGliep, this.acrescimoFg);
-        let baseCalculoAts = Calculo.bruto(this.padraoVencimento, 0, 0, 0);
+        this.adicionalInsalubridade = this.isAdicionalInsalubridade ? Calculo.adicionalInsalubridade() : 0;
+        this.bruto = Calculo.bruto(this.padraoVencimento, this.tempoExercicio, this.percentualGliep, this.acrescimoFg, this.adicionalInsalubridade);
+        let baseCalculoAts = Calculo.bruto(this.padraoVencimento, 0, 0, 0, 0);
         this.ats = Calculo.ats(baseCalculoAts, this.tempoExercicio);
     
         this.extraTeto = Calculo.extraTeto(this.bruto);
 
         // Se a remuneração bruta ultrapassar o teto, então aquela deve ser equivalente a este.
         let brutoDeduzido = this.extraTeto > 0 ? Calculo.tetoMunicipioSp : this.bruto;
-        let baseCalculoPrevidencia = this.isIncluiGliepPrevidencia ? brutoDeduzido : brutoDeduzido - this.valorGliep;
+        let baseCalculoPrevidencia = this.isIncluiGliepPrevidencia ? brutoDeduzido : brutoDeduzido - this.valorGliep - this.adicionalInsalubridade;
     
         this.previdencia = Calculo.previdencia(baseCalculoPrevidencia, this.isRegimeAntigo);
         this.prevcom = Calculo.prevcom(this.percentualPrevcom, baseCalculoPrevidencia);

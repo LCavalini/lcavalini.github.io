@@ -23,6 +23,8 @@ class Calculo {
         { padrao: 22, valor: Calculo.padraoQpl22 }
     ];
 
+    static padraoQpl1 = 2378.9; // Para calcular a insalubridade.
+
     static auxilioAlimentacao = 2034; // Conforme estimativa.
     static cotaAuxilioRefeicao = 93;  // Conforme estimativa.
     
@@ -72,9 +74,10 @@ class Calculo {
         return adicionalTempo * baseCalculo;
     }
     
-    static bruto(padrao, tempo, percentualGliep, acrescimoFg) {
+    static bruto(padrao, tempo, percentualGliep, acrescimoFg, acrescimoInsalubridade) {
         let baseCalculoAts = Calculo.vencimentoBasico(padrao);
-        return baseCalculoAts + Calculo.ats(baseCalculoAts, tempo) + Calculo.gliep(percentualGliep) + Number.parseFloat(acrescimoFg);
+        return baseCalculoAts + Calculo.ats(baseCalculoAts, tempo) + Calculo.gliep(percentualGliep)
+            + Number.parseFloat(acrescimoFg) + Number.parseFloat(acrescimoInsalubridade);
     }
     
     static extraTeto(remuneracao) {
@@ -132,5 +135,9 @@ class Calculo {
     static indenizacaoComite(brutoDeduzido) {
         return (brutoDeduzido / 30) * 5;
     }
+
+    static adicionalInsalubridade() {
+        return this.padraoQpl1 * 0.2;
+    } 
 
 }
