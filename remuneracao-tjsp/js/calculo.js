@@ -80,6 +80,10 @@ function calcSallary() {
 		{limite: Infinity, aliquota: 0.16, deducao: 258.78}
 	];
 
+	const cargoNivelSuperior = [
+		"ajc", "ajur", "coord"
+	]
+
 	// valor atualizado até 01/2025.
 	const tetoInss = 8157.41;
 
@@ -116,8 +120,7 @@ function calcSallary() {
 		? base.filter(b => b.cargo == cargo)[0].valor
 		: base.filter(b => b.cargo == "")[0].valor;
 	let vencimentos = valorBase + gaj + repr + adicionalProgressao;
-	// Assistente Judiciário não recebe adicional de nível superior.
-	let adicionalQualificacao = cargo == "ajc" && formacaoAcademica == 0.05
+	let adicionalQualificacao = cargoNivelSuperior.includes(cargo)  && formacaoAcademica == 0.075
 		? 0.0
 		: formacaoAcademica * (vencimentos);
 	let adicionalTempoServico = 0.0;
