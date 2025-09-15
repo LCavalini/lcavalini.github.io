@@ -25,6 +25,7 @@ function calcSallary() {
 		{ cargo: "csjGab", valor: 9.14637 }, // Não tenho a informação exata de quanto é GAJ e quanto é Representação.
 		{ cargo: "ajur", valor: 11.105 },
 		{ cargo: "coord", valor: 11.661 },
+		{ cargo: "super", valor: 10.9438 },
 		{ cargo: "eqgab", valor: 4.66516 } // Comunicado SGP nº 58/2025.
 	];
 	const multiplicadoresRepr = [
@@ -38,6 +39,7 @@ function calcSallary() {
 		{ cargo: "estenotipista", valor: 2.424 },
 		{ cargo: "ajur", valor: 3.35149 },
 		{ cargo: "coord", valor: 3.56111 },
+		{ cargo: "super", valor: 2.89087 },
 		{ cargo: "eqgab", valor: 1 }
 	];
 	const valoresProgressao = [
@@ -81,7 +83,7 @@ function calcSallary() {
 	];
 
 	const cargoNivelSuperior = [
-		"ajc", "ajur", "coord"
+		"ajc", "ajur", "coord", "super"
 	]
 
 	// valor atualizado até 01/2025.
