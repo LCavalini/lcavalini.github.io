@@ -122,7 +122,7 @@ function calcSallary() {
 		? base.filter(b => b.cargo == cargo)[0].valor
 		: base.filter(b => b.cargo == "")[0].valor;
 	let vencimentos = valorBase + gaj + repr + adicionalProgressao;
-	let adicionalQualificacao = cargoNivelSuperior.includes(cargo)  && formacaoAcademica == 0.075
+	let adicionalQualificacao = cargoNivelSuperior.includes(cargo)  && formacaoAcademica == 0.05
 		? 0.0
 		: formacaoAcademica * (vencimentos);
 	let adicionalTempoServico = 0.0;
