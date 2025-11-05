@@ -15,18 +15,18 @@ function calcSallary() {
 	const baseGratificacao = 972.37;
 	// Resolução nº 959/2025.
 	const multiplicadoresGaj = [
-		{ cargo: "", valor:  4.66516 },
-		{ cargo: "estenotipista", valor: 4.66516 },
-		{ cargo: "etjGabUpj", valor: 4.66516 },
-		{ cargo: "etjGab", valor: 5.954 },
-		{ cargo: "esadm", valor: 5.954 },
+		{ cargo: "", valor:  4.6660 },
+		{ cargo: "estenotipista", valor: 4.6660 },
+		{ cargo: "etjGabUpj", valor: 4.6660 },
+		{ cargo: "etjGab", valor: 5.965 },
+		{ cargo: "esadm", valor: 5.965 },
 		{ cargo: "ajc", valor: 8.065 },
 		{ cargo: "csj", valor: 6.61 },
 		{ cargo: "csjGab", valor: 9.14637 }, // Não tenho a informação exata de quanto é GAJ e quanto é Representação.
 		{ cargo: "ajur", valor: 11.105 },
 		{ cargo: "coord", valor: 11.661 },
 		{ cargo: "super", valor: 10.9438 },
-		{ cargo: "eqgab", valor: 4.66516 } // Comunicado SGP nº 58/2025.
+		{ cargo: "eqgab", valor: 4.6660 } // Comunicado SGP nº 58/2025.
 	];
 	const multiplicadoresRepr = [
 		{ cargo: "", valor: 0.0 },
@@ -122,7 +122,7 @@ function calcSallary() {
 		? base.filter(b => b.cargo == cargo)[0].valor
 		: base.filter(b => b.cargo == "")[0].valor;
 	let vencimentos = valorBase + gaj + repr + adicionalProgressao;
-	let adicionalQualificacao = cargoNivelSuperior.includes(cargo)  && formacaoAcademica == 0.05
+	let adicionalQualificacao = cargoNivelSuperior.includes(cargo) && formacaoAcademica == 0.05
 		? 0.0
 		: formacaoAcademica * (vencimentos);
 	let adicionalTempoServico = 0.0;
@@ -153,8 +153,15 @@ function calcSallary() {
 	let totalDescontoIamspe = (iamspe + descontoIamspeAgregados + descontoIamspeDependentes) * baseCalculoDeducoes;			
 	let totalDeducaoDependenteIRPF = dependentes * deducaoDependenteIRPF;
 
+	// o TJ-SP não considera na contribuição previdenciária os valores percebidos por ocupar cargo em comissão.
+	let remuneracaoPrevidencia = base.filter(b => b.cargo == "")[0].valor + adicionalProgressao
+		+ (multiplicadoresGaj.filter(m => m.cargo == "")[0].valor * baseGratificacao);
+	let adicionalQualificacaoPrevidencia = formacaoAcademica * remuneracaoPrevidencia;
+	remuneracaoPrevidencia += adicionalQualificacaoPrevidencia;
+	remuneracaoPrevidencia *= 1 + (quinquenios >= 4 ? 0.05 * quinquenios + 0.2 : 0.05 * quinquenios);
+
 	// a contribuição previdenciária SPPREV é limitada ao teto do INSS
-	let baseCalculoPrevidencia = baseCalculoDeducoes > tetoInss ? tetoInss : baseCalculoDeducoes;
+	let baseCalculoPrevidencia = remuneracaoPrevidencia > tetoInss ? tetoInss : remuneracaoPrevidencia;
 	if (baseCalculoPrevidencia <= faixasContribuicaoPrevidenciaria[0].limite) {
 		totalContribuicaoPrevidenciaria = baseCalculoPrevidencia * faixasContribuicaoPrevidenciaria[0].aliquota - faixasContribuicaoPrevidenciaria[0].deducao;
 	} else if (baseCalculoPrevidencia <= faixasContribuicaoPrevidenciaria[1].limite) {
