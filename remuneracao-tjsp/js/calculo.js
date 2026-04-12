@@ -15,18 +15,18 @@ function calcSallary() {
 	const baseGratificacao = 972.37;
 	// Resolução nº 959/2025.
 	const multiplicadoresGaj = [
-		{ cargo: "", valor:  4.6660 },
-		{ cargo: "estenotipista", valor: 4.6660 },
-		{ cargo: "etjGabUpj", valor: 4.6660 },
-		{ cargo: "etjGab", valor: 5.965 },
-		{ cargo: "esadm", valor: 5.965 },
-		{ cargo: "ajc", valor: 8.065 },
-		{ cargo: "csj", valor: 6.61 },
-		{ cargo: "csjGab", valor: 9.14637 }, // Não tenho a informação exata de quanto é GAJ e quanto é Representação.
-		{ cargo: "ajur", valor: 11.105 },
-		{ cargo: "coord", valor: 11.661 },
-		{ cargo: "super", valor: 10.9438 },
-		{ cargo: "eqgab", valor: 4.6660 } // Comunicado SGP nº 58/2025.
+		{ cargo: "", valor:  4.9503365 },
+		{ cargo: "estenotipista", valor: 5.0533565 },
+		{ cargo: "etjGabUpj", valor: 4.98008225 },
+		{ cargo: "etjGab", valor: 6.322989 },
+		{ cargo: "esadm", valor: 6.322989 },
+		{ cargo: "ajc", valor: 8.5709315 },
+		{ cargo: "csj", valor: 7.02040149 },
+		{ cargo: "csjGab", valor: 9.66456721561 }, // Não tenho a informação exata de quanto é GAJ e quanto é Representação.
+		{ cargo: "ajur", valor: 11.8054323253548 },
+		{ cargo: "coord", valor: 12.3939711753548 },
+		{ cargo: "super", valor: 11.6178049753548 },
+		{ cargo: "eqgab", valor: 4.9928365 } // Comunicado SGP nº 58/2025.
 	];
 	const multiplicadoresRepr = [
 		{ cargo: "", valor: 0.0 },
@@ -65,7 +65,7 @@ function calcSallary() {
 	const auxilioCreche = 805; // COMUNICADO Nº 35/2025 SGP.
 	const auxilioFillhoDeficiencia = 1207.5; // COMUNICADO Nº 35/2025 SGP.
 	const auxilioAlimentacao = 80; // COMUNICADO Nº 35/2025 SGP.
-	const auxilioTransporte = 14; // PORTARIA Nº 10.536/2025.
+	const auxilioTransporte = 18.8;
 	const auxilioSaude = 718; // COMUNICADO Nº 94/2024 SGP.
 	const percentuaisAuxilioSaude = [ 
 		1,  1.04, 1.06, 1.1, 1.67, 1.71
