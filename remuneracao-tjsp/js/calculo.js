@@ -15,17 +15,17 @@ function calcSallary() {
 	const baseGratificacao = 972.37;
 	// Resolução nº 959/2025.
 	const multiplicadoresGaj = [
-		{ cargo: "", valor:  4.9503365 },
+		{ cargo: "", valor:  4.951 },
 		{ cargo: "estenotipista", valor: 5.0533565 },
 		{ cargo: "etjGabUpj", valor: 4.98008225 },
-		{ cargo: "etjGab", valor: 6.322989 },
+		{ cargo: "etjGab", valor: 6.323 },
 		{ cargo: "esadm", valor: 6.322989 },
-		{ cargo: "ajc", valor: 8.5709315 },
-		{ cargo: "csj", valor: 7.02040149 },
-		{ cargo: "csjGab", valor: 9.66456721561 }, // Não tenho a informação exata de quanto é GAJ e quanto é Representação.
-		{ cargo: "ajur", valor: 11.8054323253548 },
-		{ cargo: "coord", valor: 12.3939711753548 },
-		{ cargo: "super", valor: 11.6178049753548 },
+		{ cargo: "ajc", valor: 8.618 },
+		{ cargo: "csj", valor: 7.047 },
+		{ cargo: "csjGab", valor: 9.04 }, 
+		{ cargo: "ajur", valor: 11.895 },
+		{ cargo: "coord", valor: 12.487 },
+		{ cargo: "super", valor: 11.33 },
 		{ cargo: "eqgab", valor: 4.9928365 } // Comunicado SGP nº 58/2025.
 	];
 	const multiplicadoresRepr = [
