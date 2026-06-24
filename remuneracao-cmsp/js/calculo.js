@@ -2,28 +2,28 @@
 
 class Calculo {
     
-    static padraoQpl22 = 31520.59; // Conforme PL 374/2025.
+    static padraoQpl22 = 32721.52; // Conforme PL 465/2026.
 
-    static vencimento = [ // Conforme PL 374/2025.
-        { padrao: 7, valor: 7545.06 },
-        { padrao: 8, valor: 8299.58 },
-        { padrao: 9, valor:  9129.56 },
-        { padrao: 10, valor: 10042.6 },
-        { padrao: 11, valor: 11046.8 },
-        { padrao: 12, valor: 12151.51 },
-        { padrao: 13, valor: 13366.72 },
-        { padrao: 14, valor: 14703.39 },
-        { padrao: 15, valor: 16173.67 },
-        { padrao: 16, valor: 17791.03 },
-        { padrao: 17, valor: 19570.16 },
-        { padrao: 18, valor: 21527.17 },
-        { padrao: 19, valor: 23679.89 },
-        { padrao: 20, valor: 26047.87 },
-        { padrao: 21, valor: 28652.69 },
+    static vencimento = [ // Conforme PL 465/2026
+        { padrao: 7, valor: 7832.53 },
+        { padrao: 8, valor: 8615.80 },
+        { padrao: 9, valor: 9477.40 },
+        { padrao: 10, valor: 10425.23 },
+        { padrao: 11, valor: 11467.69 },
+        { padrao: 12, valor: 12614.49 },
+        { padrao: 13, valor: 13876.00 },
+        { padrao: 14, valor: 15263.59 },
+        { padrao: 15, valor: 16789.89 },
+        { padrao: 16, valor: 18468.87 },
+        { padrao: 17, valor: 20315.79 },
+        { padrao: 18, valor: 22347.36 },
+        { padrao: 19, valor: 24582.10 },
+        { padrao: 20, valor: 27040.30 },
+        { padrao: 21, valor: 29744.36 },
         { padrao: 22, valor: Calculo.padraoQpl22 }
     ];
 
-    static padraoQpl1 = 2378.9; // Para calcular a insalubridade.
+    static padraoQpl1 = 2469.54; // Para calcular a insalubridade.
 
     static auxilioAlimentacao = 2034; // Conforme estimativa.
     static cotaAuxilioRefeicao = 93;  // Conforme estimativa.
