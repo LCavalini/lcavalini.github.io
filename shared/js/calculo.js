@@ -48,7 +48,7 @@ function calcularIrpf(remuneracao, baseCalculo) {
  * @returns 
  */
 function obterTetoInss() {
-    return 8157.41;
+    return 8475.55;
 }
 
 /**
