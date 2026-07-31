@@ -62,14 +62,25 @@ function calcSallary() {
 		{ padrao: "5Q-CE", valor: 603.83 },
 		{ padrao: "5R-CE", valor: 642.41 }
 	]
+
+	// Portaria 10.855/2026.
+	const valoresAuxilioSaude = [
+		{ faixa: 1, valor: 783 },
+		{ faixa: 2, valor: 815 },
+		{ faixa: 3, valor: 826 },
+		{ faixa: 4, valor: 846 },
+		{ faixa: 5, valor: 854 },
+		{ faixa: 6, valor: 885 },
+		{ faixa: 7, valor: 901},
+		{ faixa: 8, valor: 1338 },
+		{ faixa: 9, valor: 1368 },
+		{ faixa: 10, valor: 1450 }
+	];
+
 	const auxilioCreche = 805; // COMUNICADO Nº 35/2025 SGP.
 	const auxilioFillhoDeficiencia = 1207.5; // COMUNICADO Nº 35/2025 SGP.
 	const auxilioAlimentacao = 95; // PORTARIA Nº 10.841/2026.
 	const auxilioTransporte = 18.8;
-	const auxilioSaude = 718; // COMUNICADO Nº 94/2024 SGP.
-	const percentuaisAuxilioSaude = [ 
-		1,  1.04, 1.06, 1.1, 1.67, 1.71
-	]; // COMUNICADO Nº 94/2024 SGP.
 
 	const deducaoDependenteIRPF = 189.59;
 	
@@ -142,9 +153,9 @@ function calcSallary() {
 	let totalAuxilioCreche = numAuxilioCreche * auxilioCreche;
 	let totalAuxilioFilhoDeficiencia = numAuxilioFilhoDeficiencia * auxilioFillhoDeficiencia;
 	let totalAdicionais = adicionalQualificacao + adicionalTempoServico;
-	let totalAuxilioSaude = faixaEtariaAuxilioSaude != null && faixaEtariaAuxilioSaude > 0 && faixaEtariaAuxilioSaude < 6
-		? Math.ceil(auxilioSaude * percentuaisAuxilioSaude[faixaEtariaAuxilioSaude]) * acrescimoAuxilioSaude
-		: auxilioSaude * acrescimoAuxilioSaude;
+	let totalAuxilioSaude = faixaEtariaAuxilioSaude != null && faixaEtariaAuxilioSaude >= 1 && faixaEtariaAuxilioSaude <= 10
+		? valoresAuxilioSaude.find(x => x.faixa == faixaEtariaAuxilioSaude).valor
+		: 0;
 	let baseCalculoDeducoes = vencimentos + adicionalQualificacao + adicionalTempoServico;
 	
 	// cálculo das deduções
