@@ -154,7 +154,7 @@ function calcSallary() {
 	let totalAuxilioFilhoDeficiencia = numAuxilioFilhoDeficiencia * auxilioFillhoDeficiencia;
 	let totalAdicionais = adicionalQualificacao + adicionalTempoServico;
 	let totalAuxilioSaude = faixaEtariaAuxilioSaude != null && faixaEtariaAuxilioSaude >= 1 && faixaEtariaAuxilioSaude <= 10
-		? valoresAuxilioSaude.find(x => x.faixa == faixaEtariaAuxilioSaude).valor
+		? valoresAuxilioSaude.find(x => x.faixa == faixaEtariaAuxilioSaude).valor * acrescimoAuxilioSaude
 		: 0;
 	let baseCalculoDeducoes = vencimentos + adicionalQualificacao + adicionalTempoServico;
 	
