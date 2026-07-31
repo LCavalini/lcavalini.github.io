@@ -77,8 +77,8 @@ function calcSallary() {
 		{ faixa: 10, valor: 1450 }
 	];
 
-	const auxilioCreche = 805; // COMUNICADO Nº 35/2025 SGP.
-	const auxilioFillhoDeficiencia = 1207.5; // COMUNICADO Nº 35/2025 SGP.
+	const auxilioCreche = 855; // COMUNICADO Nº 35/2025 SGP.
+	const auxilioFillhoDeficiencia = 1282.5; // COMUNICADO Nº 35/2025 SGP.
 	const auxilioAlimentacao = 95; // PORTARIA Nº 10.841/2026.
 	const auxilioTransporte = 18.8;
 
