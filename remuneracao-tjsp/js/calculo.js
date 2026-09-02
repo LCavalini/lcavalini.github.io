@@ -26,7 +26,7 @@ function calcSallary() {
 		{ cargo: "ajur", valor: 11.895 },
 		{ cargo: "coord", valor: 12.487 },
 		{ cargo: "super", valor: 11.33 },
-		{ cargo: "eqgab", valor: 4.9928365 } // Comunicado SGP nº 58/2025.
+		{ cargo: "eqgab", valor: 4.951 } // Comunicado SGP nº 58/2025.
 	];
 	const multiplicadoresRepr = [
 		{ cargo: "", valor: 0.0 },
@@ -142,9 +142,9 @@ function calcSallary() {
 	// com sexta parte (20 anos = 4 quinquenios)
 	// COMUNICADO Nº 94/2024 SGP: incluiu o adicional de qualificação na base de cálculo do adicional de tempo.
 	if (quinquenios >= 4) {
-		adicionalTempoServico = (0.05 * quinquenios + 0.2) * (vencimentos + adicionalQualificacao);
+		adicionalTempoServico = (0.05 * quinquenios + 0.2) * (vencimentos - repr + adicionalQualificacao);
 	} else { // sem sexta parte
-		adicionalTempoServico = 0.05 * quinquenios * (vencimentos + adicionalQualificacao);
+		adicionalTempoServico = 0.05 * quinquenios * (vencimentos - repr + adicionalQualificacao);
 	}
 				
 	// cálculo dos auxílios
