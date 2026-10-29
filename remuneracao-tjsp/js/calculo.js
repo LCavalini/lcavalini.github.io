@@ -26,7 +26,8 @@ function calcSallary() {
 		{ cargo: "ajur", valor: 11.895 },
 		{ cargo: "coord", valor: 12.487 },
 		{ cargo: "super", valor: 11.33 },
-		{ cargo: "eqgab", valor: 4.951 } // Comunicado SGP nº 58/2025.
+		{ cargo: "eqgab", valor: 4.951 }, // Comunicado SGP nº 58/2025.
+		{ cargo: "gea", valor: 6.196 }
 	];
 	const multiplicadoresRepr = [
 		{ cargo: "", valor: 0.0 },
@@ -40,7 +41,8 @@ function calcSallary() {
 		{ cargo: "ajur", valor: 3.35149 },
 		{ cargo: "coord", valor: 3.56111 },
 		{ cargo: "super", valor: 2.89087 },
-		{ cargo: "eqgab", valor: 1 }
+		{ cargo: "eqgab", valor: 1 },
+		{ cargo: "gea", valor: 1.36 }
 	];
 	const valoresProgressao = [
 		{ padrao: "5A-CE", valor: 0.0 },
@@ -94,7 +96,7 @@ function calcSallary() {
 	];
 
 	const cargoNivelSuperior = [
-		"ajc", "ajur", "coord", "super"
+		"ajc", "ajur", "coord", "super", "gea"
 	]
 
 	// valor atualizado até 01/2025.
@@ -133,7 +135,7 @@ function calcSallary() {
 		? base.filter(b => b.cargo == cargo)[0].valor
 		: base.filter(b => b.cargo == "")[0].valor;
 	let vencimentos = valorBase + gaj + repr + adicionalProgressao;
-	let adicionalQualificacao = cargoNivelSuperior.includes(cargo) && formacaoAcademica == 0.05
+	let adicionalQualificacao = cargoNivelSuperior.includes(cargo) && formacaoAcademica == 0.075
 		? 0.0
 		: formacaoAcademica * (vencimentos);
 	let adicionalTempoServico = 0.0;
