@@ -119,6 +119,7 @@ function calcSallary() {
 	let acrescimoAuxilioSaude = Number(document.getElementById("acrescimoAuxilioSaude").value);
 	let faixaEtariaAuxilioSaude = Number(document.getElementById("faixaEtariaAuxilioSaude").value);
 	let padraoVecimento = document.getElementById("padraoVencimento").value;
+	let regimePrevidencia = Number(document.getElementById("regime-previdencia").value);
 
 	let multiplicadorGaj = multiplicadoresGaj.filter(m => m.cargo == cargo).length == 1
 		? multiplicadoresGaj.filter(m => m.cargo == cargo)[0]
@@ -174,7 +175,10 @@ function calcSallary() {
 	remuneracaoPrevidencia *= 1 + (quinquenios >= 4 ? 0.05 * quinquenios + 0.2 : 0.05 * quinquenios);
 
 	// a contribuição previdenciária SPPREV é limitada ao teto do INSS
-	let baseCalculoPrevidencia = remuneracaoPrevidencia > tetoInss ? tetoInss : remuneracaoPrevidencia;
+	let isRegimeNovo = regimePrevidencia == 0;
+	let baseCalculoPrevidencia = (remuneracaoPrevidencia > tetoInss && isRegimeNovo)
+		? tetoInss
+		: remuneracaoPrevidencia;
 	if (baseCalculoPrevidencia <= faixasContribuicaoPrevidenciaria[0].limite) {
 		totalContribuicaoPrevidenciaria = baseCalculoPrevidencia * faixasContribuicaoPrevidenciaria[0].aliquota - faixasContribuicaoPrevidenciaria[0].deducao;
 	} else if (baseCalculoPrevidencia <= faixasContribuicaoPrevidenciaria[1].limite) {
